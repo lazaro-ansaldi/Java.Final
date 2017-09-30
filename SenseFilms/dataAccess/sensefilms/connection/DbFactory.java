@@ -31,6 +31,10 @@ public class DbFactory {
 		{		
 			throw new Exception("Error del Driver JDBC",cnfex);
 		}
+		catch (Exception ex) 
+		{
+			throw ex;
+		}
 	}
 	
 	private static DbFactory instancia;
@@ -50,8 +54,8 @@ public class DbFactory {
 		{
 			if(conn==null || conn.isClosed())
 			{
-				conn = DriverManager.getConnection("jdbc:"+dbType+"://"+host+":"+port+"/"+
-						db+"?user="+user+"&password="+pass);
+				conn = DriverManager.getConnection("jdbc:"+dbType+"://"+host
+						+":"+port+"/"+db+"?user="+user+"&password="+pass);
 				cantConn++;
 			}
 		} 
@@ -78,6 +82,7 @@ public class DbFactory {
 		}
 	}
 	
+	//Retrieve connection data from properties file
 	private void initData() throws Exception
 	{
 		try 
