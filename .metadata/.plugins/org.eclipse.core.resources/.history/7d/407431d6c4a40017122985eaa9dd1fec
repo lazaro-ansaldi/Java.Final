@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SenseFilms">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/dataAccess"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/bussinessLogic"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/common"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/bussinessEntities"/>
+        <property name="context-root" value="SenseFilms"/>
+        <property name="java-output-path" value="/SenseFilms/build/classes"/>
+    </wb-module>
+</project-modules>
