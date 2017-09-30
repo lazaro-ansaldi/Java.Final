@@ -4,3 +4,9 @@
 1506559201672	Delete element
 1506559433018	Delete element
 1506655061745	Delete element
+1506792638721	Rename resource 'database.properties'
+1506792818101	Rename field 'inputStream'
+1506792912693	Rename field 'propFileName'
+1506793868778	Rename local variable 'FILENAME'
+1506793949355	Rename local variable '_inputStream'
+1506793956390	Rename local variable '_prop'

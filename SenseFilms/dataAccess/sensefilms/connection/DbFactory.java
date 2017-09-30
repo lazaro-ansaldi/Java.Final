@@ -2,60 +2,102 @@ package sensefilms.connection;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import sensefilms.utils.ConfigHandler;
+
 import java.sql.Connection;
 
 public class DbFactory {
 
-	private String dbDriver="com.mysql.jdbc.Driver";
-	private String host="rosariocdr.ddns.net";
-	private String port="3306";
-	private String user="sense";
-	private String pass="SenseFilms";
-	private String db="sense";
-	private String dbType="mysql";
+	private String dbDriver;
+	private String host;
+	private String port;
+	private String user;
+	private String pass;
+	private String db;
+	private String dbType;
 	
 	private Connection conn;
 	private int cantConn=0;
 	
-	private DbFactory() throws Exception{
-		try {
+	private DbFactory() throws Exception
+	{
+		try 
+		{
+			initData();
 			Class.forName(dbDriver);
-		} catch (ClassNotFoundException cnfex) {
+		} 
+		catch (ClassNotFoundException cnfex) 
+		{		
 			throw new Exception("Error del Driver JDBC",cnfex);
+		}
+		catch (Exception ex) 
+		{
+			throw ex;
 		}
 	}
 	
 	private static DbFactory instancia;
 	
-	public static DbFactory getInstancia() throws Exception{
-		if (instancia==null){
+	public static DbFactory getInstancia() throws Exception
+	{
+		if (instancia==null)
+		{
 			instancia = new DbFactory();
 		}
 		return instancia;
 	}
 	
-	public Connection getConn(){
-		try {
-			if(conn==null || conn.isClosed()){
-				conn = DriverManager.getConnection("jdbc:"+dbType+"://"+host+":"+port+"/"+
-						db+"?user="+user+"&password="+pass);
+	public Connection getConn()
+	{
+		try 
+		{
+			if(conn==null || conn.isClosed())
+			{
+				conn = DriverManager.getConnection("jdbc:"+dbType+"://"+host
+						+":"+port+"/"+db+"?user="+user+"&password="+pass);
 				cantConn++;
 			}
-		} catch (SQLException sqlex) {
+		} 
+		catch (SQLException sqlex) 
+		{
 			new SQLException("Error al conectar a la DB", sqlex);
-
 		}
 		return conn;
 	}
 	
-	public void releaseConn() throws Exception{
-		try {
+	public void releaseConn() throws Exception
+	{
+		try 
+		{
 			cantConn--;
-			if(cantConn==0){
+			if(cantConn==0)
+			{
 				conn.close();
 			}
-		} catch (SQLException sqlex) {
+		} 
+		catch (SQLException sqlex) 
+		{
 			throw new SQLException("Error al cerrar conexión",sqlex);
 		}
+	}
+	
+	//Retrieve connection data from properties file
+	private void initData() throws Exception
+	{
+		try 
+		{
+			dbDriver=ConfigHandler.getPropertieValue("dbDriver");
+			host=ConfigHandler.getPropertieValue("host");
+			port=ConfigHandler.getPropertieValue("port");
+			user=ConfigHandler.getPropertieValue("user");
+			pass=ConfigHandler.getPropertieValue("pass");
+			db=ConfigHandler.getPropertieValue("db");
+			dbType=ConfigHandler.getPropertieValue("dbType");			
+		}
+		catch(Exception ex) 
+		{
+			throw ex;
+		}	
 	}
 }
