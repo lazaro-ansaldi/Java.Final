@@ -10,3 +10,4 @@
 1506793868778	Rename local variable 'FILENAME'
 1506793949355	Rename local variable '_inputStream'
 1506793956390	Rename local variable '_prop'
+1506803047467	Rename type 'BaseRepository'
