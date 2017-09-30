@@ -1,0 +1,9 @@
+package sensefilms.interfaces;
+
+interface BaseRepository {
+
+	public void insert();
+	public void getOneById();
+	public void update();
+	public void delete();
+}

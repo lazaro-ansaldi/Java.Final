@@ -1,0 +1,5 @@
+package sensefilms.entities;
+
+public abstract class BaseEntity {
+
+}
