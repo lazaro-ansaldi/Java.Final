@@ -2,7 +2,7 @@ package sensefilms.interfaces;
 
 import sensefilms.entities.BaseEntity;
 
-interface BaseRepository 
+interface IBaseRepository 
 {
 	public <T extends BaseEntity> void insert(T entity);
 	public <T extends BaseEntity> T getOneById(int id);
