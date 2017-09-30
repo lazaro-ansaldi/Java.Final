@@ -354,3 +354,9 @@ org.eclipse.jgit.errors.TransportException: Nothing to push.
 
 !ENTRY org.eclipse.jface.text 2 0 2017-09-30 17:25:25.087
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-30 17:44:48.844
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-30 17:44:48.845
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
