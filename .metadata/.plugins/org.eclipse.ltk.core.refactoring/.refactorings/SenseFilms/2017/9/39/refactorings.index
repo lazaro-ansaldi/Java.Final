@@ -11,3 +11,5 @@
 1506793949355	Rename local variable '_inputStream'
 1506793956390	Rename local variable '_prop'
 1506803047467	Rename type 'BaseRepository'
+1506804380527	Move 'login.html' to 'libs'
+1506804396497	Delete element
