@@ -4,5 +4,5 @@ import sensefilms.entities.User;
 
 public interface ILoginLogic 
 {
-	public boolean isValidLogin(User user);
+	public boolean isValidLogin(User user) throws Exception;
 }
