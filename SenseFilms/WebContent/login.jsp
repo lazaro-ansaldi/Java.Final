@@ -4,55 +4,57 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- Font Awesome -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<title>Login Page</title>
 
 <!-- Bootstrat Core -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Material Design -->
 <link href="css/mdb.min.css" rel="stylesheet" />
+
+<!-- Application Core Styles -->
+<link href="css/coreStyles.css" rel="sylesheet"/>
 </head>
+
 <body>
-<section>
-    <div class="card" style="width: 28rem;">
-    <form name="loginForm" action="Login" method="post">
-        <div class="card-body">
-                    <!--Header-->
-                    <div class="form-header default-color">
-                        <h3><i class="fa fa-lock"></i> Login:</h3>
-                    </div>
-
-                    <!--Body-->
-                    <div class="md-form">
-                        <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="text" id="defaultForm-email" class="form-control" name="username">
-                        <label for="defaultForm-email">Your username</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fa fa-lock prefix grey-text"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control" name="password">
-                        <label for="defaultForm-pass">Your password</label>
-                    </div>
-
-                    <div class="text-center">
-                        <button class="btn btn-default waves-effect waves-light">Login</button>
-                    </div>
+	<div class="card" style="width: 28rem;">
+		<form name="loginForm" action="Login" method="post">
+  				 <!--Header-->
+			<div class="form-header default-color">
+            	<h3><i class="fa fa-lock"></i> Login:</h3>
+            </div>
+            
+                        <!--Body-->
+            <div class="md-form">
+            	<i class="fa fa-envelope prefix grey-text"></i>
+                <input type="text" id="defaultForm-email" class="form-control" name="username">
+                <label for="defaultForm-email">Your username</label>
+            </div>
+            
+            <div class="md-form">
+            	<i class="fa fa-lock prefix grey-text"></i>
+                <input type="password" id="defaultForm-pass" class="form-control" name="password">
+                <label for="defaultForm-pass">Your password</label>
+            </div>
+            
+            <div>
+            	<label>${errorMessage}</label>
+            	<%session.removeAttribute("errorMessage");%>
+            </div>                                 
+                                      
+            <div class="text-center">
+            	<button type="submit" class="btn btn-default waves-effect waves-light">Login</button>
+            </div>
+            
+                            <!--Footer-->
+            <div class="modal-footer">
+            	<div class="options">
+                	<p>Not a member? <a href="#">Sign Up</a></p>
+                    <p>Forgot <a href="#">Password?</a></p>
                 </div>
-                
-                <!--Footer-->
-                <div class="modal-footer">
-                    <div class="options">
-                        <p>Not a member? <a href="#">Sign Up</a></p>
-                        <p>Forgot <a href="#">Password?</a></p>
-                    </div>
-                </div>
-            </form>
-       </div>
-         
-        </section>
+            </div>                                                                         
+		</form>           
+	</div>
         
         <!-- JQuery -->
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -67,4 +69,3 @@
         <script type="text/javascript" src="js/popper.min.js"></script>
 </body>
 </html>
-

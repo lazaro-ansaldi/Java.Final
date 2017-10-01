@@ -76,7 +76,7 @@ public class UserRepository implements IUserRepository
 
 	@Override
 	public User getOneByUsername(String username) throws SQLException, LoggedException
-	{
+	{		
 		query = "SELECT * FROM Users WHERE Username=?";
 		ResultSet rs = null;
 		User currentUser=null;

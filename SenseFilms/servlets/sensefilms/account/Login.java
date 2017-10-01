@@ -51,18 +51,19 @@ public class Login extends HttpServlet {
 		currentUser.setUsername(username);
 		try 
 		{
-			if(_loginLogic.isValidLogin(currentUser)) 
+			if(_loginLogic.isValidLogin(currentUser))
 			{
-				response.sendRedirect("");
+				response.sendRedirect("home.jsp");
 			}
 			else
 			{
-				//Show error
+				request.getSession().setAttribute("errorMessage", "Username or password incorrect");
+				response.sendRedirect("login.jsp");
 			}
 		}
 		catch(LoggedException loggex) 
 		{
-			response.sendRedirect("");
+			response.sendRedirect("error.jsp");
 		}
 	}
 
