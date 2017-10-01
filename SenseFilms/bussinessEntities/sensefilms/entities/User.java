@@ -1,6 +1,7 @@
 package sensefilms.entities;
 
 import java.util.Date;
+import sensefilms.enums.UserRoles;
 
 public class User extends BaseEntity
 {
@@ -8,7 +9,18 @@ public class User extends BaseEntity
 	private String password;
 	private Date lastLogin;
 	private String name;
+	private UserRoles userRole;
 	
+	public UserRoles getUserRole()
+	{
+		return userRole;
+	}
+
+	public void setUserRole(UserRoles userRole) 
+	{
+		this.userRole = userRole;
+	}
+
 	public String getUsername() 
 	{
 		return username;
