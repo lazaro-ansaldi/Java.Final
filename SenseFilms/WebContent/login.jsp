@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- Font Awesome -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -26,7 +28,7 @@
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
                         <input type="text" id="defaultForm-email" class="form-control" name="username">
-                        <label for="defaultForm-email">Your email</label>
+                        <label for="defaultForm-email">Your username</label>
                     </div>
 
                     <div class="md-form">

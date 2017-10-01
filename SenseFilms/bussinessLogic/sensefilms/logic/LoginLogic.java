@@ -1,6 +1,8 @@
 package sensefilms.logic;
 
 import java.sql.SQLException;
+import java.util.Date;
+
 import sensefilms.entities.User;
 import sensefilms.exceptions.LoggedException;
 import sensefilms.interfaces.ILoginLogic;
@@ -18,8 +20,16 @@ public class LoginLogic implements ILoginLogic
 		try 
 		{
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
-			return (dbUser.getUsername().equals(user.getUsername()) && 
-					dbUser.getPassword().equals(user.getPassword())); 
+			
+			if(dbUser.getUsername().equals(user.getUsername()) && 
+					dbUser.getPassword().equals(user.getPassword())) 
+			{
+				dbUser.setLastLogin(new Date());
+				_userRepository.update(dbUser);
+				return true;
+			}
+			
+			return false;
 		}
 		catch(SQLException sqlex) 
 		{
