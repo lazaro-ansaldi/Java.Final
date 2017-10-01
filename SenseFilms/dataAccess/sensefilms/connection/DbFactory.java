@@ -3,6 +3,7 @@ package sensefilms.connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import sensefilms.exceptions.LoggedException;
 import sensefilms.utils.ConfigHandler;
 
 import java.sql.Connection;
@@ -20,7 +21,7 @@ public class DbFactory {
 	private Connection conn;
 	private int cantConn=0;
 	
-	private DbFactory() throws Exception
+	private DbFactory() throws LoggedException
 	{
 		try 
 		{
@@ -29,17 +30,17 @@ public class DbFactory {
 		} 
 		catch (ClassNotFoundException cnfex) 
 		{		
-			throw new Exception("Error del Driver JDBC",cnfex);
+			throw new LoggedException(cnfex, dbDriver + " cannot be found");
 		}
 		catch (Exception ex) 
 		{
-			throw ex;
+			throw new LoggedException(ex, "Error while trying to load the driver.");
 		}
 	}
 	
 	private static DbFactory instancia;
 	
-	public static DbFactory getInstancia() throws Exception
+	public static DbFactory getInstancia() throws LoggedException
 	{
 		if (instancia==null)
 		{
@@ -48,7 +49,7 @@ public class DbFactory {
 		return instancia;
 	}
 	
-	public Connection getConn()
+	public Connection getConn() throws SQLException
 	{
 		try 
 		{
@@ -61,7 +62,7 @@ public class DbFactory {
 		} 
 		catch (SQLException sqlex) 
 		{
-			new SQLException("Error al conectar a la DB", sqlex);
+			throw new SQLException("Error while trying to connect to database: " + db, sqlex);
 		}
 		return conn;
 	}
@@ -83,7 +84,7 @@ public class DbFactory {
 	}
 	
 	//Retrieve connection data from properties file
-	private void initData() throws Exception
+	private void initData() throws LoggedException
 	{
 		try 
 		{
@@ -97,7 +98,7 @@ public class DbFactory {
 		}
 		catch(Exception ex) 
 		{
-			throw ex;
+			throw new LoggedException(ex, "Error ocurred when try to read data from file");
 		}	
 	}
 }
