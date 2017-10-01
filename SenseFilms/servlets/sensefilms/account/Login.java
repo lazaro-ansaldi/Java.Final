@@ -7,12 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sensefilms.entities.User;
+import sensefilms.exceptions.LoggedException;
+import sensefilms.interfaces.ILoginLogic;
+import sensefilms.logic.LoginLogic;
+
 /**
  * Servlet implementation class Login
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private ILoginLogic _loginLogic;
 
     /**
      * Default constructor. 
@@ -34,6 +41,29 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		_loginLogic = new LoginLogic();
+			// Retrieve data from UI
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		User currentUser = new User();
+		currentUser.setPassword(password);
+		currentUser.setUsername(username);
+		try 
+		{
+			if(_loginLogic.isValidLogin(currentUser)) 
+			{
+				response.sendRedirect("");
+			}
+			else
+			{
+				//Show error
+			}
+		}
+		catch(LoggedException loggex) 
+		{
+			response.sendRedirect("");
+		}
 	}
 
 }

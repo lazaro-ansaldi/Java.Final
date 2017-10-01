@@ -14,9 +14,9 @@
 </head>
 <body>
 <section>
-            <div class="card" style="width: 28rem;">
-                <div class="card-body">
-
+    <div class="card" style="width: 28rem;">
+    <form name="loginForm" action="Login" method="post">
+        <div class="card-body">
                     <!--Header-->
                     <div class="form-header default-color">
                         <h3><i class="fa fa-lock"></i> Login:</h3>
@@ -25,13 +25,13 @@
                     <!--Body-->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="text" id="defaultForm-email" class="form-control">
+                        <input type="text" id="defaultForm-email" class="form-control" name="username">
                         <label for="defaultForm-email">Your email</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fa fa-lock prefix grey-text"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control">
+                        <input type="password" id="defaultForm-pass" class="form-control" name="password">
                         <label for="defaultForm-pass">Your password</label>
                     </div>
 
@@ -47,7 +47,9 @@
                         <p>Forgot <a href="#">Password?</a></p>
                     </div>
                 </div>
-            </div>
+            </form>
+       </div>
+         
         </section>
         
         <!-- JQuery -->
