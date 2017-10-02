@@ -18,7 +18,7 @@
 
 <body>
 	<div class="card" style="width: 28rem;">
-		<form name="loginForm" action="Login" method="post">
+		<form name="loginForm" action="Login" method="post" class="align-middle">
   				 <!--Header-->
 			<div class="form-header default-color">
             	<h3><i class="fa fa-lock"></i> Login:</h3>
@@ -38,7 +38,7 @@
             </div>
             
             <div>
-            	<label>${errorMessage}</label>
+            	<label class="text-error">${errorMessage}</label>
             	<%session.removeAttribute("errorMessage");%>
             </div>                                 
                                       
@@ -49,8 +49,8 @@
                             <!--Footer-->
             <div class="modal-footer">
             	<div class="options">
-                	<p>Not a member? <a href="#">Sign Up</a></p>
-                    <p>Forgot <a href="#">Password?</a></p>
+                	<p class="pool-right">Not a member? <a href="#">Sign Up</a></p>
+                    <p class="pool-right">Forgot <a href="#">Password?</a></p>
                 </div>
             </div>                                                                         
 		</form>           
