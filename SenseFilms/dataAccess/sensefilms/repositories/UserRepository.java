@@ -34,16 +34,17 @@ public class UserRepository implements IUserRepository
 	@Override
 	public void update(User entity) throws SQLException, LoggedException 
 	{
-		query = "UPDATE Users SET Username=?, Password=?, Name=?, LastLogin=?, RoleID=? WHERE UserID=?";
+		query = "UPDATE Users SET Username=?, Password=?, Name=?, LastName=?, LastLogin=?, RoleID=? WHERE UserID=?";
 		try 
 		{
 			stmt = DbFactory.getInstancia().getConn().prepareStatement(query);
 			stmt.setString(1, entity.getUsername());
 			stmt.setString(2, entity.getPassword());
 			stmt.setString(3, entity.getName());
-			stmt.setDate(4, DateTimeHelper.ParseToSqlDate(entity.getLastLogin()));
-			stmt.setInt(5, entity.getUserRole().getValue());
-			stmt.setInt(6, entity.getId());
+			stmt.setString(4, entity.getLastName());
+			stmt.setDate(5, DateTimeHelper.ParseToSqlDate(entity.getLastLogin()));
+			stmt.setInt(6, entity.getUserRole().getValue());
+			stmt.setInt(7, entity.getId());
 			
 			stmt.executeUpdate();
 		}
@@ -93,6 +94,7 @@ public class UserRepository implements IUserRepository
 				currentUser.setUsername(rs.getString("Username"));
 				currentUser.setUserRole(UserRoles.valueOf(rs.getInt("RoleID")));
 				currentUser.setLastLogin(rs.getTimestamp("LastLogin"));
+				currentUser.setLastName(rs.getString("LastName"));
 			}
 		}
 		catch(LoggedException loggex)

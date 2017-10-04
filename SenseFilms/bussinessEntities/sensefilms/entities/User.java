@@ -9,6 +9,18 @@ public class User extends BaseEntity
 	private String password;
 	private Date lastLogin;
 	private String name;
+	private String lastName;
+	
+	public String getLastName() 
+	{
+		return lastName;
+	}
+
+	public void setLastName(String lastName) 
+	{
+		this.lastName = lastName;
+	}
+
 	private UserRoles userRole;
 	
 	public UserRoles getUserRole()
