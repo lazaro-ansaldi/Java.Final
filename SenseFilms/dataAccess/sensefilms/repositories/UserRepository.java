@@ -42,7 +42,7 @@ public class UserRepository implements IUserRepository
 			stmt.setString(2, entity.getPassword());
 			stmt.setString(3, entity.getName());
 			stmt.setDate(4, DateTimeHelper.ParseToSqlDate(entity.getLastLogin()));
-			stmt.setInt(5, entity.getUserRole().ordinal());
+			stmt.setInt(5, entity.getUserRole().getValue());
 			stmt.setInt(6, entity.getId());
 			
 			stmt.executeUpdate();
@@ -91,7 +91,7 @@ public class UserRepository implements IUserRepository
 				currentUser.setName(rs.getString("Name"));
 				currentUser.setPassword(rs.getString("Password"));
 				currentUser.setUsername(rs.getString("Username"));
-				//currentUser.setUserRole(UserRoles.valueOf(rs));
+				currentUser.setUserRole(UserRoles.valueOf(rs.getInt("RoleID")));
 				currentUser.setLastLogin(rs.getTimestamp("LastLogin"));
 			}
 		}
