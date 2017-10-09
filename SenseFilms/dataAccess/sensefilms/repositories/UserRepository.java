@@ -84,6 +84,7 @@ public class UserRepository implements IUserRepository
 		try 
 		{
 			stmt = DbFactory.getInstancia().getConn().prepareStatement(query);
+			stmt.setString(1, username);
 			rs = stmt.executeQuery();
 			if(rs.next()) 
 			{

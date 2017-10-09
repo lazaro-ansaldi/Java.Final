@@ -1,4 +1,9 @@
+anonymizeStackTraces=false
+configured=true
 eclipse.preferences.version=1
+reporterEmail=lansaldi94@gmail.com
+reporterName=L\u00E1zaro
 resetSendMode=KEEP
 resetSendModeOn=0
 sendMode=NOTIFY
+servers/org.eclipse.epp.logging.aeri.ide.server/configured=true
