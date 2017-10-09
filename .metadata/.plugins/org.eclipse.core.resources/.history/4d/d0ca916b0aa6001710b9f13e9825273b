@@ -1,0 +1,5 @@
+package sensefilms.interfaces;
+
+interface BaseRepository {
+
+}

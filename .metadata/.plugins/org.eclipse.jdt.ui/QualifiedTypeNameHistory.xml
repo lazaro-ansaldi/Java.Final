@@ -11,4 +11,10 @@
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="sensefilms.utils.ConfigHandler"/>
+<fullyQualifiedTypeName name="sensefilms.enums.UserRoles"/>
+<fullyQualifiedTypeName name="sensefilms.interfaces.ILoginLogic"/>
+<fullyQualifiedTypeName name="sensefilms.logic.LoginLogic"/>
+<fullyQualifiedTypeName name="sensefilms.entities.User"/>
+<fullyQualifiedTypeName name="sensefilms.exceptions.LoggedException"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 </qualifiedTypeNameHistroy>
