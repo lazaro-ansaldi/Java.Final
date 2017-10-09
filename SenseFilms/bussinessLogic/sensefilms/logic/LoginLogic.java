@@ -7,7 +7,6 @@ import sensefilms.entities.User;
 import sensefilms.exceptions.LoggedException;
 import sensefilms.interfaces.ILoginLogic;
 import sensefilms.interfaces.IUserRepository;
-import sensefilms.repositories.UserRepository;
 
 public class LoginLogic implements ILoginLogic 
 {

@@ -64,6 +64,7 @@ public class Login extends HttpServlet {
 		}
 		catch(LoggedException loggex) 
 		{
+			//ToDo: Create parent class to manage errors
 			response.sendRedirect("error.jsp");
 		}
 	}
