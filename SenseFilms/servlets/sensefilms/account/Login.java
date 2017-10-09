@@ -11,6 +11,7 @@ import sensefilms.entities.User;
 import sensefilms.exceptions.LoggedException;
 import sensefilms.interfaces.ILoginLogic;
 import sensefilms.logic.LoginLogic;
+import sensefilms.repositories.UserRepository;
 
 /**
  * Servlet implementation class Login
@@ -41,7 +42,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		_loginLogic = new LoginLogic();
+		_loginLogic = new LoginLogic(new UserRepository());
 			// Retrieve data from UI
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

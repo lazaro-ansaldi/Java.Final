@@ -6,14 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
 
+<!-- Application Core Styles -->
+<link href="css/coreStyles.css" rel="sylesheet"/>
+
 <!-- Bootstrat Core -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Material Design -->
 <link href="css/mdb.min.css" rel="stylesheet" />
 
-<!-- Application Core Styles -->
-<link href="css/coreStyles.css" rel="sylesheet"/>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
             </div>
             
             <div>
-            	<label class="text-error">${errorMessage}</label>
+            	<span class="text-error">${errorMessage}</span>
             	<%session.removeAttribute("errorMessage");%>
             </div>                                 
                                       

@@ -11,12 +11,16 @@ import sensefilms.repositories.UserRepository;
 
 public class LoginLogic implements ILoginLogic 
 {
+	public LoginLogic(IUserRepository userRepository) 
+	{
+		this._userRepository=userRepository;
+	}
+	
 	private IUserRepository _userRepository;
 	
 	@Override
 	public boolean isValidLogin(User user) throws LoggedException
 	{
-		_userRepository = new UserRepository();
 		try 
 		{
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
