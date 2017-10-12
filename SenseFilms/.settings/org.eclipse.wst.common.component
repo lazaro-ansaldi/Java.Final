@@ -8,7 +8,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/bussinessEntities"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/servlets"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/controllers"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="SenseFilms"/>
         <property name="java-output-path" value="/SenseFilms/build/classes"/>
