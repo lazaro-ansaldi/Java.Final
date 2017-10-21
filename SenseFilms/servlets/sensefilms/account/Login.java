@@ -25,8 +25,9 @@ public class Login extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public Login() {
-        // TODO Auto-generated constructor stub
+    public Login() 
+    {
+        this._loginLogic = new LoginLogic();
     }
 
 	/**
@@ -42,7 +43,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		_loginLogic = new LoginLogic(new UserRepository());
 			// Retrieve data from UI
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

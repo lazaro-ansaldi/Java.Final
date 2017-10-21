@@ -7,12 +7,13 @@ import sensefilms.entities.User;
 import sensefilms.exceptions.LoggedException;
 import sensefilms.interfaces.ILoginLogic;
 import sensefilms.interfaces.IUserRepository;
+import sensefilms.repositories.UserRepository;
 
 public class LoginLogic implements ILoginLogic 
 {
-	public LoginLogic(IUserRepository userRepository) 
+	public LoginLogic() 
 	{
-		this._userRepository=userRepository;
+		this._userRepository= new UserRepository();;
 	}
 	
 	private IUserRepository _userRepository;
