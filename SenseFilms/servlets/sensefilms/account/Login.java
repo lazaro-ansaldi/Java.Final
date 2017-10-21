@@ -1,6 +1,8 @@
 package sensefilms.account;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,6 @@ import sensefilms.entities.User;
 import sensefilms.exceptions.LoggedException;
 import sensefilms.interfaces.ILoginLogic;
 import sensefilms.logic.LoginLogic;
-import sensefilms.repositories.UserRepository;
 
 /**
  * Servlet implementation class Login
@@ -25,8 +26,9 @@ public class Login extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public Login() {
-        // TODO Auto-generated constructor stub
+    public Login() 
+    {
+        this._loginLogic = new LoginLogic();
     }
 
 	/**
@@ -42,7 +44,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		_loginLogic = new LoginLogic(new UserRepository());
 			// Retrieve data from UI
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -50,16 +51,19 @@ public class Login extends HttpServlet {
 		User currentUser = new User();
 		currentUser.setPassword(password);
 		currentUser.setUsername(username);
+		RequestDispatcher dispatcher;
 		try 
 		{
 			if(_loginLogic.isValidLogin(currentUser))
 			{
-				response.sendRedirect("home.jsp");
+		        dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");
+				dispatcher.forward(request, response);
 			}
 			else
 			{
 				request.getSession().setAttribute("errorMessage", "Username or password incorrect");
-				response.sendRedirect("login.jsp");
+				dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+				dispatcher.forward(request, response);
 			}
 		}
 		catch(LoggedException loggex) 
