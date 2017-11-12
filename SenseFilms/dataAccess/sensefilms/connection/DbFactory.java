@@ -8,7 +8,7 @@ import sensefilms.utils.ConfigHandler;
 
 import java.sql.Connection;
 
-public class DbFactory {
+public class DbFactory implements IDbFactory{
 
 	private String dbDriver;
 	private String host;
@@ -38,9 +38,9 @@ public class DbFactory {
 		}
 	}
 	
-	private static DbFactory instancia;
+	private static IDbFactory instancia;
 	
-	public static DbFactory getInstancia() throws LoggedException
+	public static IDbFactory getInstance() throws LoggedException
 	{
 		if (instancia==null)
 		{
@@ -67,7 +67,7 @@ public class DbFactory {
 		return conn;
 	}
 	
-	public void releaseConn() throws Exception
+	public void releaseConn() throws SQLException
 	{
 		try 
 		{

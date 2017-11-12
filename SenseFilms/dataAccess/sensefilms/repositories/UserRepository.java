@@ -37,7 +37,7 @@ public class UserRepository implements IUserRepository
 		query = "UPDATE Users SET Username=?, Password=?, Name=?, LastName=?, LastLogin=?, RoleID=? WHERE UserID=?";
 		try 
 		{
-			stmt = DbFactory.getInstancia().getConn().prepareStatement(query);
+			stmt = DbFactory.getInstance().getConn().prepareStatement(query);
 			stmt.setString(1, entity.getUsername());
 			stmt.setString(2, entity.getPassword());
 			stmt.setString(3, entity.getName());
@@ -60,7 +60,7 @@ public class UserRepository implements IUserRepository
 		{
 			try 
 			{
-				DbFactory.getInstancia().releaseConn();
+				DbFactory.getInstance().releaseConn();
 			}
 			catch(Exception ex) 
 			{
@@ -83,7 +83,7 @@ public class UserRepository implements IUserRepository
 		User currentUser=null;
 		try 
 		{
-			stmt = DbFactory.getInstancia().getConn().prepareStatement(query);
+			stmt = DbFactory.getInstance().getConn().prepareStatement(query);
 			stmt.setString(1, username);
 			rs = stmt.executeQuery();
 			if(rs.next()) 
@@ -110,7 +110,7 @@ public class UserRepository implements IUserRepository
 		{
 			try 
 			{
-				DbFactory.getInstancia().releaseConn();
+				DbFactory.getInstance().releaseConn();
 			}
 			catch(Exception ex) 
 			{
