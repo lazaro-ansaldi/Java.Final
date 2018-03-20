@@ -1,5 +1,6 @@
 package com.sensefilms.common.entities;
 
-public class BaseEntity {
+public abstract class BaseEntity 
+{
 
 }
