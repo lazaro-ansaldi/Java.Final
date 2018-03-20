@@ -7,24 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sensefilms.services.contracts.ILoginService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController extends BaseController
-{
-	
-	private ILoginService loginService;
-	
-	@Autowired
-	public HomeController(ILoginService loginService) 
+{	
+	public HomeController() 
 	{
-		super(HomeController.class);
-		this.loginService = loginService;		
+		super(HomeController.class);	
 	}
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
