@@ -2,9 +2,12 @@ package com.sensefilms.repositories.implementation;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Service;
+
 import com.sensefilms.common.entities.User;
 import com.sensefilms.repositories.contracts.IUserRepository;
 
+@Service
 public class UserRepository implements IUserRepository
 {
 

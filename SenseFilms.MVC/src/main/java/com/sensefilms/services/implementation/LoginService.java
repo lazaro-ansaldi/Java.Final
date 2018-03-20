@@ -15,6 +15,11 @@ public class LoginService implements ILoginService
 {
 
 	@Autowired
+	public LoginService(IUserRepository userRepository) 
+	{
+		this._userRepository = userRepository;
+	}
+	
 	private IUserRepository _userRepository;
 	
 	@Override
