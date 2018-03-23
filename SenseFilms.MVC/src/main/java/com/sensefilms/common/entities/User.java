@@ -2,14 +2,27 @@ package com.sensefilms.common.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Users")
 public class User extends BaseEntity
 {
-
-
+	@Column(name = "Username", nullable = false, unique = true)
 	private String username;
+	
+	@Column(name = "Password", nullable = false)
 	private String password;
+	
+	@Column(name = "LastLogin")
 	private Date lastLogin;
+	
+	@Column(name = "Name", nullable = false)
 	private String name;
+	
+	@Column(name = "LastName", nullable = false)
 	private String lastName;
 	
 	public String getLastName() 
