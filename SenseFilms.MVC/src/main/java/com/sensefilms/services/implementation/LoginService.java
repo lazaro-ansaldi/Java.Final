@@ -22,7 +22,7 @@ public class LoginService implements ILoginService
 	
 	private IUserRepository _userRepository;
 	
-	@Override
+	
 	public boolean tryAuthenticateUser(User user) 
 	{
 		try 
