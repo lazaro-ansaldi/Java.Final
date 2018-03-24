@@ -32,7 +32,7 @@ public class HibernateConfiguration
    {
        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
        sessionFactory.setDataSource(dataSource());
-       sessionFactory.setPackagesToScan(new String[] { "com.sensefilms.common.entities" });
+       sessionFactory.setPackagesToScan(new String[] { "com.sensefilms.business.entities" });
        sessionFactory.setHibernateProperties(hibernateProperties());
        return sessionFactory;
    }
