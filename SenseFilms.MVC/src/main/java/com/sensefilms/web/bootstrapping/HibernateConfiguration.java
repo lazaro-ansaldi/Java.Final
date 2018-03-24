@@ -35,7 +35,7 @@ public class HibernateConfiguration
        sessionFactory.setPackagesToScan(new String[] { "com.sensefilms.common.entities" });
        sessionFactory.setHibernateProperties(hibernateProperties());
        return sessionFactory;
-    }
+   }
     
    @Bean
    public DataSource dataSource() 

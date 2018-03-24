@@ -2,13 +2,16 @@ package com.sensefilms.repositories.implementation;
 
 import java.sql.SQLException;
 
-import org.springframework.stereotype.Service;
+import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.common.entities.User;
 import com.sensefilms.common.helpers.CastHelper;
 import com.sensefilms.repositories.contracts.IUserRepository;
 
-@Service
+@Repository
+@Transactional
 public class UserRepository extends BaseRepository implements IUserRepository
 {
 
@@ -30,14 +33,14 @@ public class UserRepository extends BaseRepository implements IUserRepository
 
 	public void deleteOneById(int id) throws SQLException 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
 	public User getOneByUsername(String username) throws SQLException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Query query = getSessionFactory().getCurrentSession().createQuery("from User where username = :username");
+		query.setParameter("username", username);
+		return CastHelper.tryCastAs(User.class, query.uniqueResult());
 	}
 
 }

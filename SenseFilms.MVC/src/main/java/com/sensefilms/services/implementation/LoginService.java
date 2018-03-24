@@ -29,7 +29,7 @@ public class LoginService implements ILoginService
 		{
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
 			
-			if(dbUser!=null && dbUser.getUsername().equals(user.getUsername()) && 
+			if(dbUser != null && dbUser.getUsername().equals(user.getUsername()) && 
 					dbUser.getPassword().equals(user.getPassword())) 
 			{
 				dbUser.setLastLogin(new Date());
