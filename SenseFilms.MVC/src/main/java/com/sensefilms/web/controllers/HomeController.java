@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sensefilms.web.support.ViewsResources;
+
 /**
  * Handles requests for the application home page.
  */
@@ -23,7 +25,7 @@ public class HomeController extends BaseController
 	{
 		getLogger().info("Welcome home! The client locale is {}.", locale);
 		
-		return "home";
+		return ViewsResources.HOME_PAGE;
 	}
 	
 }
