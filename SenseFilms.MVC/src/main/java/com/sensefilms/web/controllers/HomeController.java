@@ -1,4 +1,4 @@
-package com.sensefilms.controllers;
+package com.sensefilms.web.controllers;
 
 import java.util.Locale;
 

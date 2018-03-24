@@ -1,4 +1,4 @@
-package com.sensefilms.controllers;
+package com.sensefilms.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

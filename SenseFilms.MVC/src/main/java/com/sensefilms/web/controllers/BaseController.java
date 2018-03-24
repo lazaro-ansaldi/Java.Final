@@ -1,4 +1,4 @@
-package com.sensefilms.controllers;
+package com.sensefilms.web.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
