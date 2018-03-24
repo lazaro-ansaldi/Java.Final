@@ -2,7 +2,7 @@ package com.sensefilms.repositories.contracts;
 
 import java.sql.SQLException;
 
-import com.sensefilms.common.entities.BaseEntity;
+import com.sensefilms.business.entities.BaseEntity;
 
 public interface IBaseRepository<T extends BaseEntity> 
 {

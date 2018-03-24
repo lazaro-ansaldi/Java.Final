@@ -1,4 +1,4 @@
-package com.sensefilms.common.enums;
+package com.sensefilms.business.enums;
 
 import java.util.HashMap;
 

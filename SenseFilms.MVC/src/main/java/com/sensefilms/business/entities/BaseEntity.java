@@ -1,4 +1,4 @@
-package com.sensefilms.common.entities;
+package com.sensefilms.business.entities;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -2,7 +2,7 @@ package com.sensefilms.repositories.contracts;
 
 import java.sql.SQLException;
 
-import com.sensefilms.common.entities.User;
+import com.sensefilms.business.entities.User;
 
 public interface IUserRepository extends IBaseRepository<User>
 {

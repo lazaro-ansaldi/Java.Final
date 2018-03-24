@@ -6,7 +6,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.common.entities.User;
+import com.sensefilms.business.entities.User;
 import com.sensefilms.common.helpers.CastHelper;
 import com.sensefilms.repositories.contracts.IUserRepository;
 

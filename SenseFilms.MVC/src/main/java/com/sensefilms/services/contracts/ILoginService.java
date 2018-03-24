@@ -1,6 +1,6 @@
 package com.sensefilms.services.contracts;
 
-import com.sensefilms.common.entities.User;
+import com.sensefilms.business.entities.User;
 
 public interface ILoginService 
 {

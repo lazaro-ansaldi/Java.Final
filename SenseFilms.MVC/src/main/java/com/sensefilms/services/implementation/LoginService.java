@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sensefilms.common.entities.User;
+import com.sensefilms.business.entities.User;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.contracts.ILoginService;
 

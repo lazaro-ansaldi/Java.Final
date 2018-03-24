@@ -1,4 +1,4 @@
-package com.sensefilms.common.entities;
+package com.sensefilms.business.entities;
 
 import java.util.Date;
 
