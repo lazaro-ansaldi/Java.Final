@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+
+import com.sensefilms.business.enums.UserRoles;
 
 @Entity
 @Table(name = "user")
@@ -25,6 +29,20 @@ public class User extends BaseEntity
 	@Column(name = "LastName", nullable = false)
 	private String lastName;
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "UserRole", nullable = false)
+	private UserRoles userRole;
+	
+	public UserRoles getUserRole() 
+	{
+		return userRole;
+	}
+
+	public void setUserRole(UserRoles userRole) 
+	{
+		this.userRole = userRole;
+	}
+
 	public String getLastName() 
 	{
 		return lastName;

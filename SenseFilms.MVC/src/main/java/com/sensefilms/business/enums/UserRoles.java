@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public enum UserRoles 
 {
-	Administrator(1),
-	User(2);
+	Administrator(0),
+	User(1);
 	
 	private int value;
 	private static HashMap<Object, UserRoles> map = new HashMap<Object, UserRoles>();
