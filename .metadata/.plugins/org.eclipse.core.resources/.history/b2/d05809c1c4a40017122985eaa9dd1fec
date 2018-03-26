@@ -1,5 +1,0 @@
-package sensefilms.connection;
-
-public interface IDbFactory {
-
-}

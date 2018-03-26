@@ -1,7 +1,0 @@
-dbDriver="com.mysql.jdbc.Driver"
-host="rosariocdr.ddns.net"
-port="3306"
-user="sense"
-pass="SenseFilms"
-db="sense"
-dbType="mysql"
