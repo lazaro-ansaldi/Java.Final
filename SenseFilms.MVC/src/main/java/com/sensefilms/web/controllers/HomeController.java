@@ -23,7 +23,7 @@ public class HomeController extends BaseController
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) 
 	{
-		getLogger().info("Welcome home! The client locale is {}.", locale);
+		getLogger().info("We're live! {}.", locale);
 		
 		return ViewsResources.HOME_PAGE;
 	}
