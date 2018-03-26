@@ -3,10 +3,12 @@ package com.sensefilms.services.implementation;
 import java.sql.SQLException;
 import java.util.Date;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
+import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.contracts.ILoginService;
 
@@ -23,7 +25,7 @@ public class LoginService implements ILoginService
 	private IUserRepository _userRepository;
 	
 	
-	public boolean tryAuthenticateUser(User user) 
+	public boolean tryAuthenticateUser(User user) throws CustomHandledException 
 	{
 		try 
 		{
@@ -39,11 +41,18 @@ public class LoginService implements ILoginService
 			
 			return false;
 		}
+		catch(HibernateException hex)
+		{
+			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
+		}
 		catch(SQLException sqlex) 
 		{
-			// Do nothing			
+			throw new CustomHandledException("An error ocurred when try to connect to the database.", sqlex);			
 		}
-		return false;
+		catch(Exception ex)
+		{
+			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
+		}
 	}
 	
 }

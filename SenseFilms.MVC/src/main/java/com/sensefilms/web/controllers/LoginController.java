@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sensefilms.business.entities.User;
+import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.ILoginService;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebConstants;
@@ -27,13 +28,21 @@ public class LoginController extends BaseController
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String authenticate(@ModelAttribute  User currentUser, Model model) 
 	{
-		if(!loginService.tryAuthenticateUser(currentUser)) 
+		try 
 		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
-			return ViewsResources.HOME_PAGE;
+			if(!loginService.tryAuthenticateUser(currentUser)) 
+			{
+				model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
+				return ViewsResources.HOME_PAGE;
+			}
+			return "username";
 		}
-				
-		return "username";
+		catch(CustomHandledException chEx) 
+		{
+			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
+			return ViewsResources.HOME_PAGE;
+		}		
+		
 	}
 	
 }

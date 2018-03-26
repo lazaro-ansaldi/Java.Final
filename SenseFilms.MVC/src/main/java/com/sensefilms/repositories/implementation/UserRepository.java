@@ -28,7 +28,7 @@ public class UserRepository extends BaseRepository implements IUserRepository
 
 	public void update(User entity) throws SQLException 
 	{
-		getSessionFactory().getCurrentSession().update(entity);		
+		getSessionFactory().getCurrentSession().update(entity);			
 	}
 
 	public void deleteOneById(int id) throws SQLException 
