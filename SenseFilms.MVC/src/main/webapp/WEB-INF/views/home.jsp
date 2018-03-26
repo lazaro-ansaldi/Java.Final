@@ -3,6 +3,8 @@
 <html>
 <head>
 	<title>Home</title>
+	<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+	<script src="<c:url value="/resources/bootstrap/css/bootstrap.min.js" />"></script>
 </head>
 <body>
 	<div class="card" style="width: 28rem;">
