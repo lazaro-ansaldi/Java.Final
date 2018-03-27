@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
-import com.sensefilms.services.contracts.ILoginService;
+import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebConstants;
 
 @Controller
 public class LoginController extends BaseController
 {
-	private ILoginService loginService;
+	private IAccountService accountService;
 	
 	@Autowired
-	public LoginController(ILoginService loginService) 
+	public LoginController(IAccountService accountService) 
 	{
 		super(LoginController.class);
-		this.loginService = loginService;
+		this.accountService = accountService;
 	}
 	
 	@RequestMapping(value = "/LoginController/login", method = RequestMethod.POST)
@@ -30,7 +30,7 @@ public class LoginController extends BaseController
 	{
 		try 
 		{
-			if(!loginService.tryAuthenticateUser(currentUser)) 
+			if(!accountService.tryAuthenticateUser(currentUser)) 
 			{
 				model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
 				return ViewsResources.HOME_PAGE;

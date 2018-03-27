@@ -10,14 +10,15 @@ import org.springframework.stereotype.Service;
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.repositories.contracts.IUserRepository;
-import com.sensefilms.services.contracts.ILoginService;
+import com.sensefilms.repositories.implementation.UserRepository;
+import com.sensefilms.services.contracts.IAccountService;
 
 @Service
-public class LoginService implements ILoginService 
+public class AccountService implements IAccountService 
 {
 
 	@Autowired
-	public LoginService(IUserRepository userRepository) 
+	public AccountService(IUserRepository userRepository) 
 	{
 		this._userRepository = userRepository;
 	}
@@ -39,6 +40,30 @@ public class LoginService implements ILoginService
 			}
 			
 			return false;
+		}
+		catch(HibernateException hex)
+		{
+			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
+		}
+		catch(SQLException sqlex) 
+		{
+			throw new CustomHandledException("An error ocurred when try to connect to the database.", sqlex);			
+		}
+		catch(Exception ex)
+		{
+			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
+		}
+	}
+	
+	public boolean generateNewPassword(String username) throws CustomHandledException
+	{
+		User currentUser;
+		try 
+		{
+			currentUser = _userRepository.getOneByUsername(username);
+			if(currentUser == null) return false;
+			
+			return true;
 		}
 		catch(HibernateException hex)
 		{
