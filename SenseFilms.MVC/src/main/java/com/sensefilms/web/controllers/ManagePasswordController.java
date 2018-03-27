@@ -1,18 +1,13 @@
 package com.sensefilms.web.controllers;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
-import com.sensefilms.common.helpers.WebUrisHelper;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebConstants;
@@ -40,7 +35,11 @@ public class ManagePasswordController extends BaseController
 	{
 		try 
 		{
-			accountService.generateNewPassword(username);
+			if(!accountService.generateNewPassword(username))
+			{
+				model.addAttribute(WebConstants.ERROR_MESSAGE, "The username doesn't exists.");
+				return ViewsResources.FORGOTPASSWORD_PAGE;
+			}
 			
 			return ViewsResources.HOME_PAGE;
 		}
