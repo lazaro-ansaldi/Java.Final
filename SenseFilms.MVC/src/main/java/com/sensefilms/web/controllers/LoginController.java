@@ -22,7 +22,7 @@ public class LoginController extends BaseController
 	public LoginController(ILoginService loginService) 
 	{
 		super(LoginController.class);
-		this.loginService=loginService;
+		this.loginService = loginService;
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -35,14 +35,14 @@ public class LoginController extends BaseController
 				model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
 				return ViewsResources.HOME_PAGE;
 			}
-			return "username";
+			
+			return ViewsResources.INDEX_PAGE;
 		}
 		catch(CustomHandledException chEx) 
 		{
 			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.HOME_PAGE;
+			return ViewsResources.ERROR_PAGE;
 		}		
-		
 	}
 	
 }
