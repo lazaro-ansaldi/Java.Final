@@ -14,35 +14,28 @@ import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebConstants;
 
 @Controller
-public class LoginController extends BaseController
+public class ManagePasswordController extends BaseController
 {
 	private ILoginService loginService;
 	
 	@Autowired
-	public LoginController(ILoginService loginService) 
+	public ManagePasswordController(ILoginService loginService) 
 	{
-		super(LoginController.class);
+		super(ManagePasswordController.class);
 		this.loginService = loginService;
 	}
 	
-	@RequestMapping(value = "/LoginController/login", method = RequestMethod.POST)
-	public String authenticate(@ModelAttribute  User currentUser, Model model) 
+	@RequestMapping(value = "/ManagePasswordController/forgotPassword", method = RequestMethod.GET)	
+	public String getForgotPasswordView() 
 	{
-		try 
-		{
-			if(!loginService.tryAuthenticateUser(currentUser)) 
-			{
-				model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
-				return ViewsResources.HOME_PAGE;
-			}
-			
-			return ViewsResources.INDEX_PAGE;
-		}
-		catch(CustomHandledException chEx) 
-		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_PAGE;
-		}		
+		return ViewsResources.FORGOTPASSWORD_PAGE;
 	}
+	
+//	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
+//	public String authenticate(@ModelAttribute  User currentUser, Model model) 
+//	{
+//		
+//	}
+	
 	
 }
