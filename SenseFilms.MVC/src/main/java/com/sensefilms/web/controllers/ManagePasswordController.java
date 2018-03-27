@@ -1,5 +1,7 @@
 package com.sensefilms.web.controllers;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.helpers.WebUrisHelper;
 import com.sensefilms.services.contracts.ILoginService;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebConstants;
@@ -30,12 +33,5 @@ public class ManagePasswordController extends BaseController
 	{
 		return ViewsResources.FORGOTPASSWORD_PAGE;
 	}
-	
-//	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
-//	public String authenticate(@ModelAttribute  User currentUser, Model model) 
-//	{
-//		
-//	}
-	
 	
 }

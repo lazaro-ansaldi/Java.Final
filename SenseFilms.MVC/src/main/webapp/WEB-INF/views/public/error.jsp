@@ -8,6 +8,10 @@
 </head>
 <body>
 <h2>Application error ocurred</h2>
-<label name="errorMessage" type="text" id="lblErrorMessage"></label>
+
+<div>
+	<span>${errorMessage}</span>
+</div>
+
 </body>
 </html>
