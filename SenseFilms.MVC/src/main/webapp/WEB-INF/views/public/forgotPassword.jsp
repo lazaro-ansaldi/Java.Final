@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Forgot Password</title>
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/core.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/bootstrap/css/bootstrap.min.js" />"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
             </div>
             
             <div>
-            	<span>${errorMessage}</span>
+            	<span class="error-message">${errorMessage}</span>
             </div>                                 
                                       
             <div class="text-center">
