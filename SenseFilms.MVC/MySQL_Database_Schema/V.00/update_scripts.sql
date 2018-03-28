@@ -1,0 +1,4 @@
+ALTER TABLE `sense`.`user` 
+ADD COLUMN `Email` VARCHAR(100) NOT NULL AFTER `UserRole`,
+ADD COLUMN `IsNewPassword` BIT(1) NOT NULL DEFAULT 0 AFTER `Email`,
+ADD UNIQUE INDEX `Email_UNIQUE` (`Email` ASC);

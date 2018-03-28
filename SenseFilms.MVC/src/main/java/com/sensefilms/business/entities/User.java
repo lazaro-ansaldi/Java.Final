@@ -33,6 +33,32 @@ public class User extends BaseEntity
 	@Column(name = "UserRole", nullable = false)
 	private UserRoles userRole;
 	
+	@Column(name = "Email", nullable = false, unique = true)
+	private String email;
+	
+	@Column(name = "IsNewPassword", nullable = false)
+	private boolean isNewPassword;
+	
+	public String getEmail() 
+	{
+		return email;
+	}
+
+	public void setEmail(String email) 
+	{
+		this.email = email;
+	}
+
+	public boolean isNewPassword() 
+	{
+		return isNewPassword;
+	}
+
+	public void setNewPassword(boolean isNewPassword) 
+	{
+		this.isNewPassword = isNewPassword;
+	}
+
 	public UserRoles getUserRole() 
 	{
 		return userRole;

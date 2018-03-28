@@ -4,11 +4,12 @@
 <head>
 	<title>Home</title>
 	<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/core.css" />" rel="stylesheet">
 	<script src="<c:url value="/resources/bootstrap/css/bootstrap.min.js" />"></script>
 </head>
 <body>
 	<div class="card">
-		<form name="loginForm" action="login" method="post" class="align-middle">
+		<form name="loginForm" action="<c:url value="/LoginController/login" />" method="post" class="align-middle">
   				 <!--Header-->
 			<div>
             	<h3>Login:</h3>
@@ -26,7 +27,7 @@
             </div>
             
             <div>
-            	<span>${errorMessage}</span>
+            	<span class="error-message">${errorMessage}</span>
             </div>                                 
                                       
             <div class="text-center">
@@ -36,8 +37,7 @@
                             <!--Footer-->
             <div class="modal-footer">
             	<div>
-                	<p>Not a member? <a href="#">Sign Up</a></p>
-                    <p>Forgot <a href="#">Password?</a></p>
+                    <p>Forgot <a href="<c:url value="/ManagePasswordController/forgotPassword" />">Password?</a></p>
                 </div>
             </div>                                                                         
 		</form>           
