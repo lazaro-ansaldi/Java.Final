@@ -69,7 +69,7 @@ public class AccountService implements IAccountService
 		}
 	}
 	
-	public User getAuthenticatedUser(String username)
+	public static User getAuthenticatedUserByUsername(String username)
 	{
 		return authenticatedUsers.get(username);
 	}

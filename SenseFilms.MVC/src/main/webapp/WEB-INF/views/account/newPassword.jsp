@@ -13,7 +13,7 @@
 
 
 <div class="card">
-		<form name="recoverPasswordForm" action="<c:url value="/ManagePasswordController/updateNewPassword/${usernameParam}" />" method="post" class="align-middle">  			
+		<form name="recoverPasswordForm" action="<c:url value="/AccountController/updateNewPassword/${usernameParam}" />" method="post" class="align-middle">  			
 			<div>
             	<h3>Change password</h3>
             </div>
