@@ -36,7 +36,10 @@ public class LoginController extends BaseController
 				return ViewsResources.HOME_PAGE;
 			}
 			
-			return ViewsResources.INDEX_PAGE;
+			User authenticadeUser = accountService.getAuthenticatedUser(currentUser.getUsername());
+			model.addAttribute(WebConstants.USERNAME_PARAM, currentUser.getUsername());
+			
+			return !authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE;
 		}
 		catch(CustomHandledException chEx) 
 		{

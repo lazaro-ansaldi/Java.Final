@@ -7,5 +7,7 @@ public interface IAccountService
 {
 	boolean tryAuthenticateUser(User user) throws CustomHandledException;
 	
-	boolean generateNewPassword(String username) throws CustomHandledException;
+	User getAuthenticatedUser(String username); 
+	
+	boolean updateNewPassord(String username, String newPassword) throws CustomHandledException;
 }

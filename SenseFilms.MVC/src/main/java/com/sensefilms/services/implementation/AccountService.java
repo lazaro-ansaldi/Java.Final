@@ -2,6 +2,7 @@ package com.sensefilms.services.implementation;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.common.handlers.IMailHandler;
+import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.contracts.IAccountService;
 
@@ -24,6 +26,7 @@ public class AccountService implements IAccountService
 
 	private Logger appLogger = LoggerFactory.getLogger(AccountService.class);
 	private IMailHandler mailHandler;
+	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
 	
 	@Autowired
 	public AccountService(IUserRepository userRepository, IMailHandler mailHandler) 
@@ -45,8 +48,10 @@ public class AccountService implements IAccountService
 			{
 				dbUser.setLastLogin(new Date());
 				_userRepository.update(dbUser);
+				addUserToCache(dbUser);
+				
 				return true;
-			}
+			}			
 			
 			return false;
 		}
@@ -64,24 +69,33 @@ public class AccountService implements IAccountService
 		}
 	}
 	
-	public boolean generateNewPassword(String username) throws CustomHandledException
+	public User getAuthenticatedUser(String username)
+	{
+		return authenticatedUsers.get(username);
+	}
+	
+	public boolean updateNewPassord(String username, String newPassword) throws CustomHandledException
 	{
 		User currentUser = null;
+		boolean isRecoveryProcess = StringHelper.isNullorEmpty(newPassword);
+		
 		try 
 		{
 			currentUser = _userRepository.getOneByUsername(username);
 			if(currentUser == null) return false;
 			
 			//Generate a 10 chars random password based on a Guid
-			String randomPassword = UUID.randomUUID().toString().toLowerCase().replace("-", "").substring(0, 10);
-			currentUser.setPassword(randomPassword);
-			currentUser.setNewPassword(true);
+			if(isRecoveryProcess)
+				newPassword = UUID.randomUUID().toString().toLowerCase().replace("-", "").substring(0, 10);
+							 
+			currentUser.setPassword(newPassword);
+			currentUser.setNewPassword(isRecoveryProcess);
 			_userRepository.update(currentUser);
 			appLogger.debug(String.format("Password regenerated for user %s", username));
 			
-			String emailBodyText = String.format("This is your new password \"%s\". ", randomPassword);
-			mailHandler.sendMailMessage(currentUser.getEmail(), emailBodyText, "Password Recover");		
-			appLogger.debug(String.format("Email send to %s succesfully.", currentUser.getEmail()));
+			//Send an email with the temporary password
+			if(isRecoveryProcess)
+				sendEmailWithNewPassword(newPassword, currentUser.getEmail());
 			
 			return true;
 		}
@@ -101,5 +115,26 @@ public class AccountService implements IAccountService
 		{
 			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
 		}
-	}	
+	}
+
+	private void addUserToCache(User user) 
+	{
+		if(!authenticatedUsers.containsKey(user.getUsername()))
+			authenticatedUsers.put(user.getUsername(), user);
+	}
+	
+	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException 
+	{
+		String emailBodyText = String.format("This is your new password \"%s\". ", randomPassword);
+		try 
+		{
+			mailHandler.sendMailMessage(email, emailBodyText, "Password Recover");
+		} 
+		catch (MessagingException msgEx) 
+		{
+			throw msgEx;
+		}		
+		appLogger.debug(String.format("Email send to %s succesfully.", email));
+	}
+	
 }
