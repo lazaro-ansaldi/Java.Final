@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "auditEvent")
+@Table(name = "audit_event")
 public class AuditEvent extends BaseEntity
 {
 	@Column(name = "Description")

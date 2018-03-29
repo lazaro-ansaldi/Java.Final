@@ -37,7 +37,7 @@
                             <!--Footer-->
             <div class="modal-footer">
             	<div>
-                    <p>Forgot <a href="<c:url value="/ManagePasswordController/forgotPassword" />">Password?</a></p>
+                    <p>Forgot <a href="<c:url value="/AccountController/forgotPassword" />">Password?</a></p>
                 </div>
             </div>                                                                         
 		</form>           

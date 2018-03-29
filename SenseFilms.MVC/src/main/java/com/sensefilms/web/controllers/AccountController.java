@@ -29,7 +29,7 @@ public class AccountController extends BaseController
 		this.accountService = accountService;
 	}
 	
-	@RequestMapping(value = "/LoginController/authenticate", method = RequestMethod.POST)
+	@RequestMapping(value = "/AccountController/authenticate", method = RequestMethod.POST)
 	public String authenticate(@ModelAttribute  User currentUser, Model model) 
 	{
 		try 
@@ -52,13 +52,13 @@ public class AccountController extends BaseController
 		}		
 	}
 	
-	@RequestMapping(value = "/ManagePasswordController/forgotPassword", method = RequestMethod.GET)	
+	@RequestMapping(value = "/AccountController/forgotPassword", method = RequestMethod.GET)	
 	public String getForgotPasswordView() 
 	{
 		return ViewsResources.FORGOTPASSWORD_PAGE;
 	}
 	
-	@RequestMapping(value = "/ManagePasswordController/sendNewPassword", method = RequestMethod.POST)	
+	@RequestMapping(value = "/AccountController/sendNewPassword", method = RequestMethod.POST)	
 	public String sendNewPassword(@RequestParam("username") String username, Model model)
 	{
 		try 
@@ -78,7 +78,7 @@ public class AccountController extends BaseController
 		}
 	}
 								
-	@RequestMapping(value = "/ManagePasswordController/updateNewPassword/{usernameParam}", method = RequestMethod.POST)	
+	@RequestMapping(value = "/AccountController/updateNewPassword/{usernameParam}", method = RequestMethod.POST)	
 	public String setNewPassword(@RequestParam("currentPassword") String currentPassword, @PathVariable("usernameParam") String username,
 			@RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword, Model model)
 	{

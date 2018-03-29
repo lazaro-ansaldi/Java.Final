@@ -16,18 +16,22 @@ CREATE TABLE `user` (
   `Password` varchar(200) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `LastName` varchar(150) NOT NULL,
+  `Email` VARCHAR(100) NOT NULL,
   `LastLogin` datetime DEFAULT NULL,
+  `IsNewPassword` BIT(1) NOT NULL DEFAULT 0,
   `UserRole` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UserID_UNIQUE` (`ID`),
-  UNIQUE KEY `Username_UNIQUE` (`Username`)
+  UNIQUE KEY `Username_UNIQUE` (`Username`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `auditevent`;
 
-CREATE TABLE `auditevent` (
+CREATE TABLE `audit_event` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Event` varchar(50) NOT NULL,
   `Description` varchar(150) NOT NULL,
   `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Comments` varchar(100) DEFAULT NULL,

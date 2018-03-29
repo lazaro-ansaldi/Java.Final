@@ -72,11 +72,6 @@ public class AccountService implements IAccountService
 		}
 	}
 	
-	public static User getAuthenticatedUserByUsername(String username)
-	{
-		return authenticatedUsers.get(username);
-	}
-	
 	public boolean updateNewPassord(String username, String newPassword) throws CustomHandledException
 	{
 		User currentUser = null;
@@ -122,6 +117,12 @@ public class AccountService implements IAccountService
 		}
 	}
 
+	public static User getAuthenticatedUserByUsername(String username)
+	{
+		return authenticatedUsers.get(username);
+	}
+	
+	// PRIVATE HELPERS METHODS //
 	private void addUserToCache(User user) 
 	{
 		if(!authenticatedUsers.containsKey(user.getUsername()))
@@ -133,7 +134,7 @@ public class AccountService implements IAccountService
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
 				: String.format("Password updated for user %s", username);
 		
-		this.auditHandler.handleNewAuditEvent("[Renew-Password]", eventDescription, StringHelper.EMPTY);
+		this.auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringHelper.EMPTY);
 	}
 	
 	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException 
