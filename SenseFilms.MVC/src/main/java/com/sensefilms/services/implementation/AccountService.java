@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.handlers.IAuditHandler;
 import com.sensefilms.common.handlers.IMailHandler;
 import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.repositories.contracts.IUserRepository;
@@ -26,13 +27,15 @@ public class AccountService implements IAccountService
 
 	private Logger appLogger = LoggerFactory.getLogger(AccountService.class);
 	private IMailHandler mailHandler;
+	private IAuditHandler auditHandler;
 	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
 	
 	@Autowired
-	public AccountService(IUserRepository userRepository, IMailHandler mailHandler) 
+	public AccountService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler) 
 	{
 		this._userRepository = userRepository;
 		this.mailHandler = mailHandler;
+		this.auditHandler = auditHandler;
 	}
 	
 	private IUserRepository _userRepository;
@@ -97,6 +100,8 @@ public class AccountService implements IAccountService
 			if(isRecoveryProcess)
 				sendEmailWithNewPassword(newPassword, currentUser.getEmail());
 			
+			auditPasswordChange(isRecoveryProcess, currentUser.getUsername());
+			
 			return true;
 		}
 		catch(HibernateException hex)
@@ -121,6 +126,14 @@ public class AccountService implements IAccountService
 	{
 		if(!authenticatedUsers.containsKey(user.getUsername()))
 			authenticatedUsers.put(user.getUsername(), user);
+	}
+	
+	private void auditPasswordChange(boolean isRecoveryProcess, String username) 
+	{
+		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
+				: String.format("Password updated for user %s", username);
+		
+		this.auditHandler.handleNewAuditEvent("[Renew-Password]", eventDescription, StringHelper.EMPTY);
 	}
 	
 	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException 

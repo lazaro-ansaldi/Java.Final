@@ -1,10 +1,12 @@
 package com.sensefilms.common.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.sensefilms.business.entities.AuditEvent;
 import com.sensefilms.repositories.contracts.IAuditorRepository;
 
+@Component
 public class AuditHandler implements IAuditHandler
 {
 
