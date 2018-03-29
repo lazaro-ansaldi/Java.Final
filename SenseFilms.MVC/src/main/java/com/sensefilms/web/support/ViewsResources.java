@@ -11,4 +11,6 @@ public class ViewsResources
 	public static final String FORGOTPASSWORD_PAGE = "public/forgotPassword";
 	
 	public static final String INDEX_PAGE = "private/index";
+	
+	public static final String NEWPASSWORD_PAGE = "account/newPassword";
 }

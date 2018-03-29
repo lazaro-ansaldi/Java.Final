@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="card">
-		<form name="loginForm" action="<c:url value="/LoginController/login" />" method="post" class="align-middle">
+		<form name="loginForm" action="<c:url value="/AccountController/authenticate" />" method="post" class="align-middle">
   				 <!--Header-->
 			<div>
             	<h3>Login:</h3>
@@ -37,7 +37,7 @@
                             <!--Footer-->
             <div class="modal-footer">
             	<div>
-                    <p>Forgot <a href="<c:url value="/ManagePasswordController/forgotPassword" />">Password?</a></p>
+                    <p>Forgot <a href="<c:url value="/AccountController/forgotPassword" />">Password?</a></p>
                 </div>
             </div>                                                                         
 		</form>           

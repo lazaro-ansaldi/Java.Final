@@ -6,4 +6,6 @@ public class StringHelper
 	{
 		return (input == null || input.isEmpty());
 	}
+	
+	public static final String EMPTY = "";
 }

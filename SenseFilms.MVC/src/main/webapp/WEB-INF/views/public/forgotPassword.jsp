@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="card">
-		<form name="recoverPasswordForm" action="<c:url value="/ManagePasswordController/sendNewPassword" />" method="post" class="align-middle">
+		<form name="recoverPasswordForm" action="<c:url value="/AccountController/sendNewPassword" />" method="post" class="align-middle">
   				 <!--Header-->
 			<div>
             	<h3>Generate new password:</h3>

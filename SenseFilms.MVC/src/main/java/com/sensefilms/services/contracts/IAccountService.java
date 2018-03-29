@@ -5,7 +5,7 @@ import com.sensefilms.common.exceptions.CustomHandledException;
 
 public interface IAccountService 
 {
-	boolean tryAuthenticateUser(User user) throws CustomHandledException;
+	boolean tryAuthenticateUser(User user) throws CustomHandledException; 
 	
-	boolean generateNewPassword(String username) throws CustomHandledException;
+	boolean updateNewPassord(String username, String newPassword) throws CustomHandledException;
 }
