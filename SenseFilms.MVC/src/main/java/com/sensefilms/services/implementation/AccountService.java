@@ -128,7 +128,7 @@ public class AccountService implements IAccountService
 		String emailBodyText = String.format("This is your new password \"%s\". ", randomPassword);
 		try 
 		{
-			mailHandler.sendMailMessage(email, emailBodyText, "Password Recover");
+			mailHandler.sendMailMessage(email, "Password Recover", emailBodyText);
 		} 
 		catch (MessagingException msgEx) 
 		{
