@@ -23,3 +23,15 @@ CREATE TABLE `user` (
   UNIQUE KEY `Username_UNIQUE` (`Username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
+
+DROP TABLE IF EXISTS `auditevent`;
+
+CREATE TABLE `auditevent` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(150) NOT NULL,
+  `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Comments` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
