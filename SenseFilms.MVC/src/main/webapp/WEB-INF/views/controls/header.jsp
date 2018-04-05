@@ -20,7 +20,7 @@
     <a class="navbar-brand" href="#">Sense Films</a>
   </div>
   <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Home</a></li>
+    <li class="active"><a href="<c:url value="/HomeController/index" />">Home</a></li>
     <li><a href="#">Items 1</a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Items 2<span class="fa fa-chevrondown"></span></a>

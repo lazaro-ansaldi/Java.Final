@@ -15,7 +15,7 @@ import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.services.implementation.AccountService;
 import com.sensefilms.web.support.ViewsResources;
-import com.sensefilms.web.support.WebConstants;
+import com.sensefilms.web.support.WebModelConstants;
 
 @Controller
 public class AccountController extends BaseController
@@ -36,20 +36,20 @@ public class AccountController extends BaseController
 		{
 			if(!accountService.tryAuthenticateUser(currentUser)) 
 			{
-				model.addAttribute(WebConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
+				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
 				return ViewsResources.HOME_PAGE;
 			}
 			
 			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
 			
-			model.addAttribute(WebConstants.USERNAME_PARAM, authenticadeUser.getUsername());
-			model.addAttribute(WebConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
+			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
+			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
 					
 			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE);
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
 			return ViewsResources.ERROR_PAGE;
 		}		
 	}
@@ -67,7 +67,7 @@ public class AccountController extends BaseController
 		{
 			if(!accountService.updateNewPassord(username, StringHelper.EMPTY))
 			{
-				model.addAttribute(WebConstants.ERROR_MESSAGE, "The username doesn't exists.");
+				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
 				return ViewsResources.FORGOTPASSWORD_PAGE;
 			}
 			
@@ -75,7 +75,7 @@ public class AccountController extends BaseController
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
 			return ViewsResources.ERROR_PAGE;
 		}
 	}
@@ -86,7 +86,7 @@ public class AccountController extends BaseController
 	{
 		if(!confirmPassword.equals(newPassword)) 
 		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, "The confirmation password does not match with the new one.");
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The confirmation password does not match with the new one.");
 			return ViewsResources.NEWPASSWORD_PAGE;
 		}
 				
@@ -94,7 +94,7 @@ public class AccountController extends BaseController
 		{
 			if(!accountService.updateNewPassord(username, newPassword))
 			{
-				model.addAttribute(WebConstants.ERROR_MESSAGE, "The username doesn't exists.");
+				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
 				return ViewsResources.NEWPASSWORD_PAGE;
 			}
 			
@@ -102,7 +102,7 @@ public class AccountController extends BaseController
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebConstants.ERROR_MESSAGE, chEx.getMessage());
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
 			return ViewsResources.ERROR_PAGE;
 		}
 	}

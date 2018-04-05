@@ -1,6 +1,6 @@
 package com.sensefilms.web.support;
 
-public class WebConstants 
+public class WebModelConstants 
 {
 	public static final String ERROR_MESSAGE = "errorMessage";
 	

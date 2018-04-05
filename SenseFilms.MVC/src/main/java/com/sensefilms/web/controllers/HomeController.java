@@ -28,4 +28,9 @@ public class HomeController extends BaseController
 		return ViewsResources.HOME_PAGE;
 	}
 	
+	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
+	public String getIndexView(Locale locale, Model model) 
+	{		
+		return ViewsResources.INDEX_PAGE;
+	}
 }
