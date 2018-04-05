@@ -39,3 +39,30 @@ CREATE TABLE `audit_event` (
   UNIQUE KEY `ID_UNIQUE` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+DROP TABLE IF EXISTS `web_menu_item`;
+
+CREATE TABLE `web_menu_item` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ItemUrl` varchar(100) DEFAULT NULL,
+  `UserRole` smallint(6) NOT NULL DEFAULT '0',
+  `Description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `web_menu_subitem`;
+
+CREATE TABLE `web_menu_subitem` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ItemUrl` varchar(100) DEFAULT NULL,
+  `UserRole` smallint(6) NOT NULL DEFAULT '0',
+  `Description` varchar(100) DEFAULT NULL,
+  `MenuItemID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
+  KEY `fk_menu_item_idx` (`MenuItemID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
