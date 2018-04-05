@@ -62,10 +62,6 @@ public class AccountService implements IAccountService
 		{
 			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
 		}
-		catch(SQLException sqlex) 
-		{
-			throw new CustomHandledException("An error ocurred when try to connect to the database.", sqlex);			
-		}
 		catch(Exception ex)
 		{
 			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
@@ -102,10 +98,6 @@ public class AccountService implements IAccountService
 		catch(HibernateException hex)
 		{
 			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
-		}
-		catch(SQLException sqlex) 
-		{
-			throw new CustomHandledException("An error ocurred when try to connect to the database.", sqlex);			
 		}
 		catch(MessagingException msgEx) 
 		{
