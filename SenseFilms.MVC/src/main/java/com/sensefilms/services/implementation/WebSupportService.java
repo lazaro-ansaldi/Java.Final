@@ -17,6 +17,8 @@ public class WebSupportService implements IWebSupportService
 
 	private IWebSupportRepository webSupportRepository;
 	
+	private static ArrayList<WebMenuItem> menuItems;
+	
 	@Autowired
 	public WebSupportService(IWebSupportRepository webSupportRepository) 
 	{
@@ -28,7 +30,9 @@ public class WebSupportService implements IWebSupportService
 	{
 		try 
 		{
-			return this.webSupportRepository.getAllWebMenuItems();
+			if(menuItems == null) menuItems = this.webSupportRepository.getAllWebMenuItems();
+			
+			return menuItems;
 		}
 		catch(HibernateException hex)
 		{

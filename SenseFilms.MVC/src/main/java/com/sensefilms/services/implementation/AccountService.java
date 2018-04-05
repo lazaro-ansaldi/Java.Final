@@ -1,6 +1,5 @@
 package com.sensefilms.services.implementation;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
