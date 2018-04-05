@@ -25,8 +25,8 @@
 
 				<div>
 					<input type="text" id="username" class="form-control"
-						name="username"> <label for="username">Your
-						username</label>
+						name="username"> 
+					<label for="username">Your	username</label>
 				</div>
 
 				<div>
