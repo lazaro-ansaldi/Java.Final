@@ -13,6 +13,7 @@ import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.services.contracts.IAccountService;
+import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.services.implementation.AccountService;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
@@ -21,12 +22,14 @@ import com.sensefilms.web.support.WebModelConstants;
 public class AccountController extends BaseController
 {
 	private IAccountService accountService;
+	private IWebSupportService webSupportService;
 	
 	@Autowired
-	public AccountController(IAccountService accountService) 
+	public AccountController(IAccountService accountService, IWebSupportService webSupportService) 
 	{
 		super(AccountController.class);
 		this.accountService = accountService;
+		this.webSupportService = webSupportService;
 	}
 	
 	@RequestMapping(value = "/AccountController/authenticate", method = RequestMethod.POST)
@@ -44,6 +47,7 @@ public class AccountController extends BaseController
 			
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
+			model.addAttribute("menu_items", webSupportService.getAllWebMenuItems());
 					
 			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE);
 		}

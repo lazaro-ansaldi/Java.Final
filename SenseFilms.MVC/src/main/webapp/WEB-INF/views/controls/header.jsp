@@ -17,19 +17,23 @@
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
-    <a class="navbar-brand" href="#">Sense Films</a>
+    <a class="navbar-brand" href="<c:url value="/HomeController/index" />">Sense Films</a>
   </div>
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="<c:url value="/HomeController/index" />">Home</a></li>
-    <li><a href="#">Items 1</a></li>
+  
+
+  <ul class="nav navbar-nav">   
+   <c:forEach var="item" items="${menu_items}">
+ 
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Items 2<span class="fa fa-chevrondown"></span></a>
+      <a href="<c:url value="${item.itemUrl}" />" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.description}"/><span class="fa fa-chevrondown"></span></a>
+      <c:forEach var="subItem" items="${item.subItemsCollection}">     
       <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li class="active"><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
+        <li><a href="<c:url value="${subItem.itemUrl}" />"><c:out value="${subItem.description}"/></a></li>
       </ul>
+      </c:forEach>    
     </li>
+    
+    </c:forEach>
   </ul>
   <ul class="nav navbar-nav navbar-right navbar-icons">  </ul>
   <p class="navbar-text navbar-right"><a href="#" class="navbar-link">${userCompleteName}</a></p>

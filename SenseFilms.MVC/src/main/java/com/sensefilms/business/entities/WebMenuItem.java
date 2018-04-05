@@ -16,4 +16,9 @@ public class WebMenuItem extends WebItem
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MenuItemID")
 	private Set<WebMenuSubItem> subItemsCollection = new HashSet<WebMenuSubItem>();
+
+	public Set<WebMenuSubItem> getSubItemsCollection() 
+	{
+		return subItemsCollection;
+	}
 }
