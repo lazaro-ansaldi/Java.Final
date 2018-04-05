@@ -119,4 +119,9 @@ public class User extends BaseEntity
 		this.name = name;
 	}
 	
+	public String getCompleteName() 
+	{
+		return String.format("%s, %s", this.lastName, this.name);
+	}
+	
 }

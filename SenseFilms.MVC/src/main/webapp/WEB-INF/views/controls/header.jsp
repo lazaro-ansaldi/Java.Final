@@ -32,7 +32,7 @@
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right navbar-icons">  </ul>
-  <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Billy Bones</a></p>
+  <p class="navbar-text navbar-right"><a href="#" class="navbar-link">${userCompleteName}</a></p>
 </nav>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

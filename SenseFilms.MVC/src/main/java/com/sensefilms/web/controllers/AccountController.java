@@ -41,7 +41,9 @@ public class AccountController extends BaseController
 			}
 			
 			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
-			model.addAttribute(WebConstants.USERNAME_PARAM, currentUser.getUsername());
+			
+			model.addAttribute(WebConstants.USERNAME_PARAM, authenticadeUser.getUsername());
+			model.addAttribute(WebConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
 					
 			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE);
 		}
