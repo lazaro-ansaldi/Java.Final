@@ -40,7 +40,7 @@ public class AccountController extends BaseController
 			if(!accountService.tryAuthenticateUser(currentUser)) 
 			{
 				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
-				return ViewsResources.HOME_PAGE;
+				return ViewsResources.HOME_VIEW;
 			}
 			
 			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
@@ -49,25 +49,31 @@ public class AccountController extends BaseController
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
 			model.addAttribute(WebModelConstants.MENU_ITEMS, webSupportService.getAllWebMenuItems());
 					
-			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE);
+			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
 		}
 		catch(CustomHandledException chEx) 
 		{
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_PAGE;
+			return ViewsResources.ERROR_VIEW;
 		}		
 	}
 	
 	@RequestMapping(value = "/AccountController/forgotPassword", method = RequestMethod.GET)	
 	public String getForgotPasswordView() 
 	{
-		return ViewsResources.FORGOTPASSWORD_PAGE;
+		return ViewsResources.FORGOT_PASSWORD_VIEW;
 	}
 	
 	@RequestMapping(value = "/AccountController/changePassword", method = RequestMethod.GET)	
 	public String getChangePasswordView() 
 	{
-		return ViewsResources.NEWPASSWORD_PAGE;
+		return ViewsResources.NEW_PASSWORD_VIEW;
+	}
+	
+	@RequestMapping(value = "/AccountController/newUser", method = RequestMethod.GET)	
+	public String getNewUserView() 
+	{
+		return ViewsResources.NEW_USER_VIEW;
 	}
 	
 	@RequestMapping(value = "/AccountController/sendNewPassword", method = RequestMethod.POST)	
@@ -78,15 +84,15 @@ public class AccountController extends BaseController
 			if(!accountService.updateNewPassord(username, StringHelper.EMPTY))
 			{
 				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
-				return ViewsResources.FORGOTPASSWORD_PAGE;
+				return ViewsResources.FORGOT_PASSWORD_VIEW;
 			}
 			
-			return ViewsResources.HOME_PAGE;
+			return ViewsResources.HOME_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_PAGE;
+			return ViewsResources.ERROR_VIEW;
 		}
 	}
 								
@@ -97,7 +103,7 @@ public class AccountController extends BaseController
 		if(!confirmPassword.equals(newPassword)) 
 		{
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The confirmation password does not match with the new one.");
-			return ViewsResources.NEWPASSWORD_PAGE;
+			return ViewsResources.NEW_PASSWORD_VIEW;
 		}
 				
 		try 
@@ -105,15 +111,15 @@ public class AccountController extends BaseController
 			if(!accountService.updateNewPassord(username, newPassword))
 			{
 				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
-				return ViewsResources.NEWPASSWORD_PAGE;
+				return ViewsResources.NEW_PASSWORD_VIEW;
 			}
 			
-			return ViewsResources.INDEX_PAGE;
+			return ViewsResources.INDEX_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_PAGE;
+			return ViewsResources.ERROR_VIEW;
 		}
 	}
 	
@@ -123,12 +129,12 @@ public class AccountController extends BaseController
 		try 
 		{			
 			this.accountService.addNewUser(newUser);
-			return StringHelper.EMPTY;
+			return ViewsResources.INDEX_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_PAGE;
+			return ViewsResources.ERROR_VIEW;
 		}		
 	}
 }

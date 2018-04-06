@@ -25,12 +25,12 @@ public class HomeController extends BaseController
 	{
 		getLogger().info("We're live! {}.", locale);
 		
-		return ViewsResources.HOME_PAGE;
+		return ViewsResources.HOME_VIEW;
 	}
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
 	public String getIndexView(Model model) 
 	{		
-		return ViewsResources.INDEX_PAGE;
+		return ViewsResources.INDEX_VIEW;
 	}
 }

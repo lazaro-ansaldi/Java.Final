@@ -2,15 +2,17 @@ package com.sensefilms.web.support;
 
 public class ViewsResources 
 {
-	public static final String HOME_PAGE = "public/home";
+	public static final String HOME_VIEW = "public/home";
 	
-	public static final String ERROR_PAGE = "public/error";
+	public static final String ERROR_VIEW = "public/error";
 	
-	public static final String RENEWPASSWORD_PAGE = "public/renewPassword";
+	public static final String RENEW_PASSWORD_VIEW = "public/renewPassword";
 	
-	public static final String FORGOTPASSWORD_PAGE = "public/forgotPassword";
+	public static final String FORGOT_PASSWORD_VIEW = "public/forgotPassword";
 	
-	public static final String INDEX_PAGE = "private/index";
+	public static final String INDEX_VIEW = "private/index";
 	
-	public static final String NEWPASSWORD_PAGE = "account/newPassword";
+	public static final String NEW_PASSWORD_VIEW = "account/newPassword";
+	
+	public static final String NEW_USER_VIEW = "account/newUser";
 }
