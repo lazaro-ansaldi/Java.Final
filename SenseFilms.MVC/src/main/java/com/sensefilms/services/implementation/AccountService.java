@@ -135,7 +135,9 @@ public class AccountService implements IAccountService
 	private void addUserToCache(User user) 
 	{
 		if(!authenticatedUsers.containsKey(user.getUsername()))
-			authenticatedUsers.put(user.getUsername(), user);
+			authenticatedUsers.remove(user.getUsername());
+		
+		authenticatedUsers.put(user.getUsername(), user);
 	}
 	
 	private void auditPasswordChange(boolean isRecoveryProcess, String username) 

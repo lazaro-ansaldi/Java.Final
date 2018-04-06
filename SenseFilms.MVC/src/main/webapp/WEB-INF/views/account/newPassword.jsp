@@ -20,8 +20,7 @@
 
 	<div class="form-center-container">
 		<div class="form-center">
-			<form name="recoverPasswordForm"
-				action="<c:url value="/AccountController/updateNewPassword/${usernameParam}" />"
+			<form name="recoverPasswordForm" action="<c:url value="/AccountController/updateNewPassword/${usernameParam}" />"
 				method="post" class="align-middle">
 				<div>
 					<h3>Change password</h3>
@@ -53,7 +52,7 @@
 				<!--Footer-->
 				<div class="modal-footer">
 					<div>
-						<a href="<c:url value="/" />">Go Back</a>
+						<a onclick="history.go(-1);">Go Back</a>
 					</div>
 				</div>
 			</form>
