@@ -47,7 +47,7 @@ public class AccountController extends BaseController
 			
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
-			model.addAttribute("menu_items", webSupportService.getAllWebMenuItems());
+			model.addAttribute(WebModelConstants.MENU_ITEMS, webSupportService.getAllWebMenuItems());
 					
 			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_PAGE : ViewsResources.NEWPASSWORD_PAGE);
 		}
