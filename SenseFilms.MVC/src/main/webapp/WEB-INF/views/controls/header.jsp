@@ -22,7 +22,7 @@
   
 
   <ul class="nav navbar-nav">   
-   <c:forEach var="item" items="${menu_items}">
+   <c:forEach var="item" items="${menuItems}">
  
     <li class="dropdown">
       <a href="<c:url value="${item.itemUrl}" />" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.description}"/><span class="fa fa-chevrondown"></span></a>
