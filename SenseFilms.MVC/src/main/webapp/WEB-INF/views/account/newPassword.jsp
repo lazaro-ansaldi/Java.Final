@@ -39,8 +39,7 @@
 
 				<div>
 					<input type="password" id="confirmPassword" class="form-control"
-						name="confirmPassword"> <label for="confirmPassword">Current
-						password</label>
+						name="confirmPassword"> <label for="confirmPassword">Current password</label>
 				</div>
 
 				<div>

@@ -64,6 +64,12 @@ public class AccountController extends BaseController
 		return ViewsResources.FORGOTPASSWORD_PAGE;
 	}
 	
+	@RequestMapping(value = "/AccountController/changePassword", method = RequestMethod.GET)	
+	public String getChangePasswordView() 
+	{
+		return ViewsResources.NEWPASSWORD_PAGE;
+	}
+	
 	@RequestMapping(value = "/AccountController/sendNewPassword", method = RequestMethod.POST)	
 	public String sendNewPassword(@RequestParam("username") String username, Model model)
 	{

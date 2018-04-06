@@ -35,7 +35,13 @@
     
     </c:forEach>
   </ul>
-  <ul class="nav navbar-nav navbar-right navbar-icons">  </ul>
+  <ul class="nav navbar-nav navbar-right navbar-icons">
+	  <li>
+	     <a href="<c:url value="/AccountController/changePassword" />">
+	       <span class="fa fa-user"></span><span class="hidden-lg">My Account</span>
+	     </a>
+	   </li>  
+  </ul>
   <p class="navbar-text navbar-right"><a href="#" class="navbar-link">${userCompleteName}</a></p>
 </nav>
 
