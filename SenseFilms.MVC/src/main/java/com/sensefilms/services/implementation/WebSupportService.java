@@ -3,6 +3,8 @@ package com.sensefilms.services.implementation;
 import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class WebSupportService implements IWebSupportService
 {
 
 	private IWebSupportRepository webSupportRepository;
-	
+	private Logger appLogger = LoggerFactory.getLogger(WebSupportService.class);
 	private static ArrayList<WebMenuItem> menuItems;
 	
 	@Autowired
@@ -30,7 +32,11 @@ public class WebSupportService implements IWebSupportService
 	{
 		try 
 		{
-			if(menuItems == null) menuItems = this.webSupportRepository.getAllWebMenuItems();
+			if(menuItems == null) 
+			{
+				menuItems = this.webSupportRepository.getAllWebMenuItems();
+				appLogger.debug("Loaded menu items collections.");
+			}
 			
 			return menuItems;
 		}

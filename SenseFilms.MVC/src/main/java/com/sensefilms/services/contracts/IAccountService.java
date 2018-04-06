@@ -8,4 +8,6 @@ public interface IAccountService
 	boolean tryAuthenticateUser(User user) throws CustomHandledException; 
 	
 	boolean updateNewPassord(String username, String newPassword) throws CustomHandledException;
+	
+	void addNewUser(User user) throws CustomHandledException;
 }

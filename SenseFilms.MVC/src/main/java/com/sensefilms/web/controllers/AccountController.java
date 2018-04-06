@@ -117,4 +117,18 @@ public class AccountController extends BaseController
 		}
 	}
 	
+	@RequestMapping(value = "/AccountController/addUser", method = RequestMethod.POST)
+	public String createNewUser(@ModelAttribute  User newUser, Model model) 
+	{
+		try 
+		{			
+			this.accountService.addNewUser(newUser);
+			return StringHelper.EMPTY;
+		}
+		catch(CustomHandledException chEx) 
+		{
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
+			return ViewsResources.ERROR_PAGE;
+		}		
+	}
 }

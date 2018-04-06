@@ -29,7 +29,7 @@ public class HomeController extends BaseController
 	}
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
-	public String getIndexView(Locale locale, Model model) 
+	public String getIndexView(Model model) 
 	{		
 		return ViewsResources.INDEX_PAGE;
 	}

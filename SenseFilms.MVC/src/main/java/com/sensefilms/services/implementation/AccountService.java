@@ -39,7 +39,7 @@ public class AccountService implements IAccountService
 	
 	private IUserRepository _userRepository;
 	
-	
+	@Override
 	public boolean tryAuthenticateUser(User user) throws CustomHandledException 
 	{
 		try 
@@ -67,6 +67,7 @@ public class AccountService implements IAccountService
 		}
 	}
 	
+	@Override
 	public boolean updateNewPassord(String username, String newPassword) throws CustomHandledException
 	{
 		User currentUser = null;
@@ -108,6 +109,23 @@ public class AccountService implements IAccountService
 		}
 	}
 
+	@Override
+	public void addNewUser(User user) throws CustomHandledException 
+	{
+		try
+		{
+			this._userRepository.insert(user);
+		}
+		catch(HibernateException hex)
+		{
+			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
+		}
+		catch(Exception ex)
+		{
+			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
+		}
+	}
+	
 	public static User getAuthenticatedUserByUsername(String username)
 	{
 		return authenticatedUsers.get(username);
