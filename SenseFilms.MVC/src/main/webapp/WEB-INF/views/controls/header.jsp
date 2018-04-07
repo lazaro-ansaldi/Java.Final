@@ -42,7 +42,7 @@
 	     </a>
 	  </li> 
 	  <li>
-      <a href="<c:url value="/AccountController/newUser" />">
+      <a href="<c:url value="/ManageUsersController/newUser" />">
         <span class="fa fa-cog"></span><span class="hidden-lg">Settings</span>
       </a>
     </li> 

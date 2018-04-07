@@ -70,12 +70,6 @@ public class AccountController extends BaseController
 		return ViewsResources.NEW_PASSWORD_VIEW;
 	}
 	
-	@RequestMapping(value = "/AccountController/newUser", method = RequestMethod.GET)	
-	public String getNewUserView() 
-	{
-		return ViewsResources.NEW_USER_VIEW;
-	}
-	
 	@RequestMapping(value = "/AccountController/sendNewPassword", method = RequestMethod.POST)	
 	public String sendNewPassword(@RequestParam("username") String username, Model model)
 	{
@@ -121,20 +115,5 @@ public class AccountController extends BaseController
 			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
 			return ViewsResources.ERROR_VIEW;
 		}
-	}
-	
-	@RequestMapping(value = "/AccountController/addUser", method = RequestMethod.POST)
-	public String createNewUser(@ModelAttribute  User newUser, Model model) 
-	{
-		try 
-		{			
-			this.accountService.addNewUser(newUser);
-			return ViewsResources.INDEX_VIEW;
-		}
-		catch(CustomHandledException chEx) 
-		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_VIEW;
-		}		
 	}
 }
