@@ -36,15 +36,32 @@
     </c:forEach>
   </ul>
   <ul class="nav navbar-nav navbar-right navbar-icons">
-	  <li>
-	     <a href="<c:url value="/AccountController/changePassword" />">
-	       <span class="fa fa-user"></span><span class="hidden-lg">My Account</span>
+	  <li class="dropdown">
+	     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+	     	<span class="fa fa-user"></span>	     
 	     </a>
-	  </li> 
+	       
+	       <ul class="dropdown-menu">
+	       		<li> 
+	       			<a href="<c:url value="/AccountController/changePassword" />">
+	       				<span>Change Password</span> 
+	       			</a>
+	       		</li>
+	       </ul>	     
+	  </li>
+	   
 	  <li>
-      <a href="<c:url value="/ManageUsersController/newUser" />">
-        <span class="fa fa-cog"></span><span class="hidden-lg">Settings</span>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-cog"></span>
       </a>
+      
+      <ul class="dropdown-menu">
+      	<li>
+      		<a href="<c:url value="/ManageUsersController/newUser" />">
+      			<span>New User</span>
+      		</a>      		
+      	</li>
+      </ul>
     </li> 
   </ul>
   <p class="navbar-text navbar-right"><a href="#" class="navbar-link">${userCompleteName}</a></p>
