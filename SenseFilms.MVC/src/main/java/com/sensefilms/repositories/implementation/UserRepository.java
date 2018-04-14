@@ -14,28 +14,32 @@ import com.sensefilms.repositories.contracts.IUserRepository;
 @Transactional
 public class UserRepository extends BaseRepository implements IUserRepository
 {
-
+	@Override
 	public void insert(User entity) throws SQLException 
 	{
 		getSessionFactory().getCurrentSession().save(entity);		
 	}
 
+	@Override
 	public User getOneById(int id) throws SQLException 
 	{
 		Object userObject = getSessionFactory().getCurrentSession().get(User.class, id);	
 		return CastHelper.tryCastAs(User.class, userObject);
 	}
 
+	@Override
 	public void update(User entity) throws SQLException 
 	{
 		getSessionFactory().getCurrentSession().update(entity);			
 	}
 
+	@Override
 	public void deleteOneById(int id) throws SQLException 
 	{
 		
 	}
 
+	@Override
 	public User getOneByUsername(String username) throws SQLException 
 	{
 		Query query = getSessionFactory().getCurrentSession().createQuery("from User where username = :username");

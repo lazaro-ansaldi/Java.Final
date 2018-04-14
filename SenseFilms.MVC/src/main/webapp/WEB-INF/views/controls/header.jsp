@@ -25,12 +25,12 @@
    <c:forEach var="item" items="${menuItems}">
  
     <li class="dropdown">
-      <a href="<c:url value="${item.itemUrl}" />" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.description}"/><span class="fa fa-chevrondown"></span></a>
-      <c:forEach var="subItem" items="${item.subItemsCollection}">     
+      <a href="<c:url value="${item.itemUrl}" />" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.description}"/><span class="fa fa-chevrondown"></span></a>       
       <ul class="dropdown-menu">
+      <c:forEach var="subItem" items="${item.subItemsCollection}">   
         <li><a href="<c:url value="${subItem.itemUrl}" />"><c:out value="${subItem.description}"/></a></li>
-      </ul>
-      </c:forEach>    
+      </c:forEach> 
+      </ul>        
     </li>
     
     </c:forEach>
