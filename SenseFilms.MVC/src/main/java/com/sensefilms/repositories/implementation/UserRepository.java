@@ -8,35 +8,40 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.repositories.base.BaseCRUDRepository;
 import com.sensefilms.repositories.contracts.IUserRepository;
 
 @Repository
 @Transactional
-public class UserRepository extends BaseRepository implements IUserRepository
+public class UserRepository extends BaseCRUDRepository<User> implements IUserRepository
 {
-	@Override
-	public void insert(User entity) throws SQLException 
+	public UserRepository()
 	{
-		getSessionFactory().getCurrentSession().save(entity);		
+		super(User.class);
+	}
+
+	@Override
+	public void insert(User user) throws SQLException 
+	{
+		super.insert(user);	
 	}
 
 	@Override
 	public User getOneById(int id) throws SQLException 
 	{
-		Object userObject = getSessionFactory().getCurrentSession().get(User.class, id);	
-		return CastHelper.tryCastAs(User.class, userObject);
+		return super.getOneById(id);
 	}
 
 	@Override
-	public void update(User entity) throws SQLException 
+	public void update(User user) throws SQLException 
 	{
-		getSessionFactory().getCurrentSession().update(entity);			
+		super.update(user);	
 	}
 
 	@Override
 	public void deleteOneById(int id) throws SQLException 
 	{
-		
+		super.deleteOneById(id);
 	}
 
 	@Override

@@ -6,37 +6,41 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.Client;
-import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.repositories.base.BaseCRUDRepository;
 import com.sensefilms.repositories.contracts.IClientRepository;
 
 @Repository
 @Transactional
-public class ClientRepository extends BaseRepository implements IClientRepository
+public class ClientRepository extends BaseCRUDRepository<Client> implements IClientRepository
 {
 
-	@Override
-	public void insert(Client entity) throws SQLException
+	public ClientRepository()
 	{
-		getSessionFactory().getCurrentSession().save(entity);			
+		super(Client.class);
+	}
+
+	@Override
+	public void insert(Client client) throws SQLException
+	{
+		super.insert(client);		
 	}
 
 	@Override
 	public Client getOneById(int id) throws SQLException
 	{
-		Object clientObject = getSessionFactory().getCurrentSession().get(Client.class, id);	
-		return CastHelper.tryCastAs(Client.class, clientObject);
+		return super.getOneById(id);
 	}
 
 	@Override
-	public void update(Client entity) throws SQLException
+	public void update(Client client) throws SQLException
 	{
-		getSessionFactory().getCurrentSession().update(entity);				
+		super.update(client);			
 	}
 
 	@Override
 	public void deleteOneById(int id) throws SQLException
 	{
-		getSessionFactory().getCurrentSession().delete(getSessionFactory().getCurrentSession().get(Client.class, id));				
+		super.deleteOneById(id);			
 	}
 
 }

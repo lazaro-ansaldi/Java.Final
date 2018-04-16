@@ -1,4 +1,4 @@
-package com.sensefilms.repositories.implementation;
+package com.sensefilms.repositories.base;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

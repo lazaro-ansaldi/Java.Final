@@ -1,4 +1,4 @@
-package com.sensefilms.repositories.contracts;
+package com.sensefilms.repositories.base;
 
 import java.sql.SQLException;
 

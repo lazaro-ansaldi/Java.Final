@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.AuditEvent;
+import com.sensefilms.repositories.base.BaseRepository;
 import com.sensefilms.repositories.contracts.IAuditorRepository;;
 
 @Repository

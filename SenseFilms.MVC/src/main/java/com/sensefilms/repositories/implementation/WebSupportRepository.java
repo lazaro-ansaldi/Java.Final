@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.repositories.base.BaseRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 
 @Repository
