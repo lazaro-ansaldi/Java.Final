@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
+import com.sensefilms.common.exceptions.CustomBusinessException;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.common.handlers.IAuditHandler;
 import com.sensefilms.common.handlers.IMailHandler;
@@ -38,22 +39,22 @@ public class AccountService extends BaseService implements IAccountService
 	private IUserRepository _userRepository;
 	
 	@Override
-	public boolean tryAuthenticateUser(User user) throws CustomHandledException 
+	public void tryAuthenticateUser(User user) throws CustomBusinessException, CustomHandledException 
 	{
 		try 
 		{
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
 			
-			if(dbUser != null && dbUser.getPassword().equals(user.getPassword())) 
-			{
+			if(dbUser == null || !dbUser.getPassword().equals(user.getPassword()))
+				throw new CustomBusinessException("Incorrect credentials, please try again.");
+					
 				dbUser.setLastLogin(new Date());
 				_userRepository.update(dbUser);
-				addUserToCache(dbUser);
-				
-				return true;
-			}			
-			
-			return false;
+				addUserToCache(dbUser);					
+		}
+		catch(CustomBusinessException cbEx) 
+		{
+			throw cbEx;
 		}
 		catch(HibernateException hex)
 		{
@@ -66,7 +67,7 @@ public class AccountService extends BaseService implements IAccountService
 	}
 	
 	@Override
-	public boolean updateNewPassord(String username, String newPassword) throws CustomHandledException
+	public void updateNewPassord(String username, String newPassword) throws CustomBusinessException, CustomHandledException
 	{
 		User currentUser = null;
 		boolean isRecoveryProcess = StringUtils.isNullorEmpty(newPassword);
@@ -74,7 +75,9 @@ public class AccountService extends BaseService implements IAccountService
 		try 
 		{
 			currentUser = _userRepository.getOneByUsername(username);
-			if(currentUser == null) return false;
+			
+			if(currentUser == null) 
+				throw new CustomBusinessException("The username doesn't exists.");
 			
 			//Generate a 10 chars random password based on a Guid
 			if(isRecoveryProcess)
@@ -90,8 +93,10 @@ public class AccountService extends BaseService implements IAccountService
 				sendEmailWithNewPassword(newPassword, currentUser.getEmail());
 			
 			auditPasswordChange(isRecoveryProcess, currentUser.getUsername());
-			
-			return true;
+		}
+		catch(CustomBusinessException cbEx) 
+		{
+			throw cbEx;
 		}
 		catch(HibernateException hex)
 		{

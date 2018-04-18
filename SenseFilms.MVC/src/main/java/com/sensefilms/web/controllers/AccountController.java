@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sensefilms.business.entities.User;
+import com.sensefilms.common.exceptions.CustomBusinessException;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.services.contracts.IAccountService;
@@ -38,11 +39,7 @@ public class AccountController extends BaseController
 	{
 		try 
 		{
-			if(!accountService.tryAuthenticateUser(currentUser)) 
-			{
-				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "Incorrect credentials, please try again.");
-				return ViewsResources.HOME_VIEW;
-			}
+			accountService.tryAuthenticateUser(currentUser);
 			
 			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
 			
@@ -51,6 +48,11 @@ public class AccountController extends BaseController
 			model.addAttribute(WebModelConstants.MENU_ITEMS, webSupportService.getAllWebMenuItems());
 					
 			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
+		}
+		catch(CustomBusinessException cbEx) 
+		{
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
+			return ViewsResources.HOME_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
@@ -76,13 +78,13 @@ public class AccountController extends BaseController
 	{
 		try 
 		{
-			if(!accountService.updateNewPassord(username, StringUtils.EMPTY))
-			{
-				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
-				return ViewsResources.FORGOT_PASSWORD_VIEW;
-			}
-			
+			accountService.updateNewPassord(username, StringUtils.EMPTY);
 			return ViewsResources.HOME_VIEW;
+		}
+		catch(CustomBusinessException cbEx) 
+		{
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
+			return ViewsResources.FORGOT_PASSWORD_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
@@ -103,13 +105,13 @@ public class AccountController extends BaseController
 				
 		try 
 		{
-			if(!accountService.updateNewPassord(username, newPassword))
-			{
-				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
-				return ViewsResources.NEW_PASSWORD_VIEW;
-			}
-			
+			accountService.updateNewPassord(username, newPassword);			
 			return ViewsResources.INDEX_VIEW;
+		}
+		catch(CustomBusinessException cbEx) 
+		{
+			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
+			return ViewsResources.NEW_PASSWORD_VIEW;
 		}
 		catch(CustomHandledException chEx) 
 		{
