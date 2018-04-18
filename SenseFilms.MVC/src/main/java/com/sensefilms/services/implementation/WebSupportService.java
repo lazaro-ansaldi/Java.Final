@@ -3,27 +3,26 @@ package com.sensefilms.services.implementation;
 import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
+import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IWebSupportService;
 
 @Service
-public class WebSupportService implements IWebSupportService 
+public class WebSupportService extends BaseService implements IWebSupportService 
 {
 
 	private IWebSupportRepository webSupportRepository;
-	private Logger appLogger = LoggerFactory.getLogger(WebSupportService.class);
 	private static ArrayList<WebMenuItem> menuItems;
 	
 	@Autowired
 	public WebSupportService(IWebSupportRepository webSupportRepository) 
 	{
+		super(WebSupportService.class);
 		this.webSupportRepository = webSupportRepository;
 	}
 	
@@ -35,7 +34,7 @@ public class WebSupportService implements IWebSupportService
 			if(menuItems == null) 
 			{
 				menuItems = this.webSupportRepository.getAllWebMenuItems();
-				appLogger.debug("Loaded menu items collections.");
+				getLogger().debug("Loaded menu items collections.");
 			}
 			
 			return menuItems;

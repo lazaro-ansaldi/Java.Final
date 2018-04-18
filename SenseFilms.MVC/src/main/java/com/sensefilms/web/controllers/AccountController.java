@@ -15,6 +15,7 @@ import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.services.implementation.AccountService;
+import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
 

@@ -7,8 +7,6 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 
 import org.hibernate.HibernateException;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +16,12 @@ import com.sensefilms.common.handlers.IAuditHandler;
 import com.sensefilms.common.handlers.IMailHandler;
 import com.sensefilms.common.helpers.StringHelper;
 import com.sensefilms.repositories.contracts.IUserRepository;
+import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IAccountService;
 
 @Service
-public class AccountService implements IAccountService 
+public class AccountService extends BaseService implements IAccountService 
 {
-
-	private Logger appLogger = LoggerFactory.getLogger(AccountService.class);
 	private IMailHandler mailHandler;
 	private IAuditHandler auditHandler;
 	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
@@ -32,6 +29,7 @@ public class AccountService implements IAccountService
 	@Autowired
 	public AccountService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler) 
 	{
+		super(AccountService.class);
 		this._userRepository = userRepository;
 		this.mailHandler = mailHandler;
 		this.auditHandler = auditHandler;
@@ -85,7 +83,7 @@ public class AccountService implements IAccountService
 			currentUser.setPassword(newPassword);
 			currentUser.setNewPassword(isRecoveryProcess);
 			_userRepository.update(currentUser);
-			appLogger.debug(String.format("Password regenerated for user %s", username));
+			getLogger().debug(String.format("Password regenerated for user %s", username));
 			
 			//Send an email with the temporary password
 			if(isRecoveryProcess)
@@ -159,7 +157,7 @@ public class AccountService implements IAccountService
 		{
 			throw msgEx;
 		}		
-		appLogger.debug(String.format("Email send to %s succesfully.", email));
+		getLogger().debug(String.format("Email send to %s succesfully.", email));
 	}
 	
 }
