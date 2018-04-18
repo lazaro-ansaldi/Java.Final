@@ -1,6 +1,6 @@
-package com.sensefilms.common.helpers;
+package com.sensefilms.common.utils;
 
-public class StringHelper 
+public class StringUtils 
 {
 	public static boolean isNullorEmpty(String input) 
 	{

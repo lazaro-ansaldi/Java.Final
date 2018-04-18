@@ -1,4 +1,4 @@
-package com.sensefilms.common.helpers;
+package com.sensefilms.common.utils;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class JsonSerializer
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-		String result = StringHelper.EMPTY;
+		String result = StringUtils.EMPTY;
 		try 
 		{
 			result = objectMapper.writeValueAsString(o);
@@ -30,7 +30,7 @@ public class JsonSerializer
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-		String result = StringHelper.EMPTY;
+		String result = StringUtils.EMPTY;
 		try 
 		{
 			result = objectMapper.writeValueAsString(o);

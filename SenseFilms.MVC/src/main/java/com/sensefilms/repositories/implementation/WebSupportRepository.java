@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.WebMenuItem;
-import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.common.utils.CastUtils;
 import com.sensefilms.repositories.base.BaseRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 
@@ -24,7 +24,7 @@ public class WebSupportRepository extends BaseRepository implements IWebSupportR
 		Query query = getSessionFactory().getCurrentSession().createQuery("from WebMenuItem");
 		for(Object o : query.list()) 
 		{
-			webMenuItems.add(CastHelper.tryCastAs(WebMenuItem.class, o));
+			webMenuItems.add(CastUtils.tryCastAs(WebMenuItem.class, o));
 		}
 		//query.list().forEach( (x) -> webMenuItems.add(CastHelper.tryCastAs(WebMenuItem.class, x)) );
 		

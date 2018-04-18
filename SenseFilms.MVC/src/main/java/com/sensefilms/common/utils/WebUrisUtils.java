@@ -1,23 +1,23 @@
-package com.sensefilms.common.helpers;
+package com.sensefilms.common.utils;
 
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-public class WebUrisHelper 
+public class WebUrisUtils 
 {
 	
 	public static String getUrlWithParams(String baseUrl, String param, String value) throws IllegalArgumentException
 	{
-		if(StringHelper.isNullorEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
+		if(StringUtils.isNullorEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
 		
-		if(StringHelper.isNullorEmpty(param)) throw new IllegalArgumentException("The param name is null or empty.");
+		if(StringUtils.isNullorEmpty(param)) throw new IllegalArgumentException("The param name is null or empty.");
 			
 		return baseUrl + "?" + param + "=" + value;		
 	}
 	
 	public static String getUrlWithParams(String baseUrl, HashMap<String, String> params) throws IllegalArgumentException
 	{
-		if(StringHelper.isNullorEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
+		if(StringUtils.isNullorEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
 		
 		if(params == null || params.isEmpty()) throw new IllegalArgumentException("The params map is null or empty.");
 		

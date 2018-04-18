@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.common.utils.CastUtils;
 import com.sensefilms.repositories.base.BaseCRUDRepository;
 import com.sensefilms.repositories.contracts.IUserRepository;
 
@@ -25,7 +25,7 @@ public class UserRepository extends BaseCRUDRepository<User> implements IUserRep
 	{
 		Query query = getSessionFactory().getCurrentSession().createQuery("from User where username = :username");
 		query.setParameter("username", username);
-		return CastHelper.tryCastAs(User.class, query.uniqueResult());
+		return CastUtils.tryCastAs(User.class, query.uniqueResult());
 	}
 
 }

@@ -1,6 +1,6 @@
-package com.sensefilms.common.helpers;
+package com.sensefilms.common.utils;
 
-public class CastHelper 
+public class CastUtils 
 {
 	public static <T> T tryCastAs(Class<T> clazz, Object o)
 	{

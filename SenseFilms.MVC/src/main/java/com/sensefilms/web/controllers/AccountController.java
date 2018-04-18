@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
-import com.sensefilms.common.helpers.StringHelper;
+import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.services.implementation.AccountService;
@@ -76,7 +76,7 @@ public class AccountController extends BaseController
 	{
 		try 
 		{
-			if(!accountService.updateNewPassord(username, StringHelper.EMPTY))
+			if(!accountService.updateNewPassord(username, StringUtils.EMPTY))
 			{
 				model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The username doesn't exists.");
 				return ViewsResources.FORGOT_PASSWORD_VIEW;

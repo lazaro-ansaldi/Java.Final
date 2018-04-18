@@ -14,7 +14,7 @@ import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.common.handlers.IAuditHandler;
 import com.sensefilms.common.handlers.IMailHandler;
-import com.sensefilms.common.helpers.StringHelper;
+import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IAccountService;
@@ -69,7 +69,7 @@ public class AccountService extends BaseService implements IAccountService
 	public boolean updateNewPassord(String username, String newPassword) throws CustomHandledException
 	{
 		User currentUser = null;
-		boolean isRecoveryProcess = StringHelper.isNullorEmpty(newPassword);
+		boolean isRecoveryProcess = StringUtils.isNullorEmpty(newPassword);
 		
 		try 
 		{
@@ -143,7 +143,7 @@ public class AccountService extends BaseService implements IAccountService
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
 				: String.format("Password updated for user %s", username);
 		
-		this.auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringHelper.EMPTY);
+		this.auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringUtils.EMPTY);
 	}
 	
 	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException 

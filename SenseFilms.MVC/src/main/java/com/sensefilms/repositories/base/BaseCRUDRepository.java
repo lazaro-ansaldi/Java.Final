@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.BaseEntity;
-import com.sensefilms.common.helpers.CastHelper;
+import com.sensefilms.common.utils.CastUtils;
 
 @Repository
 @Transactional
@@ -26,7 +26,7 @@ public abstract class BaseCRUDRepository<T extends BaseEntity> extends BaseRepos
 	public T getOneById(int id) throws HibernateException
 	{
 		Object clientObject = getSessionFactory().getCurrentSession().get(currentClazz, id);	
-		return CastHelper.tryCastAs(currentClazz, clientObject);
+		return CastUtils.tryCastAs(currentClazz, clientObject);
 	}
 
 	public void update(T entity) throws HibernateException
