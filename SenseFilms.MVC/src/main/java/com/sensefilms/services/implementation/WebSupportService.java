@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IWebSupportService;
@@ -41,11 +42,11 @@ public class WebSupportService extends BaseService implements IWebSupportService
 		}
 		catch(HibernateException hex)
 		{
-			throw new CustomHandledException("An error ocurred when try to access the database.", hex);
+			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new CustomHandledException("A totally unexpected error occurred. Please run as fast as you can!", ex);
+			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
