@@ -1,11 +1,15 @@
 package com.sensefilms.repositories.base;
 
 import org.hibernate.HibernateException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.BaseEntity;
 import com.sensefilms.common.helpers.CastHelper;
 
-public class BaseCRUDRepository<T extends BaseEntity> extends BaseRepository implements IBaseCRUDRepository<T>
+@Repository
+@Transactional
+public abstract class BaseCRUDRepository<T extends BaseEntity> extends BaseRepository implements IBaseCRUDRepository<T>
 {
 	private Class<T> currentClazz;
 	
