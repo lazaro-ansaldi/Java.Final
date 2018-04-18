@@ -8,11 +8,6 @@ public abstract class BaseRepository
 
 	@Autowired
 	private SessionFactory sessionFactory;
-		
-	public BaseRepository() 
-	{
-		
-	}
 	
 	protected SessionFactory getSessionFactory() 
 	{

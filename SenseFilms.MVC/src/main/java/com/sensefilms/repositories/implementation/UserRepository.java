@@ -21,30 +21,6 @@ public class UserRepository extends BaseCRUDRepository<User> implements IUserRep
 	}
 
 	@Override
-	public void insert(User user) throws SQLException 
-	{
-		super.insert(user);	
-	}
-
-	@Override
-	public User getOneById(int id) throws SQLException 
-	{
-		return super.getOneById(id);
-	}
-
-	@Override
-	public void update(User user) throws SQLException 
-	{
-		super.update(user);	
-	}
-
-	@Override
-	public void deleteOneById(int id) throws SQLException 
-	{
-		super.deleteOneById(id);
-	}
-
-	@Override
 	public User getOneByUsername(String username) throws SQLException 
 	{
 		Query query = getSessionFactory().getCurrentSession().createQuery("from User where username = :username");
