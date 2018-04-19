@@ -1,15 +1,14 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.business.entities.base;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
-import com.sensefilms.business.entities.base.BaseEntity;
 import com.sensefilms.business.enums.UserRoles;
 
 @MappedSuperclass
-public abstract class WebItem extends BaseEntity 
+public abstract class BaseWebItem extends BaseEntity 
 {
 	@Column(name = "ItemUrl")
 	private String itemUrl;

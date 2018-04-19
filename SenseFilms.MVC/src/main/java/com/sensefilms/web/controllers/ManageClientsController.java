@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sensefilms.business.entities.Client;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseController;
@@ -29,7 +30,7 @@ public class ManageClientsController extends BaseController
 	{
 		try 
 		{
-			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW, "Clients", clientService.getAllClients());
+			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW, "clientsList", clientService.getAllClients());
 		}
 		catch(CustomHandledException chEx) 
 		{

@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../controls/header.jsp" />
+<jsp:include page="../partialViews/shared/header.jsp" />
 
     <div class="container">
         <div class="table-wrapper">
@@ -37,23 +37,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-                        <td>Complete Name</td>
-                        <td>Email</td>
-						<td>Address</td>
-                        <td>Phone</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                   
+                	<c:forEach var="client" items="${clientsList}">
+	                    <tr>
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+							</td>
+	                        <td><c:out value="${client.name}"/></td>
+	                        <td><c:out value="${client.lastName}"/></td>
+	                        <td><c:out value="${client.email}"/></td>
+							<td>Address</td>
+	                        <td>
+	                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+	                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+	                        </td>
+	                    </tr>
+                	</c:forEach>
                 </tbody>
             </table>
 			<div class="clearfix">

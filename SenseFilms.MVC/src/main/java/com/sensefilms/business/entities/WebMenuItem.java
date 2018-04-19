@@ -9,9 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.sensefilms.business.entities.base.BaseWebItem;
+
 @Entity
 @Table(name = "web_menu_item")
-public class WebMenuItem extends WebItem
+public class WebMenuItem extends BaseWebItem
 {	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MenuItemID")
