@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.sensefilms.business.entities.base.BaseEntity;
+
 @Entity
 @Table(name = "audit_event")
 public class AuditEvent extends BaseEntity

@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../controls/header.jsp" />
+	<jsp:include page="../partialViews/shared/header.jsp" />
 </body>
 </html>

@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
+import com.sensefilms.business.entities.base.BaseEntity;
 import com.sensefilms.business.enums.UserRoles;
 
 @MappedSuperclass

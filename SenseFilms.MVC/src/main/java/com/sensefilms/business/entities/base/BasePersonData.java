@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.business.entities.base;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -11,6 +11,9 @@ public abstract class BasePersonData extends BaseEntity
 	
 	@Column(name = "LastName", nullable = false)
 	private String lastName;
+	
+	@Column(name = "Email", nullable = false, unique = true)
+	private String email;
 	
 	public String getLastName() 
 	{
@@ -35,5 +38,15 @@ public abstract class BasePersonData extends BaseEntity
 	public String getCompleteName() 
 	{
 		return String.format("%s, %s", this.lastName, this.name);
+	}
+	
+	public String getEmail() 
+	{
+		return email;
+	}
+
+	public void setEmail(String email) 
+	{
+		this.email = email;
 	}
 }

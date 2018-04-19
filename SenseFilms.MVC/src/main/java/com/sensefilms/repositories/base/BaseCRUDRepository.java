@@ -7,7 +7,7 @@ import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.business.entities.BaseEntity;
+import com.sensefilms.business.entities.base.BaseEntity;
 import com.sensefilms.common.utils.CastUtils;
 
 @Repository
@@ -47,9 +47,9 @@ public abstract class BaseCRUDRepository<T extends BaseEntity> extends BaseRepos
 	}
 	
 	@Override
-	public ArrayList<T> getAll(Class<T> clazz) throws HibernateException
+	public ArrayList<T> getAll() throws HibernateException
 	{
-		List<T> castedList = CastUtils.castList(clazz, getCriteria(clazz).list());
+		List<T> castedList = CastUtils.castList(currentClazz, getCriteria(currentClazz).list());
 		return new ArrayList<T>(castedList);		
 	}
 }

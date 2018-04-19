@@ -4,7 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sensefilms.business.entities.BaseEntity;
+import com.sensefilms.business.entities.base.BaseEntity;
 
 public abstract class BaseRepository
 {

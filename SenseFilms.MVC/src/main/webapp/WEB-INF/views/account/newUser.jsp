@@ -6,7 +6,7 @@
 <title>New User</title>
 </head>
 <body>
-<jsp:include page="../controls/header.jsp" />
+<jsp:include page="../partialViews/shared/header.jsp" />
 
 	<div class="form-center-container">
 		<div class="form-center">

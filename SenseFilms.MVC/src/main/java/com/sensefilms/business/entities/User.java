@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import com.sensefilms.business.entities.base.BasePersonData;
 import com.sensefilms.business.enums.UserRoles;
 
 @Entity
@@ -27,21 +28,8 @@ public class User extends BasePersonData
 	@Column(name = "UserRole", nullable = false)
 	private UserRoles userRole;
 	
-	@Column(name = "Email", nullable = false, unique = true)
-	private String email;
-	
 	@Column(name = "IsNewPassword", nullable = false)
 	private boolean isNewPassword;
-	
-	public String getEmail() 
-	{
-		return email;
-	}
-
-	public void setEmail(String email) 
-	{
-		this.email = email;
-	}
 
 	public boolean isNewPassword() 
 	{
