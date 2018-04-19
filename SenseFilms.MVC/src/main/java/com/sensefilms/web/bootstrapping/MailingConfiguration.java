@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Configuration
-@PropertySource("classpath:mail.properties")
+@PropertySource("classpath:application.properties")
 public class MailingConfiguration 
 {
     @Value("${mail.transport.protocol}")

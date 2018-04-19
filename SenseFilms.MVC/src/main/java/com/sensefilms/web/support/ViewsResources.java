@@ -15,4 +15,6 @@ public class ViewsResources
 	public static final String NEW_PASSWORD_VIEW = "account/newPassword";
 	
 	public static final String NEW_USER_VIEW = "account/newUser";
+	
+	public static final String CLIENT_LIST_VIEW = "clients/clientList";
 }
