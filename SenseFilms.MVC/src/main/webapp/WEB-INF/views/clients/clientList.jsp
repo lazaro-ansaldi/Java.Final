@@ -108,7 +108,7 @@
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form name="createClientForm" action="<c:url value="/ManageClientsController/createClient" />" method="post" class="align-middle">
 					<div class="modal-header">						
 						<h4 class="modal-title">Edit Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

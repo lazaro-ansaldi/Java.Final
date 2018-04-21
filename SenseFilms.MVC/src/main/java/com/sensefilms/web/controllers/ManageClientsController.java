@@ -34,7 +34,7 @@ public class ManageClientsController extends BaseController
 	{
 		try 
 		{
-			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW, "clientsList", clientService.getAllClients());
+			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW, WebModelConstants.CLIENT_LIST, clientService.getAllClients());
 		}
 		catch(CustomHandledException chEx) 
 		{

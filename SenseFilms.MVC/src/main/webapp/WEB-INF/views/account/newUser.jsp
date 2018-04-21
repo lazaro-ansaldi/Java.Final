@@ -10,8 +10,7 @@
 
 	<div class="form-center-container">
 		<div class="form-center">
-			<form name="createUserForm" action="<c:url value="/ManageUsersController/addUser" />"
-				method="post" class="align-middle">
+			<form name="createUserForm" action="<c:url value="/ManageUsersController/addUser" />" method="post" class="align-middle">
 				<div>
 					<h3>Create new user</h3>
 				</div>

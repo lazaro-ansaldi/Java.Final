@@ -9,4 +9,6 @@ public class WebModelConstants
 	public static final String USER_COMPLETE_NAME = "userCompleteName";
 	
 	public static final String MENU_ITEMS = "menuItems";
+	
+	public static final String CLIENT_LIST = "clientsList";
 }

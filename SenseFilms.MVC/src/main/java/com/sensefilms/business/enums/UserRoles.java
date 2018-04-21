@@ -8,7 +8,7 @@ public enum UserRoles
 	User(1);
 	
 	private int value;
-	private static HashMap<Object, UserRoles> map = new HashMap<Object, UserRoles>();
+	private static HashMap<Integer, UserRoles> map = new HashMap<Integer, UserRoles>();
 	
 	private UserRoles(int value) 
 	{
