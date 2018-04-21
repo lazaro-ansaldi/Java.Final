@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.business.entities.Client;
-import com.sensefilms.common.exceptions.CustomBusinessException;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseController;

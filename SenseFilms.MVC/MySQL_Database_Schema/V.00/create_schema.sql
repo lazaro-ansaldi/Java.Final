@@ -1,6 +1,9 @@
 -- Date: 23/03/2018
 -- Database: sense
 -- ------------------------------------------------------
+-- Date: 23/03/2018
+-- Database: sense
+-- ------------------------------------------------------
 
 -- Create the schema
 CREATE DATABASE  IF NOT EXISTS `sense`;
@@ -16,15 +19,17 @@ CREATE TABLE `user` (
   `Password` varchar(200) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `LastName` varchar(150) NOT NULL,
-  `Email` VARCHAR(100) NOT NULL,
   `LastLogin` datetime DEFAULT NULL,
-  `IsNewPassword` BIT(1) NOT NULL DEFAULT 0,
   `UserRole` smallint(6) NOT NULL DEFAULT '1',
+  `Email` varchar(100) NOT NULL,
+  `IsNewPassword` bit(1) NOT NULL DEFAULT b'0',
+  `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IsActive` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UserID_UNIQUE` (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   UNIQUE KEY `Email_UNIQUE` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `auditevent`;
@@ -65,4 +70,35 @@ CREATE TABLE `web_menu_subitem` (
   UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `fk_menu_item_idx` (`MenuItemID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `client`;
+
+CREATE TABLE `client` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(150) NOT NULL,
+  `LastName` varchar(150) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IsActive` bit(1) NOT NULL DEFAULT b'1',
+  `ClientType` smallint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+INSERT INTO `sense`.`web_menu_item` 
+(`ItemUrl`, `UserRole`, `Description`)
+VALUES ('', 1, 'Clients');
+
+INSERT INTO `sense`.`web_menu_item` 
+(`ItemUrl`, `UserRole`, `Description`)
+VALUES ('', 1, 'Users');
+
+INSERT INTO `sense`.`web_menu_subitem`
+(`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
+VALUES ('/ManageClientsController/manageClients', 0, 'Client List', 1);
+
+INSERT INTO `sense`.`web_menu_subitem`
+(`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
+VALUES ('/ManageUsersController/newUser', 0, 'Create User', 1);
 
