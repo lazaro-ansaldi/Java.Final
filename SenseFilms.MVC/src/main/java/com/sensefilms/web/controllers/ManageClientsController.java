@@ -2,11 +2,15 @@ package com.sensefilms.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.business.entities.Client;
+import com.sensefilms.common.exceptions.CustomBusinessException;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseController;
@@ -34,7 +38,21 @@ public class ManageClientsController extends BaseController
 		}
 		catch(CustomHandledException chEx) 
 		{
-			return new ModelAndView(ViewsResources.ERROR_VIEW, WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
+			return handleException(chEx);
+		}	
+	}
+	
+	@RequestMapping(value = "/ManageClientsController/createClient", method = RequestMethod.POST)	
+	public ModelAndView createNewClient(@ModelAttribute  Client newClient, Model model) 
+	{
+		try 
+		{
+			clientService.addNewClient(newClient);
+			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW);
+		}
+		catch(CustomHandledException chEx) 
+		{
+			return handleException(chEx);
 		}	
 	}
 }

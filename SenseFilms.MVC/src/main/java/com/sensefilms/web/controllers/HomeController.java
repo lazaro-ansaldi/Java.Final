@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
@@ -22,16 +23,16 @@ public class HomeController extends BaseController
 	}
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) 
+	public ModelAndView home(Locale locale, Model model) 
 	{
 		getLogger().info("We're live! {}.", locale);
 		
-		return ViewsResources.HOME_VIEW;
+		return new ModelAndView(ViewsResources.HOME_VIEW);
 	}
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
-	public String getIndexView(Model model) 
+	public ModelAndView getIndexView(Model model) 
 	{		
-		return ViewsResources.INDEX_VIEW;
+		return new ModelAndView(ViewsResources.INDEX_VIEW);
 	}
 }

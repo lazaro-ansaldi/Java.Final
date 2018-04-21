@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomBusinessException;
@@ -35,29 +36,29 @@ public class AccountController extends BaseController
 	}
 	
 	@RequestMapping(value = "/AccountController/authenticate", method = RequestMethod.POST)
-	public String authenticate(@ModelAttribute  User currentUser, Model model) 
+	public ModelAndView authenticate(@ModelAttribute  User currentUser, Model model) 
 	{
 		try 
 		{
 			accountService.tryAuthenticateUser(currentUser);
 			
 			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
-			
+			// Init model attributes
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
 			model.addAttribute(WebModelConstants.MENU_ITEMS, webSupportService.getAllWebMenuItems());
-					
-			return (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
+			
+			String viewToReturn = (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
+			
+			return new ModelAndView(viewToReturn, StringUtils.EMPTY, model);
 		}
 		catch(CustomBusinessException cbEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
-			return ViewsResources.HOME_VIEW;
+			return handleException(cbEx, ViewsResources.HOME_VIEW);
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_VIEW;
+			return handleException(chEx);
 		}		
 	}
 	
@@ -74,49 +75,44 @@ public class AccountController extends BaseController
 	}
 	
 	@RequestMapping(value = "/AccountController/sendNewPassword", method = RequestMethod.POST)	
-	public String sendNewPassword(@RequestParam("username") String username, Model model)
+	public ModelAndView sendNewPassword(@RequestParam("username") String username, Model model)
 	{
 		try 
 		{
 			accountService.updateNewPassord(username, StringUtils.EMPTY);
-			return ViewsResources.HOME_VIEW;
+			return new ModelAndView(ViewsResources.HOME_VIEW);
 		}
 		catch(CustomBusinessException cbEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
-			return ViewsResources.FORGOT_PASSWORD_VIEW;
+			return handleException(cbEx, ViewsResources.FORGOT_PASSWORD_VIEW);
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_VIEW;
+			return handleException(chEx);
 		}
 	}
 								
 	@RequestMapping(value = "/AccountController/updateNewPassword/{usernameParam}", method = RequestMethod.POST)	
-	public String setNewPassword(@RequestParam("currentPassword") String currentPassword, @PathVariable("usernameParam") String username,
+	public ModelAndView setNewPassword(@RequestParam("currentPassword") String currentPassword, @PathVariable("usernameParam") String username,
 			@RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword, Model model)
 	{
 		if(!confirmPassword.equals(newPassword)) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, "The confirmation password does not match with the new one.");
-			return ViewsResources.NEW_PASSWORD_VIEW;
+			return new ModelAndView(ViewsResources.NEW_PASSWORD_VIEW, WebModelConstants.ERROR_MESSAGE, model);
 		}
 				
 		try 
 		{
 			accountService.updateNewPassord(username, newPassword);			
-			return ViewsResources.INDEX_VIEW;
+			return new ModelAndView(ViewsResources.INDEX_VIEW);
 		}
 		catch(CustomBusinessException cbEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, cbEx.getMessage());
-			return ViewsResources.NEW_PASSWORD_VIEW;
+			return handleException(cbEx, ViewsResources.NEW_PASSWORD_VIEW);
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_VIEW;
+			return handleException(chEx);
 		}
 	}
 }

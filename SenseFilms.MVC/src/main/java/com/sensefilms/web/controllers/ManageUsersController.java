@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
-import com.sensefilms.web.support.WebModelConstants;
 
 @Controller
 public class ManageUsersController extends BaseController
@@ -27,23 +27,22 @@ public class ManageUsersController extends BaseController
 	}
 
 	@RequestMapping(value = "/ManageUsersController/addUser", method = RequestMethod.POST)
-	public String createNewUser(@ModelAttribute  User newUser, Model model) 
+	public ModelAndView createNewUser(@ModelAttribute  User newUser, Model model) 
 	{
 		try 
 		{			
 			this.accountService.addNewUser(newUser);
-			return ViewsResources.INDEX_VIEW;
+			return new ModelAndView(ViewsResources.INDEX_VIEW);
 		}
 		catch(CustomHandledException chEx) 
 		{
-			model.addAttribute(WebModelConstants.ERROR_MESSAGE, chEx.getMessage());
-			return ViewsResources.ERROR_VIEW;
+			return handleException(chEx);
 		}		
 	}
 	
 	@RequestMapping(value = "/ManageUsersController/newUser", method = RequestMethod.GET)	
-	public String getNewUserView() 
+	public ModelAndView getNewUserView() 
 	{
-		return ViewsResources.NEW_USER_VIEW;
+		return new ModelAndView(ViewsResources.NEW_USER_VIEW);
 	}
 }
