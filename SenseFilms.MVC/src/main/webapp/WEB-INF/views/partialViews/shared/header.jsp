@@ -21,19 +21,12 @@
   </div>
   
 
-  <ul class="nav navbar-nav">   
-   <c:forEach var="item" items="${menuItems}">
+  <ul id="mainMenuNode" class="nav navbar-nav">   
  
-    <li class="dropdown">
-      <a href="<c:url value="${item.itemUrl}" />" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.description}"/><span class="fa fa-chevrondown"></span></a>       
-      <ul class="dropdown-menu">
-      <c:forEach var="subItem" items="${item.subItemsCollection}">   
-        <li><a href="<c:url value="${subItem.itemUrl}" />"><c:out value="${subItem.description}"/></a></li>
-      </c:forEach> 
+    <li class="dropdown">    
+      <ul id="childMenuNode" class="dropdown-menu">
       </ul>        
     </li>
-    
-    </c:forEach>
   </ul>
   <ul class="nav navbar-nav navbar-right navbar-icons">
 	  <li class="dropdown">
@@ -66,6 +59,45 @@
 	<script src="<c:url value="/resources/js/bootstrap-switch.js" />"></script>
 	<script src="<c:url value="/resources/js/toolbar.js" />"></script>
 	<script src="<c:url value="/resources/js/application.js" />"></script>
+
+<script type="text/javascript">
+	$(document).ready(function($) {
+		populateMenu();
+	});
 	
+	function populateMenu() {
+		$.ajax({
+				type : 'GET',
+				contentType : 'application/json',
+				url : '<c:url value="/HomeController/getMenuItems" />',
+				dataType : 'json',
+				timeout : 100000,
+				success : function(data) {
+					buildMenu(data);
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				},
+			});
+		}
+	
+	function buildMenu(data){
+		var mainMenuNode = $('#mainMenuNode');
+		
+		$.each(data, function() {
+			var parentElement = '<li class="dropdown">'
+			+ '<a href="' + this.itemUrl + ' class="dropdown-toggle" data-toggle="dropdown"> ' + this.description + '<span class="fa fa-chevrondown"></span></a>'       
+			+ '<ul class="dropdown-menu">';					
+				
+			$.each(this.subItemsCollection, function(){	
+				//url tag from JSTL does not work
+				var childElement = '<li><a href="<c:url value = "' + '/sensefilms' + this.itemUrl + '"/>">' + this.description + '</a></li>';							
+				parentElement += childElement;
+			})
+			
+			mainMenuNode.append(parentElement);
+		});		
+	}
+</script>
 </body>
 </html>

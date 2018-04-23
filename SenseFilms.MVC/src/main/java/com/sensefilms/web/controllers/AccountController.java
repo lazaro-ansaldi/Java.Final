@@ -25,14 +25,12 @@ import com.sensefilms.web.support.WebModelConstants;
 public class AccountController extends BaseController
 {
 	private IAccountService accountService;
-	private IWebSupportService webSupportService;
 	
 	@Autowired
 	public AccountController(IAccountService accountService, IWebSupportService webSupportService) 
 	{
 		super(AccountController.class);
 		this.accountService = accountService;
-		this.webSupportService = webSupportService;
 	}
 	
 	@RequestMapping(value = "/AccountController/authenticate", method = RequestMethod.POST)
@@ -46,7 +44,6 @@ public class AccountController extends BaseController
 			// Init model attributes
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
-			model.addAttribute(WebModelConstants.MENU_ITEMS, webSupportService.getAllWebMenuItems());
 			
 			String viewToReturn = (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
 			
