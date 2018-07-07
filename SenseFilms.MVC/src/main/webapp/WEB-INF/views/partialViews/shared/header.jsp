@@ -90,10 +90,9 @@
 			+ '<ul class="dropdown-menu">';					
 				
 			$.each(this.subItemsCollection, function(){	
-				//url tag from JSTL does not work
-				var childElement = '<li><a href="<c:url value = "' + '/sensefilms' + this.itemUrl + '"/>">' + this.description + '</a></li>';							
+				var childElement = '<li><a href="<c:url value = "' + this.itemUrl + '"/>">' + this.description + '</a></li>';							
 				parentElement += childElement;
-			})
+			});
 			
 			mainMenuNode.append(parentElement);
 		});		

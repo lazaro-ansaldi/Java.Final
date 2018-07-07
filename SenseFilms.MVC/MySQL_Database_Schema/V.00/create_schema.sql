@@ -96,9 +96,9 @@ VALUES ('', 1, 'Users');
 
 INSERT INTO `sense`.`web_menu_subitem`
 (`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
-VALUES ('/ManageClientsController/manageClients', 0, 'Client List', 1);
+VALUES ('/sensefilms/ManageClientsController/manageClients', 0, 'Client List', 1);
 
 INSERT INTO `sense`.`web_menu_subitem`
 (`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
-VALUES ('/ManageUsersController/newUser', 0, 'Create User', 1);
+VALUES ('/sensefilms/ManageUsersController/newUser', 0, 'Create User', 1);
 
