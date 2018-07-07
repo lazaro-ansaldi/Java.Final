@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.common.exceptions.CustomHandledException;
-import com.sensefilms.common.utils.JsonSerializer;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.web.controllers.base.BaseController;
+import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController extends BaseController
+public class HomeController extends BaseAjaxController
 {	
 	private IWebSupportService webSupportService;
 	
@@ -51,7 +50,7 @@ public class HomeController extends BaseController
 	{		
 		try
 		{
-			return JsonSerializer.serializeAsJson(webSupportService.getAllWebMenuItems());
+			return json(webSupportService.getAllWebMenuItems());
 		} 
 		catch (CustomHandledException cEx)
 		{

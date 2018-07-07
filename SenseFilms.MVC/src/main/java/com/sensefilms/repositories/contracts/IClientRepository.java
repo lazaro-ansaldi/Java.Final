@@ -5,5 +5,5 @@ import com.sensefilms.repositories.base.IBaseCRUDRepository;
 
 public interface IClientRepository extends IBaseCRUDRepository<Client>
 {
-
+	void deleteRange(int[] ids);
 }

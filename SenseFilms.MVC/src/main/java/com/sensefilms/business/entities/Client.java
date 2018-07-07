@@ -16,4 +16,14 @@ public class Client extends BasePersonData
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "ClientType", nullable = false)
 	private ClientType clientType;
+
+	public ClientType getClientType()
+	{
+		return clientType;
+	}
+
+	public void setClientType(ClientType clientType)
+	{
+		this.clientType = clientType;
+	}
 }

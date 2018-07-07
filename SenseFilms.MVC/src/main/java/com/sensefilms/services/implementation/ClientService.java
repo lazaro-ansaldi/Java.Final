@@ -60,4 +60,22 @@ public class ClientService extends BaseService implements IClientService
 		}
 	}
 
+	@Override
+	public void deleteClients(int[] idsToDelete) throws CustomHandledException
+	{
+		try 
+		{
+			this.clientRepository.deleteRange(idsToDelete);
+		}
+		catch(HibernateException hex)
+		{
+			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+		}
+		catch(Exception ex)
+		{
+			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+		}
+		
+	}
+
 }

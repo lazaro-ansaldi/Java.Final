@@ -16,7 +16,7 @@
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Client</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span onclick="onClientsDelete()">Delete</span></a>						
 					</div>
                 </div>
             </div>
@@ -29,26 +29,27 @@
 								<label for="selectAll"></label>
 							</span>
 						</th>
-                        <th>Name</th>
-                        <th>Email</th>
-						<th>Address</th>
-                        <th>Phone</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+						<th>ClientType</th>
+						<th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="clientsData">
                 	<c:forEach var="client" items="${clientsList}">
 	                    <tr>
 							<td>
 								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<input type="checkbox" name="options[]" value="1">
 									<label for="checkbox1"></label>
 								</span>
 							</td>
+							<td name="clientId"><c:out value="${client.id}"/></td>
 	                        <td><c:out value="${client.name}"/></td>
 	                        <td><c:out value="${client.lastName}"/></td>
+	                        <td><c:out value="${client.clientType}"/></td>
 	                        <td><c:out value="${client.email}"/></td>
-							<td>Address</td>
 	                        <td>
 	                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 	                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -154,11 +155,48 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="submit" class="btn btn-danger" value="Delete" onclick="onClientsDelete()">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	var deleteUrl = '<c:url value="/ManageClientsController/deleteClients" />';
+	
+	function onClientsDelete(){		
+		var clientsToDelete = getSelectedIds('clientsData', 'clientId');
+
+		$.ajax({ 
+			type : 'DELETE',
+			contentType : 'application/json',
+			url : deleteUrl,
+			dataType : 'json',
+			data: JSON.stringify(clientsToDelete),
+			timeout : 100000,
+			success : function(data) {
+				console.log('Success');
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+		});
+	}
+	
+	function getSelectedIds(tblId, columnName){
+		var selectedIds = new Array();
+		var clientsRows = $("tbody#" + tblId);//.find("tr:gt(0)");
+		
+		clientsRows.find('tr').each(function(i, row){	
+			var checkbox = $(this).find("input[type='checkbox']");
+			if(checkbox.prop('checked')){
+				var id = $(this).find('td[name=' + columnName + ']').text();
+				selectedIds.push(id);
+			}
+		});		
+		return selectedIds;
+	}
+	</script>
 </body>
 </html>

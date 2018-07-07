@@ -10,4 +10,6 @@ public interface IClientService
 	void addNewClient(Client client) throws CustomHandledException;
 	
 	ArrayList<Client> getAllClients() throws CustomHandledException;
+	
+	void deleteClients(int[] idsToDelete) throws CustomHandledException;
 }

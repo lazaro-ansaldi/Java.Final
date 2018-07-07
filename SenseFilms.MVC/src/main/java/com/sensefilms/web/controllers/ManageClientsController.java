@@ -1,22 +1,25 @@
 package com.sensefilms.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.Client;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IClientService;
-import com.sensefilms.web.controllers.base.BaseController;
+import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
 
 @Controller
-public class ManageClientsController extends BaseController
+public class ManageClientsController extends BaseAjaxController
 {
 	private IClientService clientService;
 	
@@ -51,6 +54,21 @@ public class ManageClientsController extends BaseController
 		catch(CustomHandledException chEx) 
 		{
 			return handleException(chEx);
+		}	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ManageClientsController/deleteClients", method = RequestMethod.DELETE)	
+	public ResponseEntity<Object> deleteClients(@RequestBody int[] clientsToDelete)
+	{
+		try 
+		{
+			clientService.deleteClients(clientsToDelete);
+			return statusOk();
+		}
+		catch(CustomHandledException chEx) 
+		{
+			return handleException(chEx.getMessage());
 		}	
 	}
 }
