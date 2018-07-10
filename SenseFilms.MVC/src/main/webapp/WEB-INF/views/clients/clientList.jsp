@@ -6,7 +6,6 @@
 </head>
 <body>
 <jsp:include page="../partialViews/shared/header.jsp" />
-
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
@@ -16,7 +15,7 @@
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Client</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span onclick="onClientsDelete()">Delete</span></a>						
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
                 </div>
             </div>
@@ -70,6 +69,14 @@
             </div>
         </div>
     </div>
+    
+    <section>
+    	<jsp:include page="../clients/editClientPopUp.jsp" />
+    </section>
+    <section>
+    	<jsp:include page="../clients/deleteClientPopUp.jsp" />
+    </section>
+    
 	<!-- Edit Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
@@ -105,65 +112,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form name="createClientForm" action="<c:url value="/ManageClientsController/createClient" />" method="post" class="align-middle">
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete" onclick="onClientsDelete()">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<script type="text/javascript">
-	var deleteUrl = '<c:url value="/ManageClientsController/deleteClients" />';
+		<script type="text/javascript">
+	var deleteClientEndpoint = '<c:url value="/ManageClientsController/deleteClients" />';
 	
 	function onClientsDelete(){		
 		var clientsToDelete = getSelectedIds('clientsData', 'clientId');
@@ -171,10 +121,8 @@
 		$.ajax({ 
 			type : 'DELETE',
 			contentType : 'application/json',
-			url : deleteUrl,
-			dataType : 'json',
+			url : deleteClientEndpoint,
 			data: JSON.stringify(clientsToDelete),
-			timeout : 100000,
 			success : function(data) {
 				console.log('Success');
 			},
@@ -186,7 +134,7 @@
 	
 	function getSelectedIds(tblId, columnName){
 		var selectedIds = new Array();
-		var clientsRows = $("tbody#" + tblId);//.find("tr:gt(0)");
+		var clientsRows = $("tbody#" + tblId);
 		
 		clientsRows.find('tr').each(function(i, row){	
 			var checkbox = $(this).find("input[type='checkbox']");

@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <link href="<c:url value="/resources/css/core.css" />" rel="stylesheet">
 <!-- Loading Bootstrap -->
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">

@@ -31,7 +31,7 @@ public class ClientService extends BaseService implements IClientService
 		try 
 		{
 			this.clientRepository.insert(client);
-			getLogger().debug(String.format("The client %s has been created.", client.getCompleteName()));
+			getLogger().debug(String.format("Client %s has been created.", client.getCompleteName()));
 		}
 		catch(HibernateException hex)
 		{
@@ -65,7 +65,10 @@ public class ClientService extends BaseService implements IClientService
 	{
 		try 
 		{
-			this.clientRepository.deleteRange(idsToDelete);
+			if(idsToDelete.length > 1)
+				this.clientRepository.deleteRange(idsToDelete);
+			else
+				this.clientRepository.deleteOneById(idsToDelete[0]);
 		}
 		catch(HibernateException hex)
 		{
@@ -74,8 +77,6 @@ public class ClientService extends BaseService implements IClientService
 		catch(Exception ex)
 		{
 			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
-		}
-		
+		}		
 	}
-
 }
