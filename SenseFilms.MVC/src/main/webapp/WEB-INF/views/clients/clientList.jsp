@@ -117,7 +117,10 @@
 	
 	function onClientsDelete(){		
 		var clientsToDelete = getSelectedIds('clientsData', 'clientId');
-
+		if(clientsToDelete.length === 0){
+			showMessage('Please, select at least one client.');
+			return;
+		}
 		$.ajax({ 
 			type : 'DELETE',
 			contentType : 'application/json',
@@ -144,6 +147,10 @@
 			}
 		});		
 		return selectedIds;
+	}
+	
+	function showMessage(message){
+		alert(message);
 	}
 	</script>
 </body>
