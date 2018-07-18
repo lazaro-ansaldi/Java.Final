@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,6 +16,7 @@ import com.sensefilms.business.entities.Client;
 import com.sensefilms.common.exceptions.CustomHandledException;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
+import com.sensefilms.web.support.PaginationSupport;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
 
@@ -65,6 +67,21 @@ public class ManageClientsController extends BaseAjaxController
 		{
 			clientService.deleteClients(clientsToDelete);
 			return statusOk();
+		}
+		catch(CustomHandledException chEx) 
+		{
+			return handleException(chEx.getMessage());
+		}	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ManageClientsController/pagedClients", method = RequestMethod.GET)	
+	public ResponseEntity<Object> getPagedClients(@RequestParam int pageSize, @RequestParam int currentPage)
+	{
+		try 
+		{
+			PaginationSupport<Client> paginationSupport = new PaginationSupport<Client>(this.clientService.getAllClients(), pageSize, currentPage);
+			return statusOk(paginationSupport);
 		}
 		catch(CustomHandledException chEx) 
 		{

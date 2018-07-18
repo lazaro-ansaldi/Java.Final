@@ -20,14 +20,14 @@ public class PaginationSupport<T extends Object>
 		this.currentPage = currentPage;
 	}
 
-	public List<T> getPageData()
-	{
-		return paginationUtils.getCurrentPageData(this.pageSize, this.currentPage);
-	}
-	
 	public int getMaxPages() 
 	{
 		return this.paginationUtils.getMaxPages();
+	}
+	
+	public List<T> getData()
+	{
+		return paginationUtils.getCurrentPageData(this.pageSize, this.currentPage);
 	}
 
 	public int getCurrentPage()

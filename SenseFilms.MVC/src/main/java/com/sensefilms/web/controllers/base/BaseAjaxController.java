@@ -25,6 +25,11 @@ public abstract class BaseAjaxController extends BaseController
 		return new ResponseEntity<>(jsonBody, HttpStatus.OK);
 	}
 	
+	protected ResponseEntity<Object> statusOk(Object body)
+	{
+		return new ResponseEntity<>(JsonSerializer.serializeAsJson(body), HttpStatus.OK);
+	}
+	
 	protected ResponseEntity<Object> statusOk()
 	{
 		return statusOk(StringUtils.EMPTY);
