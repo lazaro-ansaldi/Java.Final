@@ -20,9 +20,9 @@ public class PaginationSupport<T extends Object>
 		this.currentPage = currentPage;
 	}
 
-	public int getMaxPages() 
+	public int getTotalPages() 
 	{
-		return this.paginationUtils.getMaxPages();
+		return this.paginationUtils.getTotalPages();
 	}
 	
 	public List<T> getData()

@@ -9,32 +9,28 @@ public class DataPaginationUtils<T extends Object>
 {
 	private PagedListHolder<T> pagedListHolder;
 	
-	private int maxPages;
+	private int totalPages;
 	
 	public DataPaginationUtils(ArrayList<T> data) 
 	{
 		this.pagedListHolder = new PagedListHolder<T>(data);
 	}
 	
-	public int getMaxPages() 
+	public int getTotalPages() 
 	{
-		return this.maxPages;
+		return this.totalPages;
 	}
 	
 	public List<T> getCurrentPageData(int pageSize, int currentPage) 
 	{		
 		pagedListHolder.setPageSize(pageSize);
-		this.maxPages = pagedListHolder.getPageCount();
+		this.totalPages = pagedListHolder.getPageCount();
 
 		// Set default value for pageSize as 1
-		if (pageSize < 1 || pageSize > pagedListHolder.getPageCount())
-			pageSize = 1;
-
-		if (pageSize < 1 || pageSize > pagedListHolder.getPageCount())
+		if (currentPage < 1 || currentPage > pagedListHolder.getPageCount())
 			pagedListHolder.setPage(0);
-
-		else if (pageSize <= pagedListHolder.getPageCount())
-			pagedListHolder.setPage(pageSize - 1);
+		else if (currentPage <= pagedListHolder.getPageCount())
+			pagedListHolder.setPage(currentPage - 1);
 
 		return pagedListHolder.getPageList();
 	}
