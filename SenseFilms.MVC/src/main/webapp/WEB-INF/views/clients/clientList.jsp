@@ -158,6 +158,6 @@
 		}
 		</script>
 
-	<script src="<c:url value="/resources/vuejs/components/clientList.js" />"></script>
+	<script src="<c:url value="/resources/vuejs/components/clients/clientList.js" />"></script>
 </body>
 </html>
