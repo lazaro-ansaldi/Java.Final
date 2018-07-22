@@ -9,6 +9,8 @@ import com.sensefilms.common.utils.WebUrisUtils;
 
 public class PaginationSupport<T extends Object>
 {
+	private final int MAX_PAGES_SHOW = 5;
+	
 	private int currentPage;
 	
 	private int pageSize;
@@ -59,6 +61,39 @@ public class PaginationSupport<T extends Object>
 	{
 		HashMap<String,String> urlParams = isNextPage() ? getUrlParams(this.currentPage + 1) : getUrlParams(this.currentPage);
 		return WebUrisUtils.getUrlWithParams(this.controllerUrl, urlParams);
+	}
+	
+	public HashMap<Integer,String> getMiddlePages() 
+	{
+		return isNextPage() ? nextPages() : previousPages(); 
+	}
+	
+	private HashMap<Integer,String> nextPages()
+	{
+		HashMap<Integer,String> pages = new HashMap<Integer,String>();
+		int pageToShow = currentPage + 1;
+		while(pages.size() < MAX_PAGES_SHOW && pageToShow <= getTotalPages()) 
+		{
+			HashMap<String, String> urlParams = getUrlParams(pageToShow);
+			pages.put(pageToShow, WebUrisUtils.getUrlWithParams(this.controllerUrl, urlParams));
+			pageToShow++;
+		}
+
+		return pages;	
+	}	
+	
+	private HashMap<Integer,String> previousPages()
+	{
+		HashMap<Integer,String> pages = new HashMap<Integer,String>();
+		int pageToShow = currentPage - 1;
+		while(pages.size() < MAX_PAGES_SHOW && pageToShow > 0) 
+		{
+			HashMap<String, String> urlParams = getUrlParams(pageToShow);
+			pages.put(pageToShow, WebUrisUtils.getUrlWithParams(this.controllerUrl, urlParams));
+			pageToShow--;
+		}
+
+		return pages;	
 	}
 	
 	public String getPreviousPageUrl() 

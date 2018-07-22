@@ -21,6 +21,9 @@ new Vue({
         },
       	nextPage: function(){
       		this.reloadData(this.clientsData.nextPageUrl);
+      	},
+      	loadPage: function(url){
+      		this.reloadData(url);
       	}
     }
 });
