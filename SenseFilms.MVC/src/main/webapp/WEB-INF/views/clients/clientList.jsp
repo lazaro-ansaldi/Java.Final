@@ -59,8 +59,9 @@
                 <div class="hint-text">Showing <b>{{ clientsData.currentPage }}</b> out of <b>{{ clientsData.totalPages }}</b> pages</div>
                 <ul class="pagination">
                     <li class="page-item" v-show="clientsData.previousPage"><a v-on:click="previousPage" class="page-link">Previous</a></li>
+                    <li class="page-item" v-for="(url, pageNumber) in clientsData.previousPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
                     <li class="page-item active"> <a>{{ clientsData.currentPage }}</a></li>
-                    <li class="page-item" v-for="(url, pageNumber) in clientsData.middlePages"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
+                    <li class="page-item" v-for="(url, pageNumber) in clientsData.nextPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
                     <li class="page-item" v-show="clientsData.nextPage"><a v-on:click="nextPage" class="page-link">Next</a></li>
                 </ul>
             </div>
@@ -112,7 +113,7 @@
 	
 	<script type="text/javascript">
 		var deleteClientEndpoint = '<c:url value="/ManageClientsController/deleteClients" />';
-		var urlClients = '<c:url value="/ManageClientsController/pagedClients?pageSize=1&currentPage=1" />';
+		var urlClients = '<c:url value="/ManageClientsController/pagedClients?pageSize=2&currentPage=1" />';
 
 		function getClientsUrl(){
 			return urlClients;
