@@ -43,7 +43,7 @@
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td name="clientId" class="hidden">{{ client.id }</td>
+							<td name="clientId" class="hidden">{{ client.id }}</td>
 	                        <td>{{ client.name }}</td>
 	                        <td>{{ client.lastName }}</td>
 	                        <td>{{ client.clientType }}</td>

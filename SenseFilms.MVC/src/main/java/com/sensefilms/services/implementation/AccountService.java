@@ -70,7 +70,7 @@ public class AccountService extends BaseService implements IAccountService
 	public void updateNewPassord(String username, String newPassword) throws CustomBusinessException, CustomHandledException
 	{
 		User currentUser = null;
-		boolean isRecoveryProcess = StringUtils.isNullorEmpty(newPassword);
+		boolean isRecoveryProcess = StringUtils.isNullOrEmpty(newPassword);
 
 		try
 		{

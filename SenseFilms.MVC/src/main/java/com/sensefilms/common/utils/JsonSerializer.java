@@ -9,6 +9,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonSerializer 
 {	
+	/**
+	 * Serialize the public getters of the received object
+	 * to a Json file.
+	 * @param o object to serialize.
+	 * @return serialized Json content.
+	 */
 	public static String serializeAsJson(Object o)
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -26,6 +32,12 @@ public class JsonSerializer
 		return result;
 	}
 	
+	/**
+	 * Serialize the public getters of all the items in the received list
+	 * to a Json file.
+	 * @param o objects to serialize.
+	 * @return serialized Json content.
+	 */
 	public static String serializeAsJson(ArrayList<Object> o)
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
