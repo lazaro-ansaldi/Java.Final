@@ -6,7 +6,7 @@
 </head>
 <body>
 <jsp:include page="../partialViews/shared/header.jsp" />
-    <div class="container">
+    <div class="container" id="clientComponent">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -35,36 +35,34 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="clientsData">
-                	<c:forEach var="client" items="${clientsList}">
-	                    <tr>
+                <tbody id="clientsTable">           
+	                    <tr v-for="client in clientsData.data">
 							<td>
 								<span class="custom-checkbox">
 									<input type="checkbox" name="options[]" value="1">
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td name="clientId"><c:out value="${client.id}"/></td>
-	                        <td><c:out value="${client.name}"/></td>
-	                        <td><c:out value="${client.lastName}"/></td>
-	                        <td><c:out value="${client.clientType}"/></td>
-	                        <td><c:out value="${client.email}"/></td>
+							<td name="clientId" class="hidden">{{ client.id }</td>
+	                        <td>{{ client.name }}</td>
+	                        <td>{{ client.lastName }}</td>
+	                        <td>{{ client.clientType }}</td>
+	                        <td>{{ client.email }}</td>
 	                        <td>
 	                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 	                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 	                        </td>
 	                    </tr>
-                	</c:forEach>
                 </tbody>
             </table>
 			<div class="clearfix">
-                <div class="hint-text">Showing <b>CurrentPageNumber</b> out of <b>TotalPages</b> pages</div>
+                <div class="hint-text">Showing <b>{{ clientsData.currentPage }}</b> out of <b>{{ clientsData.totalPages }}</b> pages</div>
                 <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item" v-show="clientsData.previousPage"><a v-on:click="previousPage" class="page-link">Previous</a></li>
                     <li class="page-item"><a href="#" class="page-link">1</a></li>
                     <li class="page-item"><a href="#" class="page-link">2</a></li>
                     <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    <li class="page-item" v-show="clientsData.nextPage"><a v-on:click="nextPage" class="page-link">Next</a></li>
                 </ul>
             </div>
         </div>
@@ -112,46 +110,54 @@
 			</div>
 		</div>
 	</div>
-		<script type="text/javascript">
-	var deleteClientEndpoint = '<c:url value="/ManageClientsController/deleteClients" />';
 	
-	function onClientsDelete(){		
-		var clientsToDelete = getSelectedIds('clientsData', 'clientId');
-		if(clientsToDelete.length === 0){
-			showMessage('Please, select at least one client.');
-			return;
-		}
-		$.ajax({ 
-			type : 'DELETE',
-			contentType : 'application/json',
-			url : deleteClientEndpoint,
-			data: JSON.stringify(clientsToDelete),
-			success : function(data) {
-				console.log('Success');
-			},
-			error : function(e) {
-				console.log("ERROR: ", e);
-			},
-		});
-	}
-	
-	function getSelectedIds(tblId, columnName){
-		var selectedIds = new Array();
-		var clientsRows = $("tbody#" + tblId);
+	<script type="text/javascript">
+		var deleteClientEndpoint = '<c:url value="/ManageClientsController/deleteClients" />';
+		var urlClients = '<c:url value="/ManageClientsController/pagedClients?pageSize=1&currentPage=1" />';
+
+		function getClientsUrl(){
+			return urlClients;
+		}		
 		
-		clientsRows.find('tr').each(function(i, row){	
-			var checkbox = $(this).find("input[type='checkbox']");
-			if(checkbox.prop('checked')){
-				var id = $(this).find('td[name=' + columnName + ']').text();
-				selectedIds.push(id);
+		function onClientsDelete(){		
+			var clientsToDelete = getSelectedIds('clientsData', 'clientId');
+			if(clientsToDelete.length === 0){
+				showMessage('Please, select at least one client.');
+				return;
 			}
-		});		
-		return selectedIds;
-	}
-	
-	function showMessage(message){
-		alert(message);
-	}
-	</script>
+			$.ajax({ 
+				type : 'DELETE',
+				contentType : 'application/json',
+				url : deleteClientEndpoint,
+				data: JSON.stringify(clientsToDelete),
+				success : function(data) {
+					console.log('Success');
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				},
+			});
+		}
+		
+		function getSelectedIds(tblId, columnName){
+			var selectedIds = new Array();
+			var clientsRows = $("tbody#" + tblId);
+			
+			clientsRows.find('tr').each(function(i, row){	
+				var checkbox = $(this).find("input[type='checkbox']");
+				if(checkbox.prop('checked')){
+					var id = $(this).find('td[name=' + columnName + ']').text();
+					selectedIds.push(id);
+				}
+			});		
+			return selectedIds;
+		}
+		
+		function showMessage(message){
+			alert(message);
+		}
+		</script>
+
+	<script src="<c:url value="/resources/vuejs/components/clientList.js" />"></script>
 </body>
 </html>

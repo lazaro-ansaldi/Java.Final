@@ -52,12 +52,14 @@
 </nav>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 	<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/checkbox.js" />"></script>
 	<script src="<c:url value="/resources/js/radio.js" />"></script>
 	<script src="<c:url value="/resources/js/bootstrap-switch.js" />"></script>
 	<script src="<c:url value="/resources/js/toolbar.js" />"></script>
 	<script src="<c:url value="/resources/js/application.js" />"></script>
+	<script src="<c:url value="/resources/vuejs/vue.min.js" />"></script>
 
 <script type="text/javascript">
 	$(document).ready(function($) {

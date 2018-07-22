@@ -80,7 +80,7 @@ public class ManageClientsController extends BaseAjaxController
 	{
 		try 
 		{
-			PaginationSupport<Client> paginationSupport = new PaginationSupport<Client>(this.clientService.getAllClients(), pageSize, currentPage);
+			PaginationSupport<Client> paginationSupport = new PaginationSupport<Client>(this.clientService.getAllClients(), pageSize, currentPage, "/ManageClientsController/pagedClients");
 			return statusOk(paginationSupport);
 		}
 		catch(CustomHandledException chEx) 
