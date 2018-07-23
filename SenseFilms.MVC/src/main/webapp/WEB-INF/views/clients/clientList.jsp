@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody id="clientsTable">           
-	                    <tr v-for="client in clientsData.data">
+	                    <tr v-for="client in pagedClients.data">
 							<td>
 								<span class="custom-checkbox">
 									<input type="checkbox" name="options[]" value="1">
@@ -56,13 +56,13 @@
                 </tbody>
             </table>
 			<div class="clearfix">
-                <div class="hint-text">Showing <b>{{ clientsData.currentPage }}</b> out of <b>{{ clientsData.totalPages }}</b> pages</div>
+                <div class="hint-text">Showing <b>{{ pagedClients.currentPage }}</b> out of <b>{{ pagedClients.totalPages }}</b> pages</div>
                 <ul class="pagination">
-                    <li class="page-item" v-show="clientsData.previousPage"><a v-on:click="previousPage" class="page-link">Previous</a></li>
-                    <li class="page-item" v-for="(url, pageNumber) in clientsData.previousPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
-                    <li class="page-item active"> <a>{{ clientsData.currentPage }}</a></li>
-                    <li class="page-item" v-for="(url, pageNumber) in clientsData.nextPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
-                    <li class="page-item" v-show="clientsData.nextPage"><a v-on:click="nextPage" class="page-link">Next</a></li>
+                    <li class="page-item" v-show="pagedClients.previousPage"><a v-on:click="previousPage" class="page-link">Previous</a></li>
+                    <li class="page-item" v-for="(url, pageNumber) in pagedClients.previousPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
+                    <li class="page-item active"> <a>{{ pagedClients.currentPage }}</a></li>
+                    <li class="page-item" v-for="(url, pageNumber) in pagedClients.nextPagesNumbers"> <a v-on:click="loadPage(url)">{{ pageNumber }}</a></li>
+                    <li class="page-item" v-show="pagedClients.nextPage"><a v-on:click="nextPage" class="page-link">Next</a></li>
                 </ul>
             </div>
         </div>
@@ -120,7 +120,8 @@
 		}		
 		
 		function onClientsDelete(){		
-			var clientsToDelete = getSelectedIds('clientsData', 'clientId');
+			var clientsToDelete = getSelectedIds('clientsTable', 'clientId');
+			console.log('IDs: ' + clientsToDelete);
 			if(clientsToDelete.length === 0){
 				showMessage('Please, select at least one client.');
 				return;
