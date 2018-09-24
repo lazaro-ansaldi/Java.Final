@@ -12,30 +12,30 @@ import com.sensefilms.common.utils.CastUtils;
 
 @Repository
 @Transactional
-public abstract class BaseCRUDRepository<T extends BaseEntity> extends BaseRepository implements IBaseCRUDRepository<T>
+public abstract class BaseCRUDRepository<TEntity extends BaseEntity> extends BaseRepository implements IBaseCRUDRepository<TEntity>
 {
-	private Class<T> currentClazz;
+	private Class<TEntity> currentClazz;
 	
-	public BaseCRUDRepository(Class<T> clazz) 
+	public BaseCRUDRepository(Class<TEntity> clazz) 
 	{
 		this.currentClazz = clazz;
 	}
 	
 	@Override
-	public void insert(T entity) throws HibernateException
+	public void insert(TEntity entity) throws HibernateException
 	{
 		getSessionFactory().getCurrentSession().save(entity);			
 	}
 
 	@Override
-	public T getOneById(int id) throws HibernateException
+	public TEntity getOneById(int id) throws HibernateException
 	{
 		Object clientObject = getSessionFactory().getCurrentSession().get(currentClazz, id);	
 		return CastUtils.tryCastAs(currentClazz, clientObject);
 	}
 
 	@Override
-	public void update(T entity) throws HibernateException
+	public void update(TEntity entity) throws HibernateException
 	{
 		getSessionFactory().getCurrentSession().update(entity);				
 	}
@@ -47,9 +47,9 @@ public abstract class BaseCRUDRepository<T extends BaseEntity> extends BaseRepos
 	}
 	
 	@Override
-	public ArrayList<T> getAll() throws HibernateException
+	public ArrayList<TEntity> getAll() throws HibernateException
 	{
-		List<T> castedList = CastUtils.castList(currentClazz, getCriteria(currentClazz).list());
-		return new ArrayList<T>(castedList);		
+		List<TEntity> castedList = CastUtils.castList(currentClazz, getCriteria(currentClazz).list());
+		return new ArrayList<TEntity>(castedList);		
 	}
 }

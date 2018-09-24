@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.exceptions.CustomBusinessException;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.services.contracts.IWebSupportService;
@@ -49,11 +49,11 @@ public class AccountController extends BaseController
 			
 			return new ModelAndView(viewToReturn, StringUtils.EMPTY, model);
 		}
-		catch(CustomBusinessException cbEx) 
+		catch(UiNotAuthenticatedException cbEx) 
 		{
 			return handleException(cbEx, ViewsResources.HOME_VIEW);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}		
@@ -79,11 +79,11 @@ public class AccountController extends BaseController
 			accountService.updateNewPassord(username, StringUtils.EMPTY);
 			return new ModelAndView(ViewsResources.HOME_VIEW);
 		}
-		catch(CustomBusinessException cbEx) 
+		catch(UiNotAuthenticatedException cbEx) 
 		{
 			return handleException(cbEx, ViewsResources.FORGOT_PASSWORD_VIEW);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}
@@ -103,11 +103,11 @@ public class AccountController extends BaseController
 			accountService.updateNewPassord(username, newPassword);			
 			return new ModelAndView(ViewsResources.INDEX_VIEW);
 		}
-		catch(CustomBusinessException cbEx) 
+		catch(UiNotAuthenticatedException cbEx) 
 		{
 			return handleException(cbEx, ViewsResources.NEW_PASSWORD_VIEW);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}

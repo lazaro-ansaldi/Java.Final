@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
@@ -52,7 +52,7 @@ public class HomeController extends BaseAjaxController
 		{
 			return json(webSupportService.getAllWebMenuItems());
 		} 
-		catch (CustomHandledException cEx)
+		catch (UiException cEx)
 		{
 			return String.format("Server Error Ocurred: %s", cEx.getMessage());
 		}

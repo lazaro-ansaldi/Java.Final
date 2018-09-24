@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.exceptions.CustomBusinessException;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.handlers.IAuditHandler;
 import com.sensefilms.common.handlers.IMailHandler;
 import com.sensefilms.common.utils.CommonConstants;
@@ -39,35 +39,35 @@ public class AccountService extends BaseService implements IAccountService
 	private IUserRepository _userRepository;
 
 	@Override
-	public void tryAuthenticateUser(User user) throws CustomBusinessException, CustomHandledException
+	public void tryAuthenticateUser(User user) throws UiNotAuthenticatedException, UiException
 	{
 		try
 		{
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
 
 			if (dbUser == null || !dbUser.getPassword().equals(user.getPassword()))
-				throw new CustomBusinessException("Incorrect credentials, please try again.");
+				throw new UiNotAuthenticatedException("Incorrect credentials, please try again.");
 
 			dbUser.setLastLogin(new Date());
 			_userRepository.update(dbUser);
 			addUserToCache(dbUser);
 		} 
-		catch (CustomBusinessException cbEx)
+		catch (UiNotAuthenticatedException cbEx)
 		{
 			throw cbEx;
 		} 
 		catch (HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		} 
 		catch (Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
 	@Override
-	public void updateNewPassord(String username, String newPassword) throws CustomBusinessException, CustomHandledException
+	public void updateNewPassord(String username, String newPassword) throws UiNotAuthenticatedException, UiException
 	{
 		User currentUser = null;
 		boolean isRecoveryProcess = StringUtils.isNullOrEmpty(newPassword);
@@ -77,7 +77,7 @@ public class AccountService extends BaseService implements IAccountService
 			currentUser = _userRepository.getOneByUsername(username);
 
 			if (currentUser == null)
-				throw new CustomBusinessException("The username doesn't exists.");
+				throw new UiNotAuthenticatedException("The username doesn't exists.");
 
 			if (isRecoveryProcess)
 				newPassword = StringUtils.getRandomStringBasedOnGuid(10);
@@ -93,26 +93,26 @@ public class AccountService extends BaseService implements IAccountService
 
 			auditPasswordChange(isRecoveryProcess, currentUser.getUsername());
 		} 
-		catch (CustomBusinessException cbEx)
+		catch (UiNotAuthenticatedException cbEx)
 		{
 			throw cbEx;
 		} 
 		catch (HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		} 
 		catch (MessagingException msgEx)
 		{
-			throw new CustomHandledException(String.format("An error ocurred when try send an email to the addres %s.", currentUser.getEmail()), msgEx);
+			throw new UiException(String.format("An error ocurred when try send an email to the addres %s.", currentUser.getEmail()), msgEx);
 		} 
 		catch (Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
 	@Override
-	public void addNewUser(User user) throws CustomHandledException
+	public void addNewUser(User user) throws UiException
 	{
 		try
 		{
@@ -120,11 +120,11 @@ public class AccountService extends BaseService implements IAccountService
 		} 
 		catch (HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		} 
 		catch (Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 

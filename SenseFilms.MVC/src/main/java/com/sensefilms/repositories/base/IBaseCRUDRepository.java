@@ -6,15 +6,15 @@ import org.hibernate.HibernateException;
 
 import com.sensefilms.business.entities.base.BaseEntity;
 
-public interface IBaseCRUDRepository<T extends BaseEntity> 
+public interface IBaseCRUDRepository<TEntity extends BaseEntity> 
 {
-	public void insert(T entity) throws HibernateException;
+	public void insert(TEntity entity) throws HibernateException;
 	
-	public T getOneById(int id) throws HibernateException;
+	public TEntity getOneById(int id) throws HibernateException;
 	
-	public void update(T entity) throws HibernateException;
+	public void update(TEntity entity) throws HibernateException;
 	
 	public void deleteOneById(int id) throws HibernateException;
 	
-	public ArrayList<T> getAll() throws HibernateException;
+	public ArrayList<TEntity> getAll() throws HibernateException;
 }

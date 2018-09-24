@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.services.contracts.IAccountService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
@@ -34,7 +34,7 @@ public class ManageUsersController extends BaseController
 			this.accountService.addNewUser(newUser);
 			return new ModelAndView(ViewsResources.INDEX_VIEW);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}		

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.Client;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.repositories.contracts.IClientRepository;
 import com.sensefilms.services.base.BaseService;
@@ -26,7 +26,7 @@ public class ClientService extends BaseService implements IClientService
 	}
 	
 	@Override
-	public void addNewClient(Client client) throws CustomHandledException
+	public void addNewClient(Client client) throws UiException
 	{
 		try 
 		{
@@ -35,16 +35,16 @@ public class ClientService extends BaseService implements IClientService
 		}
 		catch(HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
 	@Override
-	public ArrayList<Client> getAllClients() throws CustomHandledException
+	public ArrayList<Client> getAllClients() throws UiException
 	{
 		try 
 		{
@@ -52,16 +52,16 @@ public class ClientService extends BaseService implements IClientService
 		}
 		catch(HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
 	@Override
-	public void deleteClients(int[] idsToDelete) throws CustomHandledException
+	public void deleteClients(int[] idsToDelete) throws UiException
 	{
 		try 
 		{
@@ -72,11 +72,11 @@ public class ClientService extends BaseService implements IClientService
 		}
 		catch(HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}		
 	}
 }

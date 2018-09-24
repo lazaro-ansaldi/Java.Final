@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.exceptions.CustomHandledException;
-import com.sensefilms.common.exceptions.CustomBusinessException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
 
@@ -26,12 +25,12 @@ public abstract class BaseController
 		return this.logger;
 	}
 	
-	protected ModelAndView handleException(CustomHandledException exception) 
+	protected ModelAndView handleException(UiException exception) 
 	{
 		return new ModelAndView(ViewsResources.ERROR_VIEW, WebModelConstants.ERROR_MESSAGE, exception.getMessage());
 	}
 	
-	protected ModelAndView handleException(CustomBusinessException exception, String viewName) 
+	protected ModelAndView handleException(UiException exception, String viewName) 
 	{
 		return new ModelAndView(viewName, WebModelConstants.ERROR_MESSAGE, exception.getMessage());
 	}

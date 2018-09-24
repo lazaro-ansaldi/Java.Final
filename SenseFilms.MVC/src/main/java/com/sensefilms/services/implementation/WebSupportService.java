@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.WebMenuItem;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 import com.sensefilms.services.base.BaseService;
@@ -28,7 +28,7 @@ public class WebSupportService extends BaseService implements IWebSupportService
 	}
 	
 	@Override
-	public ArrayList<WebMenuItem> getAllWebMenuItems() throws CustomHandledException 
+	public ArrayList<WebMenuItem> getAllWebMenuItems() throws UiException 
 	{
 		try 
 		{
@@ -42,11 +42,11 @@ public class WebSupportService extends BaseService implements IWebSupportService
 		}
 		catch(HibernateException hex)
 		{
-			throw new CustomHandledException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new CustomHandledException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 

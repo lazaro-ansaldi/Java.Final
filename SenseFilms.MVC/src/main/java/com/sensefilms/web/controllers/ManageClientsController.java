@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.Client;
-import com.sensefilms.common.exceptions.CustomHandledException;
+import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.PaginationSupport;
@@ -39,7 +39,7 @@ public class ManageClientsController extends BaseAjaxController
 		{
 			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW, WebModelConstants.CLIENT_LIST, clientService.getAllClients());
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}	
@@ -53,7 +53,7 @@ public class ManageClientsController extends BaseAjaxController
 			clientService.addNewClient(newClient);
 			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx);
 		}	
@@ -68,7 +68,7 @@ public class ManageClientsController extends BaseAjaxController
 			clientService.deleteClients(clientsToDelete);
 			return statusOk();
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx.getMessage());
 		}	
@@ -83,7 +83,7 @@ public class ManageClientsController extends BaseAjaxController
 			PaginationSupport<Client> paginationSupport = new PaginationSupport<Client>(this.clientService.getAllClients(), pageSize, currentPage, "/ManageClientsController/pagedClients");
 			return statusOk(paginationSupport);
 		}
-		catch(CustomHandledException chEx) 
+		catch(UiException chEx) 
 		{
 			return handleException(chEx.getMessage());
 		}	

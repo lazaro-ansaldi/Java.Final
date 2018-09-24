@@ -1,15 +1,15 @@
 package com.sensefilms.common.exceptions;
 
-public class CustomBusinessException extends Exception
+public class UiNotAuthenticatedException extends UiException
 {
 	private static final long serialVersionUID = 1L;
 	
-	public CustomBusinessException() 
+	public UiNotAuthenticatedException() 
 	{
 		super();
 	}
 	
-	public CustomBusinessException(String message) 
+	public UiNotAuthenticatedException(String message) 
 	{
 		super(message);
 	}
