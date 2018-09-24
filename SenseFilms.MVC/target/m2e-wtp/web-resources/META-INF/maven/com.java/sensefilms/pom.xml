@@ -206,6 +206,27 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+            	<groupId>org.flywaydb</groupId>
+            	<artifactId>flyway-maven-plugin</artifactId>
+            	<version>5.1.4</version>
+            	<configuration>
+            	    <driver>com.mysql.cj.jdbc.Driver</driver>
+				    <url>jdbc:mysql://localhost:3306/</url>
+				    <user>root</user>
+				    <password>Lazaro94</password>
+				    <schemas>
+        				<schema>sense</schema>
+    				</schemas>
+	            	<configFiles>
+				        <configFile>myConfig.conf</configFile>
+				    </configFiles>
+				    <locations>
+				    	<location>classpath:database/migrations</location>
+				    </locations>
+				    <baselineOnMigrate>true</baselineOnMigrate>
+			    </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
