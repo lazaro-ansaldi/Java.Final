@@ -14,9 +14,9 @@ import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.StringUtils;
-import com.sensefilms.services.contracts.IAccountService;
+import com.sensefilms.services.contracts.IUserSecurityService;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.services.implementation.AccountService;
+import com.sensefilms.services.implementation.UserSecurityService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
@@ -24,10 +24,10 @@ import com.sensefilms.web.support.WebModelConstants;
 @Controller
 public class AccountController extends BaseController
 {
-	private IAccountService accountService;
+	private IUserSecurityService accountService;
 	
 	@Autowired
-	public AccountController(IAccountService accountService, IWebSupportService webSupportService) 
+	public AccountController(IUserSecurityService accountService, IWebSupportService webSupportService) 
 	{
 		super(AccountController.class);
 		this.accountService = accountService;
@@ -40,7 +40,7 @@ public class AccountController extends BaseController
 		{
 			accountService.tryAuthenticateUser(currentUser);
 			
-			User authenticadeUser = AccountService.getAuthenticatedUserByUsername(currentUser.getUsername());
+			User authenticadeUser = UserSecurityService.getAuthenticatedUserByUsername(currentUser.getUsername());
 			// Init model attributes
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());

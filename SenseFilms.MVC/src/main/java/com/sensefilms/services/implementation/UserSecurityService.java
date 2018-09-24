@@ -18,19 +18,19 @@ import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.base.BaseService;
-import com.sensefilms.services.contracts.IAccountService;
+import com.sensefilms.services.contracts.IUserSecurityService;
 
 @Service
-public class AccountService extends BaseService implements IAccountService
+public class UserSecurityService extends BaseService implements IUserSecurityService
 {
 	private IMailHandler mailHandler;
 	private IAuditHandler auditHandler;
 	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
 
 	@Autowired
-	public AccountService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler)
+	public UserSecurityService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler)
 	{
-		super(AccountService.class);
+		super(UserSecurityService.class);
 		this._userRepository = userRepository;
 		this.mailHandler = mailHandler;
 		this.auditHandler = auditHandler;
