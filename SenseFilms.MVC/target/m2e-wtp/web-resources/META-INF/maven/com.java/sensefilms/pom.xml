@@ -216,11 +216,8 @@
 				    <user>root</user>
 				    <password>Lazaro94</password>
 				    <schemas>
-        				<schema>sense_flyway</schema>
+        				<schema>sensedb</schema>
     				</schemas>
-	            	<configFiles>
-				        <configFile>flywayConfig.properties</configFile>
-				    </configFiles>
 				    <locations>
 				    	<location>classpath:database/migrations</location>
 				    </locations>
