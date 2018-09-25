@@ -216,10 +216,10 @@
 				    <user>root</user>
 				    <password>Lazaro94</password>
 				    <schemas>
-        				<schema>sense</schema>
+        				<schema>sense_flyway</schema>
     				</schemas>
 	            	<configFiles>
-				        <configFile>myConfig.conf</configFile>
+				        <configFile>flywayConfig.properties</configFile>
 				    </configFiles>
 				    <locations>
 				    	<location>classpath:database/migrations</location>

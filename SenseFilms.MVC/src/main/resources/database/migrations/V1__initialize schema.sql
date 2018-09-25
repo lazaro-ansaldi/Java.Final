@@ -1,17 +1,5 @@
 -- Date: 23/03/2018
--- Database: sense
 -- ------------------------------------------------------
--- Date: 23/03/2018
--- Database: sense
--- ------------------------------------------------------
-
--- Create the schema
-CREATE DATABASE  IF NOT EXISTS `sense`;
-USE `sense`;
-
--- Table structure for table `user`
-
-DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,9 +19,6 @@ CREATE TABLE `user` (
   UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-
-DROP TABLE IF EXISTS `auditevent`;
-
 CREATE TABLE `audit_event` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Event` varchar(50) NOT NULL,
@@ -44,10 +29,6 @@ CREATE TABLE `audit_event` (
   UNIQUE KEY `ID_UNIQUE` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
-DROP TABLE IF EXISTS `web_menu_item`;
-
 CREATE TABLE `web_menu_item` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ItemUrl` varchar(100) DEFAULT NULL,
@@ -56,9 +37,6 @@ CREATE TABLE `web_menu_item` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `web_menu_subitem`;
 
 CREATE TABLE `web_menu_subitem` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -70,8 +48,6 @@ CREATE TABLE `web_menu_subitem` (
   UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `fk_menu_item_idx` (`MenuItemID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,19 +62,19 @@ CREATE TABLE `client` (
   UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-INSERT INTO `sense`.`web_menu_item` 
+INSERT INTO `web_menu_item` 
 (`ItemUrl`, `UserRole`, `Description`)
 VALUES ('', 1, 'Clients');
 
-INSERT INTO `sense`.`web_menu_item` 
+INSERT INTO `web_menu_item` 
 (`ItemUrl`, `UserRole`, `Description`)
 VALUES ('', 1, 'Users');
 
-INSERT INTO `sense`.`web_menu_subitem`
+INSERT INTO `web_menu_subitem`
 (`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
 VALUES ('/sensefilms/ManageClientsController/manageClients', 0, 'Client List', 1);
 
-INSERT INTO `sense`.`web_menu_subitem`
+INSERT INTO `web_menu_subitem`
 (`ItemUrl`, `UserRole`, `Description`, `MenuItemID`)
 VALUES ('/sensefilms/ManageUsersController/newUser', 0, 'Create User', 1);
 
