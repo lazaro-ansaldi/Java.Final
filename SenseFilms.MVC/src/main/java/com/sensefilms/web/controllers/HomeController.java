@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.services.contracts.IWebSupportService;
+import com.sensefilms.services.implementation.UserSecurityService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 
@@ -50,7 +52,8 @@ public class HomeController extends BaseAjaxController
 	{		
 		try
 		{
-			return json(webSupportService.getAllWebMenuItems());
+			User currentUser = UserSecurityService.getAuthenticatedUserByUsername("");
+			return jsonResult(webSupportService.getAllowedWebMenuItems(currentUser.getUserRole()));
 		} 
 		catch (UiException cEx)
 		{

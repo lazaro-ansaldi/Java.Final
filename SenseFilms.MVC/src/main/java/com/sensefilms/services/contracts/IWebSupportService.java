@@ -1,11 +1,12 @@
 package com.sensefilms.services.contracts;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.sensefilms.business.entities.WebMenuItem;
+import com.sensefilms.business.enums.UserRoles;
 import com.sensefilms.common.exceptions.UiException;
 
 public interface IWebSupportService 
 {
-	ArrayList<WebMenuItem> getAllWebMenuItems() throws UiException;
+	public List<WebMenuItem> getAllowedWebMenuItems(UserRoles userRole) throws UiException;
 }

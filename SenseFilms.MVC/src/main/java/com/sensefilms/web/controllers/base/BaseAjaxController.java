@@ -35,12 +35,12 @@ public abstract class BaseAjaxController extends BaseController
 		return statusOk(StringUtils.EMPTY);
 	}
 	
-	protected String json(Object data) 
+	protected String jsonResult(Object data) 
 	{
 		return JsonSerializer.serializeAsJson(data);
 	}
 	
-	protected String json(ArrayList<Object> data) 
+	protected String jsonResult(ArrayList<Object> data) 
 	{
 		return JsonSerializer.serializeAsJson(data);
 	}

@@ -1,12 +1,15 @@
 package com.sensefilms.services.implementation;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.WebMenuItem;
+import com.sensefilms.business.enums.UserRoles;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
@@ -28,7 +31,7 @@ public class WebSupportService extends BaseService implements IWebSupportService
 	}
 	
 	@Override
-	public ArrayList<WebMenuItem> getAllWebMenuItems() throws UiException 
+	public List<WebMenuItem> getAllowedWebMenuItems(UserRoles userRole) throws UiException 
 	{
 		try 
 		{
@@ -38,7 +41,9 @@ public class WebSupportService extends BaseService implements IWebSupportService
 				getLogger().debug("Loaded menu items collections.");
 			}
 			
-			return menuItems;
+			return menuItems.stream()
+					.filter(x -> x.getUserRole().getValue() <= userRole.getValue())
+					.collect(Collectors.toList());
 		}
 		catch(HibernateException hex)
 		{
