@@ -66,9 +66,13 @@ public class ClientService extends BaseService implements IClientService
 		try 
 		{
 			if(idsToDelete.length > 1)
+			{
 				this.clientRepository.deleteRange(idsToDelete);
+			}
 			else
+			{
 				this.clientRepository.deleteOneById(idsToDelete[0]);
+			}
 		}
 		catch(HibernateException hex)
 		{

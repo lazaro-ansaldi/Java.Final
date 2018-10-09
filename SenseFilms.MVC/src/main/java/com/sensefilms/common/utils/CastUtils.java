@@ -21,7 +21,9 @@ public class CastUtils
 	    List<T> typedList = new ArrayList<T>(collection.size());
 	    
 	    for(Object o : collection)
+	    {
 	    	typedList.add(tryCastAs(clazz, o));
+	    }
 	    
 	    return typedList;
 	}

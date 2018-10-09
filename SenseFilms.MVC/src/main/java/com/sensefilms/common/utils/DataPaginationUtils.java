@@ -28,9 +28,13 @@ public class DataPaginationUtils<T extends Object>
 
 		// Set default value for pageSize as 1
 		if (currentPage < 1 || currentPage > pagedListHolder.getPageCount())
-			pagedListHolder.setPage(0);
+		{
+				pagedListHolder.setPage(0);
+		}
 		else if (currentPage <= pagedListHolder.getPageCount())
-			pagedListHolder.setPage(currentPage - 1);
+		{
+				pagedListHolder.setPage(currentPage - 1);
+		}
 
 		return pagedListHolder.getPageList();
 	}

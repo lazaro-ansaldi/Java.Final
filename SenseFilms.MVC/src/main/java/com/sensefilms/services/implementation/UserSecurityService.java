@@ -46,15 +46,17 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 			User dbUser = _userRepository.getOneByUsername(user.getUsername());
 
 			if (dbUser == null || !dbUser.getPassword().equals(user.getPassword()))
+			{
 				throw new UiNotAuthenticatedException("Incorrect credentials, please try again.");
+			}
 
 			dbUser.setLastLogin(new Date());
 			_userRepository.update(dbUser);
 			addUserToCache(dbUser);
 		} 
-		catch (UiNotAuthenticatedException cbEx)
+		catch (UiNotAuthenticatedException authEx)
 		{
-			throw cbEx;
+			throw authEx;
 		} 
 		catch (HibernateException hex)
 		{
@@ -93,9 +95,9 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 
 			auditPasswordChange(isRecoveryProcess, currentUser.getUsername());
 		} 
-		catch (UiNotAuthenticatedException cbEx)
+		catch (UiNotAuthenticatedException authEx)
 		{
-			throw cbEx;
+			throw authEx;
 		} 
 		catch (HibernateException hex)
 		{
@@ -137,7 +139,9 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 	private void addUserToCache(User user)
 	{
 		if (!authenticatedUsers.containsKey(user.getUsername()))
+		{
 			authenticatedUsers.remove(user.getUsername());
+		}
 
 		authenticatedUsers.put(user.getUsername(), user);
 	}
