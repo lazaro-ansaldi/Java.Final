@@ -41,5 +41,4 @@ public class UiException extends Exception
 			logger.error("Supressed stack: " + innerEx.getStackTrace());
 		}
 	}
-
 }
