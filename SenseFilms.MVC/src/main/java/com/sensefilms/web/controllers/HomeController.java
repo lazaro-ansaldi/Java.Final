@@ -17,9 +17,6 @@ import com.sensefilms.services.implementation.UserSecurityService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController extends BaseAjaxController
 {	
@@ -32,13 +29,13 @@ public class HomeController extends BaseAjaxController
 		this.webSupportService = webSupportService;
 	}
 		
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/signIn")
 	public ModelAndView home(Locale locale, Model model) 
 	{
 		getLogger().info("We're live! {}.", locale);
 		
 		return new ModelAndView(ViewsResources.HOME_VIEW);
-	}
+	}	
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
 	public ModelAndView getIndexView(Model model) 

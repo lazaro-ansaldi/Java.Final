@@ -3,24 +3,23 @@
 <html>
 <head>
 	<title>Home</title>
-	<link href="<c:url value="/resources/css/core.css" />" rel="stylesheet">
-	<!-- Loading Bootstrap -->
-	<link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-	<!-- Loading Font Awesome Icons -->
-	<link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
-	<!-- Loading Drunken Parrot UI -->
-	<link href="<c:url value="/resources/css/drunken-parrot.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/css/demo.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/core.css" />" rel="stylesheet" type="text/css">
+
+	<link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet" type="text/css">
+
+	<link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
+
+	<link href="<c:url value="/resources/css/drunken-parrot.css" />" rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/css/demo.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="form-center-container">
 		<div class="form-center">
 			<form name="loginForm" action="<c:url value="/AccountController/authenticate" />" method="post" class="form-center">
-	  				 <!--Header-->
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<div>
 	            	<h3>Sign In</h3>
-	            </div>
-	            
+	            </div>	            
 	                        <!--Body-->
 	            <div>
 	                <input type="text" id="email" class="form-control" name="username">

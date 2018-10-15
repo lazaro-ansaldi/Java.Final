@@ -26,10 +26,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/*@input-bg:                  @inverse;*/
-/*@alert-padding:               15px;
-@alert-border-radius:         @border-radius-base;
-@alert-link-font-weight:      bold;*/
 body {
   font-family: "SourceSansPro", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -732,7 +728,6 @@ fieldset[disabled] .btn-inverse.active {
 .btn-group .btn-group + .btn-group {
   margin-left: -2px;
 }
-/* Restyling the dropdowns within nested, vertical and justified groups */
 .btn-group > .btn,
 .btn-group-vertical > .btn {
   text-transform: none;
@@ -798,18 +793,13 @@ fieldset[disabled] .btn-inverse.active {
   line-height: 1.25;
   border-radius: 4px;
 }
-/* Dropdown Speicfic */
 .btn-group-dropdown {
-  /* Open States */
-
 }
 .btn-group-dropdown > .btn {
   text-transform: none;
   font-family: "SourceSansPro", Helvetica, Arial, sans-serif;
   -webkit-transition: none;
   transition: none;
-  /* Split Dropdowns Icon */
-
 }
 .btn-group-dropdown > .btn + .dropdown-toggle {
   min-width: 40px;
@@ -896,7 +886,6 @@ fieldset[disabled] .btn-inverse.active {
 .btn-group-dropdown.open .dropdown-toggle.btn-inverse [class^="fa-"] {
   color: #02baf2;
 }
-/* MOVE to DOCS.CSS or DEMO.CSS */
 .btn-group .btn-group-dropdown .dropdown-toggle,
 .btn-group-vertical .btn-group-dropdown .dropdown-toggle {
   min-width: 140px;
@@ -1073,8 +1062,6 @@ fieldset[disabled] .btn-inverse.active {
   content: "";
 }
 .dropdown-menu > .top.arrow {
-  /*left: 88%;*/
-
   right: 88%;
   border-top-width: 0;
   border-bottom-color: #b2c6cd;
@@ -1748,8 +1735,6 @@ select[multiple].input-lg {
   border-width: 2px;
 }
 .nav-stroke > li > a:hover {
-  /*border-bottom-color: transparent;*/
-
   border-width: 2px;
 }
 .nav-stroke > li.active > a,
@@ -2266,8 +2251,6 @@ select[multiple].input-lg {
 .tool-container.tool-bottom {
   height: 40px;
   border-bottom: 0px solid #beb8b8 ;
-  /* #B1A9A9 */
-
 }
 .tool-top .tool-item,
 .tool-bottom .tool-item {
