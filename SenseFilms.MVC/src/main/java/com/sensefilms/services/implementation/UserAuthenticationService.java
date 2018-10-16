@@ -1,5 +1,6 @@
 package com.sensefilms.services.implementation;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -7,33 +8,39 @@ import javax.mail.MessagingException;
 
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.handlers.IAuditHandler;
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.handlers.IMailHandler;
 import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.base.BaseService;
-import com.sensefilms.services.contracts.IUserSecurityService;
+import com.sensefilms.services.contracts.IUserAuthenticationService;
 
 @Service
-public class UserSecurityService extends BaseService implements IUserSecurityService
+public class UserAuthenticationService extends BaseService implements IUserAuthenticationService, UserDetailsService
 {
-	private IMailHandler mailHandler;
-	private IAuditHandler auditHandler;
+	private IAuthenticationContext _authenticationContext;
+	private IMailHandler _mailHandler;
+	private IAuditHandler _auditHandler;
 	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
 
 	@Autowired
-	public UserSecurityService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler)
+	public UserAuthenticationService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler, IAuthenticationContext authenticationContext)
 	{
-		super(UserSecurityService.class);
+		super(UserAuthenticationService.class);
 		this._userRepository = userRepository;
-		this.mailHandler = mailHandler;
-		this.auditHandler = auditHandler;
+		this._mailHandler = mailHandler;
+		this._auditHandler = auditHandler;
+		this._authenticationContext = authenticationContext;
 	}
 
 	private IUserRepository _userRepository;
@@ -135,7 +142,6 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 		return authenticatedUsers.get(username);
 	}
 
-	// PRIVATE HELPERS METHODS //
 	private void addUserToCache(User user)
 	{
 		if (!authenticatedUsers.containsKey(user.getUsername()))
@@ -151,7 +157,7 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
 					: String.format("Password updated for user %s", username);
 
-		this.auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringUtils.EMPTY);
+		this._auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringUtils.EMPTY);
 	}
 
 	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException
@@ -159,13 +165,29 @@ public class UserSecurityService extends BaseService implements IUserSecuritySer
 		String emailBodyText = String.format("This is your new password \"%s\". ", randomPassword);
 		try
 		{
-			mailHandler.sendMailMessage(email, "Password Recover", emailBodyText);
+			_mailHandler.sendMailMessage(email, "Password Recover", emailBodyText);
 		} 
 		catch (MessagingException msgEx)
 		{
 			throw msgEx;
 		}
 		getLogger().debug(String.format("Email send to %s succesfully.", email));
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+	{
+		User currentUser = null;
+		try
+		{
+			currentUser = _userRepository.getOneByUsername(username);
+		}
+		catch (SQLException sqlEx)
+		{
+			return null;
+		}
+
+		return _authenticationContext.mapToSpringUser(currentUser);
 	}
 
 }

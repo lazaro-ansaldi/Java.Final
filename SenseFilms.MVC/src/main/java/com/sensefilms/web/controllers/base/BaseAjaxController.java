@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.utils.JsonSerializer;
 import com.sensefilms.common.utils.StringUtils;
 
 public abstract class BaseAjaxController extends BaseController
 {
-	public BaseAjaxController(Class<? extends BaseAjaxController> clazz)
+	public BaseAjaxController(Class<? extends BaseAjaxController> clazz, IAuthenticationContext authenticationContext)
 	{
-		super(clazz);
+		super(clazz, authenticationContext);
 	}
 	
 	protected ResponseEntity<Object> handleException(String jsonBody) 

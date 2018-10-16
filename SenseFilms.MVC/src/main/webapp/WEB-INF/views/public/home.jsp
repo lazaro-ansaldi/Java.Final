@@ -15,7 +15,7 @@
 <body>
 	<div class="form-center-container">
 		<div class="form-center">
-			<form name="loginForm" action="<c:url value="/AccountController/authenticate" />" method="post" class="form-center">
+			<form name="loginForm" action="<c:url value="/login" />" method="post" class="form-center">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<div>
 	            	<h3>Sign In</h3>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.common.exceptions.UiException;
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.utils.CastUtils;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.web.support.ViewsResources;
@@ -18,10 +19,12 @@ public abstract class BaseController
 {
 
 	private Logger logger;
+	private IAuthenticationContext _authenticationContext;
 	
-	public BaseController(Class<? extends BaseController> clazz) 
+	public BaseController(Class<? extends BaseController> clazz, IAuthenticationContext authenticationContext) 
 	{
-		this.logger = LoggerFactory.getLogger(clazz);	
+		this.logger = LoggerFactory.getLogger(clazz);
+		_authenticationContext = authenticationContext;
 	}
 	
 	protected Logger getLogger() 
@@ -51,5 +54,10 @@ public abstract class BaseController
 		}
 		
 		return currentUser != null ? currentUser.getUsername() : StringUtils.EMPTY;
+	}
+	
+	protected boolean isUserAuthenticated() 
+	{
+		return _authenticationContext.isLoggedIn();
 	}
 }

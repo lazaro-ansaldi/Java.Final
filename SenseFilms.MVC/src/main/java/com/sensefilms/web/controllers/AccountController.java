@@ -12,11 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.StringUtils;
-import com.sensefilms.services.contracts.IUserSecurityService;
+import com.sensefilms.services.contracts.IUserAuthenticationService;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.services.implementation.UserSecurityService;
+import com.sensefilms.services.implementation.UserAuthenticationService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
@@ -24,12 +25,12 @@ import com.sensefilms.web.support.WebModelConstants;
 @Controller
 public class AccountController extends BaseController
 {
-	private IUserSecurityService accountService;
+	private IUserAuthenticationService accountService;
 	
 	@Autowired
-	public AccountController(IUserSecurityService accountService, IWebSupportService webSupportService) 
+	public AccountController(IUserAuthenticationService accountService, IWebSupportService webSupportService, IAuthenticationContext authenticationContext) 
 	{
-		super(AccountController.class);
+		super(AccountController.class, authenticationContext);
 		this.accountService = accountService;
 	}
 	
@@ -40,7 +41,7 @@ public class AccountController extends BaseController
 		{
 			accountService.tryAuthenticateUser(currentUser);
 			
-			User authenticadeUser = UserSecurityService.getAuthenticatedUserByUsername(currentUser.getUsername());
+			User authenticadeUser = UserAuthenticationService.getAuthenticatedUserByUsername(currentUser.getUsername());
 			// Init model attributes
 			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
 			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());

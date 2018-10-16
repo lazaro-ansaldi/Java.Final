@@ -10,19 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.services.contracts.IUserSecurityService;
+import com.sensefilms.common.handlers.IAuthenticationContext;
+import com.sensefilms.services.contracts.IUserAuthenticationService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
 
 @Controller
 public class ManageUsersController extends BaseController
 {
-	private IUserSecurityService accountService;
+	private IUserAuthenticationService accountService;
 	
 	@Autowired
-	public ManageUsersController(IUserSecurityService accountService) 
+	public ManageUsersController(IUserAuthenticationService accountService, IAuthenticationContext authenticationContext) 
 	{
-		super(AccountController.class);
+		super(AccountController.class, authenticationContext);
 		this.accountService = accountService;
 	}
 

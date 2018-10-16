@@ -12,8 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiException;
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.services.implementation.UserSecurityService;
+import com.sensefilms.services.implementation.UserAuthenticationService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 
@@ -23,9 +24,9 @@ public class HomeController extends BaseAjaxController
 	private IWebSupportService webSupportService;
 	
 	@Autowired
-	public HomeController(IWebSupportService webSupportService) 
+	public HomeController(IWebSupportService webSupportService, IAuthenticationContext authenticationContext) 
 	{
-		super(HomeController.class);	
+		super(HomeController.class, authenticationContext);	
 		this.webSupportService = webSupportService;
 	}
 		
@@ -34,7 +35,7 @@ public class HomeController extends BaseAjaxController
 	{
 		getLogger().info("We're live! {}.", locale);
 		
-		return new ModelAndView(ViewsResources.HOME_VIEW);
+		return new ModelAndView(super.isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW);
 	}	
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
@@ -49,7 +50,7 @@ public class HomeController extends BaseAjaxController
 	{		
 		try
 		{
-			User currentUser = UserSecurityService.getAuthenticatedUserByUsername("");
+			User currentUser = UserAuthenticationService.getAuthenticatedUserByUsername("");
 			return jsonResult(webSupportService.getAllowedWebMenuItems(currentUser.getUserRole()));
 		} 
 		catch (UiException cEx)

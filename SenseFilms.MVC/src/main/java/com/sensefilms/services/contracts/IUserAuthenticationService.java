@@ -4,7 +4,7 @@ import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.exceptions.UiException;
 
-public interface IUserSecurityService 
+public interface IUserAuthenticationService
 {
 	void tryAuthenticateUser(User user) throws UiNotAuthenticatedException, UiException; 
 	

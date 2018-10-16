@@ -6,15 +6,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.sensefilms.services.contracts.IUserAuthenticationService;;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 {
-	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception
-	{
-	}
-
+	@Autowired
+	private IUserAuthenticationService userAuthenticationService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
@@ -26,8 +28,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
         .formLogin()
             .loginPage("/signIn")
             .permitAll()
-            .failureUrl("/signIn?error=1")
-            .loginProcessingUrl("/authenticate-spring")
+//            .failureUrl("/signIn?error=1")
+//            .loginProcessingUrl("/authenticate-spring")
             .usernameParameter("username")
             .passwordParameter("password")
             .and()
@@ -44,6 +46,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
 	{
-		//auth.userDetailsService(userDetailsService)
+		auth.userDetailsService((UserDetailsService) userAuthenticationService);
 	}
 }

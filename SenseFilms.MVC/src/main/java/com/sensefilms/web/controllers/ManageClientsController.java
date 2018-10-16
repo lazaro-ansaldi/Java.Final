@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.business.entities.Client;
 import com.sensefilms.common.exceptions.UiException;
+import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.PaginationSupport;
@@ -26,9 +27,9 @@ public class ManageClientsController extends BaseAjaxController
 	private IClientService clientService;
 	
 	@Autowired
-	public ManageClientsController(IClientService clientService) 
+	public ManageClientsController(IClientService clientService, IAuthenticationContext authenticationContext) 
 	{
-		super(ManageClientsController.class);
+		super(ManageClientsController.class, authenticationContext);
 		this.clientService = clientService;
 	}
 	
