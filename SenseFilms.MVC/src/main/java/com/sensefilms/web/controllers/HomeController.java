@@ -35,7 +35,8 @@ public class HomeController extends BaseAjaxController
 	{
 		getLogger().info("We're live! {}.", locale);
 		
-		return new ModelAndView(super.isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW);
+		String urlToRedirect = isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW;
+		return new ModelAndView(urlToRedirect);
 	}	
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)

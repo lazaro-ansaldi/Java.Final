@@ -44,15 +44,11 @@ public abstract class BaseController
 	
 	protected String getLoggedUserName() throws UiException 
 	{
-		User currentUser = null;
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		
-		if(principal instanceof User) 
-		{
-			currentUser = CastUtils.tryCastAs(User.class, principal);
-		}
-		
+		User currentUser = CastUtils.tryCastAs(User.class, principal);
+				
 		return currentUser != null ? currentUser.getUsername() : StringUtils.EMPTY;
 	}
 	
