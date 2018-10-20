@@ -5,9 +5,7 @@ import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.exceptions.UiException;
 
 public interface IUserAuthenticationService
-{
-	void tryAuthenticateUser(User user) throws UiNotAuthenticatedException, UiException; 
-	
+{	
 	void updateNewPassord(String username, String newPassword) throws UiNotAuthenticatedException, UiException;
 	
 	void addNewUser(User user) throws UiException;

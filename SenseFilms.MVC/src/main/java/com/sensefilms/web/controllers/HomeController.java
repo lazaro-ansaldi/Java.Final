@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.services.implementation.UserAuthenticationService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
 
@@ -35,8 +33,7 @@ public class HomeController extends BaseAjaxController
 	{
 		getLogger().info("We're live! {}.", locale);
 		
-		String urlToRedirect = isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW;
-		return new ModelAndView(urlToRedirect);
+		return new ModelAndView(isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW);
 	}	
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)
@@ -51,8 +48,7 @@ public class HomeController extends BaseAjaxController
 	{		
 		try
 		{
-			User currentUser = UserAuthenticationService.getAuthenticatedUserByUsername("");
-			return jsonResult(webSupportService.getAllowedWebMenuItems(currentUser.getUserRole()));
+			return jsonResult(webSupportService.getAllowedWebMenuItems(getLoggedUserName()));
 		} 
 		catch (UiException cEx)
 		{

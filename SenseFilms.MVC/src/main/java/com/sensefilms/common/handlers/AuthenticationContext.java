@@ -23,7 +23,7 @@ public class AuthenticationContext implements IAuthenticationContext
 	{
         Object userDetails = SecurityContextHolder.getContext()
         		.getAuthentication()
-        		.getDetails();
+        		.getPrincipal();
         
         if (userDetails instanceof UserDetails) 
         {

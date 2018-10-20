@@ -1,8 +1,6 @@
 package com.sensefilms.services.implementation;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashMap;
 
 import javax.mail.MessagingException;
 
@@ -31,7 +29,6 @@ public class UserAuthenticationService extends BaseService implements IUserAuthe
 	private IAuthenticationContext _authenticationContext;
 	private IMailHandler _mailHandler;
 	private IAuditHandler _auditHandler;
-	private static HashMap<String, User> authenticatedUsers = new HashMap<String, User>();
 
 	@Autowired
 	public UserAuthenticationService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler, IAuthenticationContext authenticationContext)
@@ -44,36 +41,6 @@ public class UserAuthenticationService extends BaseService implements IUserAuthe
 	}
 
 	private IUserRepository _userRepository;
-
-	@Override
-	public void tryAuthenticateUser(User user) throws UiNotAuthenticatedException, UiException
-	{
-		try
-		{
-			User dbUser = _userRepository.getOneByUsername(user.getUsername());
-
-			if (dbUser == null || !dbUser.getPassword().equals(user.getPassword()))
-			{
-				throw new UiNotAuthenticatedException("Incorrect credentials, please try again.");
-			}
-
-			dbUser.setLastLogin(new Date());
-			_userRepository.update(dbUser);
-			addUserToCache(dbUser);
-		} 
-		catch (UiNotAuthenticatedException authEx)
-		{
-			throw authEx;
-		} 
-		catch (HibernateException hex)
-		{
-			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
-		} 
-		catch (Exception ex)
-		{
-			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
-		}
-	}
 
 	@Override
 	public void updateNewPassord(String username, String newPassword) throws UiNotAuthenticatedException, UiException
@@ -137,21 +104,6 @@ public class UserAuthenticationService extends BaseService implements IUserAuthe
 		}
 	}
 
-	public static User getAuthenticatedUserByUsername(String username)
-	{
-		return authenticatedUsers.get(username);
-	}
-
-	private void addUserToCache(User user)
-	{
-		if (!authenticatedUsers.containsKey(user.getUsername()))
-		{
-			authenticatedUsers.remove(user.getUsername());
-		}
-
-		authenticatedUsers.put(user.getUsername(), user);
-	}
-
 	private void auditPasswordChange(boolean isRecoveryProcess, String username)
 	{
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
@@ -189,5 +141,4 @@ public class UserAuthenticationService extends BaseService implements IUserAuthe
 
 		return _authenticationContext.mapToSpringUser(currentUser);
 	}
-
 }

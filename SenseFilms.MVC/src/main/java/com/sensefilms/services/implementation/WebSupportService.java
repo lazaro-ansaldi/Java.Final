@@ -8,10 +8,11 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sensefilms.business.entities.User;
 import com.sensefilms.business.entities.WebMenuItem;
-import com.sensefilms.business.enums.UserRoles;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.CommonConstants;
+import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IWebSupportService;
@@ -21,17 +22,19 @@ public class WebSupportService extends BaseService implements IWebSupportService
 {
 
 	private IWebSupportRepository webSupportRepository;
+	private IUserRepository userRepository;
 	private static ArrayList<WebMenuItem> menuItems;
 	
 	@Autowired
-	public WebSupportService(IWebSupportRepository webSupportRepository) 
+	public WebSupportService(IWebSupportRepository webSupportRepository, IUserRepository userRepository) 
 	{
 		super(WebSupportService.class);
 		this.webSupportRepository = webSupportRepository;
+		this.userRepository = userRepository;
 	}
 	
 	@Override
-	public List<WebMenuItem> getAllowedWebMenuItems(UserRoles userRole) throws UiException 
+	public List<WebMenuItem> getAllowedWebMenuItems(String userName) throws UiException 
 	{
 		try 
 		{
@@ -41,8 +44,9 @@ public class WebSupportService extends BaseService implements IWebSupportService
 				getLogger().debug("Loaded menu items collections.");
 			}
 			
+			User currentUser = userRepository.getOneByUsername(userName);
 			return menuItems.stream()
-					.filter(x -> x.getUserRole().getValue() <= userRole.getValue())
+					.filter(x -> x.getUserRole().getValue() <= currentUser.getUserRole().getValue())
 					.collect(Collectors.toList());
 		}
 		catch(HibernateException hex)

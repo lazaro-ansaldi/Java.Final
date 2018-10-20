@@ -2,17 +2,13 @@ package com.sensefilms.web.controllers.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.handlers.IAuthenticationContext;
-import com.sensefilms.common.utils.CastUtils;
-import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
-import com.sensefilms.business.entities.User;
 
 @Controller
 public abstract class BaseController 
@@ -44,12 +40,7 @@ public abstract class BaseController
 	
 	protected String getLoggedUserName() throws UiException 
 	{
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		
-		User currentUser = CastUtils.tryCastAs(User.class, principal);
-				
-		return currentUser != null ? currentUser.getUsername() : StringUtils.EMPTY;
+		return _authenticationContext.getLoggedUsername();
 	}
 	
 	protected boolean isUserAuthenticated() 

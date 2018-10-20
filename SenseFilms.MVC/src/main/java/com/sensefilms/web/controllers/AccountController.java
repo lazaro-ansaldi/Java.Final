@@ -3,21 +3,18 @@ package com.sensefilms.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.services.contracts.IUserAuthenticationService;
 import com.sensefilms.services.contracts.IWebSupportService;
-import com.sensefilms.services.implementation.UserAuthenticationService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
@@ -32,32 +29,6 @@ public class AccountController extends BaseController
 	{
 		super(AccountController.class, authenticationContext);
 		this.accountService = accountService;
-	}
-	
-	@RequestMapping(value = "/AccountController/authenticate", method = RequestMethod.POST)
-	public ModelAndView authenticate(@ModelAttribute  User currentUser, Model model) 
-	{
-		try 
-		{
-			accountService.tryAuthenticateUser(currentUser);
-			
-			User authenticadeUser = UserAuthenticationService.getAuthenticatedUserByUsername(currentUser.getUsername());
-			// Init model attributes
-			model.addAttribute(WebModelConstants.USERNAME_PARAM, authenticadeUser.getUsername());
-			model.addAttribute(WebModelConstants.USER_COMPLETE_NAME, authenticadeUser.getCompleteName());
-			
-			String viewToReturn = (!authenticadeUser.isNewPassword() ? ViewsResources.INDEX_VIEW : ViewsResources.NEW_PASSWORD_VIEW);
-			
-			return new ModelAndView(viewToReturn, StringUtils.EMPTY, model);
-		}
-		catch(UiNotAuthenticatedException cbEx) 
-		{
-			return handleException(cbEx, ViewsResources.HOME_VIEW);
-		}
-		catch(UiException chEx) 
-		{
-			return handleException(chEx);
-		}		
 	}
 	
 	@RequestMapping(value = "/AccountController/forgotPassword", method = RequestMethod.GET)	

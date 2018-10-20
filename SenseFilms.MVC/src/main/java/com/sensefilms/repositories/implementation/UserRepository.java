@@ -23,8 +23,8 @@ public class UserRepository extends BaseCRUDRepository<User> implements IUserRep
 	@Override
 	public User getOneByUsername(String username) throws SQLException 
 	{
-		Query query = getSessionFactory().getCurrentSession().createQuery("from User where username = :username");
-		query.setParameter("username", username);
+		Query query = getSessionFactory().getCurrentSession().createQuery("from User where upper(username) = :username");
+		query.setParameter("username", username.toUpperCase());
 		return CastUtils.tryCastAs(User.class, query.uniqueResult());
 	}
 
