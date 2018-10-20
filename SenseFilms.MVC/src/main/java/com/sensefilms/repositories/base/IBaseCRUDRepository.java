@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
 
-import com.sensefilms.business.entities.base.BaseEntity;
+import com.sensefilms.business.entities.base.IBaseEntity;
 
-public interface IBaseCRUDRepository<TEntity extends BaseEntity> 
+public interface IBaseCRUDRepository<TEntity extends IBaseEntity> 
 {
 	public void insert(TEntity entity) throws HibernateException;
 	

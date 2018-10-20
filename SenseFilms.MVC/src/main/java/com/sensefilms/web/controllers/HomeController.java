@@ -31,7 +31,7 @@ public class HomeController extends BaseAjaxController
 	@RequestMapping(value = "/signIn")
 	public ModelAndView home(Locale locale, Model model) 
 	{
-		getLogger().info("We're live! {}.", locale);
+		getLogger().info("We're alive! {}.", locale);
 		
 		return new ModelAndView(isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW);
 	}	

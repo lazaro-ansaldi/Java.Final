@@ -4,7 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sensefilms.business.entities.base.BaseEntity;
+import com.sensefilms.business.entities.base.IBaseEntity;
 
 public abstract class BaseRepository
 {
@@ -16,7 +16,7 @@ public abstract class BaseRepository
 		return this.sessionFactory;
 	}
 	
-	protected Criteria getCriteria(Class<? extends BaseEntity> clazz) 
+	protected Criteria getCriteria(Class<? extends IBaseEntity> clazz) 
 	{
 		return this.sessionFactory.getCurrentSession().createCriteria(clazz);
 	}

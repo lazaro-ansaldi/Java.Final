@@ -18,7 +18,7 @@ import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IWebSupportService;
 
 @Service
-public class WebSupportService extends BaseService implements IWebSupportService 
+public final class WebSupportService extends BaseService implements IWebSupportService 
 {
 
 	private IWebSupportRepository webSupportRepository;

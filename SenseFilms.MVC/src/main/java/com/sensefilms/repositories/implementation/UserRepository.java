@@ -27,5 +27,4 @@ public class UserRepository extends BaseCRUDRepository<User> implements IUserRep
 		query.setParameter("username", username.toUpperCase());
 		return CastUtils.tryCastAs(User.class, query.uniqueResult());
 	}
-
 }

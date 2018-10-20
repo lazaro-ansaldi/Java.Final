@@ -24,7 +24,7 @@ import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IUserAuthenticationService;
 
 @Service
-public class UserAuthenticationService extends BaseService implements IUserAuthenticationService, UserDetailsService
+public final class UserAuthenticationService extends BaseService implements IUserAuthenticationService, UserDetailsService
 {
 	private IAuthenticationContext _authenticationContext;
 	private IMailHandler _mailHandler;

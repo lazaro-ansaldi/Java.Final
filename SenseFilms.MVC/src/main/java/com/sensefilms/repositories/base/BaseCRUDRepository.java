@@ -7,12 +7,12 @@ import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.business.entities.base.BaseEntity;
+import com.sensefilms.business.entities.base.IBaseEntity;
 import com.sensefilms.common.utils.CastUtils;
 
 @Repository
 @Transactional
-public abstract class BaseCRUDRepository<TEntity extends BaseEntity> extends BaseRepository implements IBaseCRUDRepository<TEntity>
+public abstract class BaseCRUDRepository<TEntity extends IBaseEntity> extends BaseRepository implements IBaseCRUDRepository<TEntity>
 {
 	private Class<TEntity> currentClazz;
 	

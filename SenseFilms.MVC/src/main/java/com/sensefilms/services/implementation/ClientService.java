@@ -14,7 +14,7 @@ import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IClientService;
 
 @Service
-public class ClientService extends BaseService implements IClientService
+public final class ClientService extends BaseService implements IClientService
 {
 	private IClientRepository clientRepository;
 	
