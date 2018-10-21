@@ -5,22 +5,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New Password</title>
 <link href="<c:url value="/resources/css/core.css" />" rel="stylesheet">
-<!-- Loading Bootstrap -->
-<link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />"
-	rel="stylesheet">
-<!-- Loading Font Awesome Icons -->
-<link href="<c:url value="/resources/css/font-awesome.min.css" />"
-	rel="stylesheet">
-<!-- Loading Drunken Parrot UI -->
-<link href="<c:url value="/resources/css/drunken-parrot.css" />"
-	rel="stylesheet">
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/drunken-parrot.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/demo.css" />" rel="stylesheet">
 </head>
 <body>
 
 	<div class="form-center-container">
 		<div class="form-center">
-			<form name="recoverPasswordForm" action="<c:url value="/AccountController/updateNewPassword/${usernameParam}" />"
+			<form name="recoverPasswordForm" action="<c:url value="/AccountController/updateNewPassword/" />"
 				method="post" class="align-middle">
 				<div>
 					<h3>Change password</h3>

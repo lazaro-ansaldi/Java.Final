@@ -15,6 +15,7 @@ import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;
+import com.sensefilms.web.support.WebModelConstants;
 
 @Controller
 public class HomeController extends BaseAjaxController
@@ -33,7 +34,21 @@ public class HomeController extends BaseAjaxController
 	{
 		getLogger().info("We're alive! {}.", locale);
 		
-		return new ModelAndView(isUserAuthenticated() ? ViewsResources.INDEX_VIEW : ViewsResources.HOME_VIEW);
+		if(isUserAuthenticated()) 
+		{
+			try 
+			{
+				return new ModelAndView(ViewsResources.INDEX_VIEW, WebModelConstants.USER_COMPLETE_NAME, getLoggedUserName());
+			}
+			catch(UiException uiEx) 
+			{
+				return handleException(uiEx);
+			}
+		}
+		else
+		{
+			return new ModelAndView(ViewsResources.HOME_VIEW);	
+		}
 	}	
 	
 	@RequestMapping(value = "/HomeController/index", method = RequestMethod.GET)

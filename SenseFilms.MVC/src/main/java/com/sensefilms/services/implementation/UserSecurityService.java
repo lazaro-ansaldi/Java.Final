@@ -21,19 +21,19 @@ import com.sensefilms.common.utils.CommonConstants;
 import com.sensefilms.common.utils.StringUtils;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.base.BaseService;
-import com.sensefilms.services.contracts.IUserAuthenticationService;
+import com.sensefilms.services.contracts.IUserSecurityService;
 
 @Service
-public final class UserAuthenticationService extends BaseService implements IUserAuthenticationService, UserDetailsService
+public final class UserSecurityService extends BaseService implements IUserSecurityService, UserDetailsService
 {
 	private IAuthenticationContext _authenticationContext;
 	private IMailHandler _mailHandler;
 	private IAuditHandler _auditHandler;
 
 	@Autowired
-	public UserAuthenticationService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler, IAuthenticationContext authenticationContext)
+	public UserSecurityService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler, IAuthenticationContext authenticationContext)
 	{
-		super(UserAuthenticationService.class);
+		super(UserSecurityService.class);
 		this._userRepository = userRepository;
 		this._mailHandler = mailHandler;
 		this._auditHandler = auditHandler;
@@ -104,6 +104,22 @@ public final class UserAuthenticationService extends BaseService implements IUse
 		}
 	}
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+	{
+		User currentUser = null;
+		try
+		{
+			currentUser = _userRepository.getOneByUsername(username);
+		}
+		catch (SQLException sqlEx)
+		{
+			return null;
+		}
+
+		return _authenticationContext.mapToSpringUser(currentUser);
+	}
+	
 	private void auditPasswordChange(boolean isRecoveryProcess, String username)
 	{
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
@@ -124,21 +140,5 @@ public final class UserAuthenticationService extends BaseService implements IUse
 			throw msgEx;
 		}
 		getLogger().debug(String.format("Email send to %s succesfully.", email));
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-	{
-		User currentUser = null;
-		try
-		{
-			currentUser = _userRepository.getOneByUsername(username);
-		}
-		catch (SQLException sqlEx)
-		{
-			return null;
-		}
-
-		return _authenticationContext.mapToSpringUser(currentUser);
 	}
 }

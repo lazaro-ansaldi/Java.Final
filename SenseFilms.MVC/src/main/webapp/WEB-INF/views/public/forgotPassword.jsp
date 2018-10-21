@@ -18,6 +18,7 @@
 		<div class="form-center">
 			<form name="recoverPasswordForm" action="<c:url value="/AccountController/sendNewPassword" />"
 				method="post" class="align-middle">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!--Header-->
 				<div>
 					<h3>Generate new password</h3>
@@ -26,7 +27,7 @@
 				<div>
 					<input type="text" id="username" class="form-control"
 						name="username"> 
-					<label for="username">Your	username</label>
+					<label for="username">Your username</label>
 				</div>
 
 				<div>
@@ -37,7 +38,6 @@
 					<button type="submit" class="btn btn-primary">Reset Password</button>
 				</div>
 
-				<!--Footer-->
 				<div class="modal-footer">
 					<div>
 						<a href="<c:url value="/" />">Go Back</a>

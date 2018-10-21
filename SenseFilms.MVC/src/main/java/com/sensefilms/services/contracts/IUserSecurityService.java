@@ -4,7 +4,7 @@ import com.sensefilms.business.entities.User;
 import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.exceptions.UiException;
 
-public interface IUserAuthenticationService
+public interface IUserSecurityService
 {	
 	void updateNewPassord(String username, String newPassword) throws UiNotAuthenticatedException, UiException;
 	

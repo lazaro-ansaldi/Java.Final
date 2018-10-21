@@ -3,7 +3,6 @@ package com.sensefilms.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,19 +12,18 @@ import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
 import com.sensefilms.common.handlers.IAuthenticationContext;
 import com.sensefilms.common.exceptions.UiException;
 import com.sensefilms.common.utils.StringUtils;
-import com.sensefilms.services.contracts.IUserAuthenticationService;
+import com.sensefilms.services.contracts.IUserSecurityService;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.web.controllers.base.BaseController;
 import com.sensefilms.web.support.ViewsResources;
-import com.sensefilms.web.support.WebModelConstants;
 
 @Controller
 public class AccountController extends BaseController
 {
-	private IUserAuthenticationService accountService;
+	private IUserSecurityService accountService;
 	
 	@Autowired
-	public AccountController(IUserAuthenticationService accountService, IWebSupportService webSupportService, IAuthenticationContext authenticationContext) 
+	public AccountController(IUserSecurityService accountService, IWebSupportService webSupportService, IAuthenticationContext authenticationContext) 
 	{
 		super(AccountController.class, authenticationContext);
 		this.accountService = accountService;
@@ -61,18 +59,18 @@ public class AccountController extends BaseController
 		}
 	}
 								
-	@RequestMapping(value = "/AccountController/updateNewPassword/{usernameParam}", method = RequestMethod.POST)	
-	public ModelAndView setNewPassword(@RequestParam("currentPassword") String currentPassword, @PathVariable("usernameParam") String username,
+	@RequestMapping(value = "/AccountController/updateNewPassword", method = RequestMethod.POST)	
+	public ModelAndView setNewPassword(@RequestParam("currentPassword") String currentPassword,
 			@RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword, Model model)
 	{
 		if(!confirmPassword.equals(newPassword)) 
 		{
-			return new ModelAndView(ViewsResources.NEW_PASSWORD_VIEW, WebModelConstants.ERROR_MESSAGE, model);
+			return showErrorMessage(ViewsResources.NEW_PASSWORD_VIEW, model);
 		}
 				
 		try 
 		{
-			accountService.updateNewPassord(username, newPassword);			
+			accountService.updateNewPassord(getLoggedUserName(), newPassword);			
 			return new ModelAndView(ViewsResources.INDEX_VIEW);
 		}
 		catch(UiNotAuthenticatedException cbEx) 

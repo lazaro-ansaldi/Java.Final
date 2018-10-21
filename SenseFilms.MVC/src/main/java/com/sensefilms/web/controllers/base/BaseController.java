@@ -3,6 +3,7 @@ package com.sensefilms.web.controllers.base;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sensefilms.common.exceptions.UiException;
@@ -46,5 +47,15 @@ public abstract class BaseController
 	protected boolean isUserAuthenticated() 
 	{
 		return _authenticationContext.isLoggedIn();
+	}
+	
+	protected ModelAndView showErrorMessage(String viewName, String errorMessage) 
+	{
+		return new ModelAndView(viewName, WebModelConstants.ERROR_MESSAGE, errorMessage);
+	}
+	
+	protected ModelAndView showErrorMessage(String viewName, Model viewModel) 
+	{
+		return new ModelAndView(viewName, WebModelConstants.ERROR_MESSAGE, viewModel);
 	}
 }

@@ -8,22 +8,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.sensefilms.services.contracts.IUserAuthenticationService;;
+import com.sensefilms.services.contracts.IUserSecurityService;;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 {
 	@Autowired
-	private IUserAuthenticationService userAuthenticationService;
+	private IUserSecurityService userAuthenticationService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
         http
         .authorizeRequests()
-            .antMatchers("/favicon.ico", "/resources/**", "/signup", "/about", "/signIn").permitAll()
-            .anyRequest().authenticated()
+            .antMatchers("/favicon.ico", "/resources/**", "/signIn", "/AccountController/forgotPassword", "/AccountController/sendNewPassword")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
             .and()
         .formLogin()
             .loginPage("/signIn")
