@@ -1,6 +1,5 @@
 package com.sensefilms.repositories.base;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -47,9 +46,8 @@ public abstract class BaseCRUDRepository<TEntity extends IBaseEntity> extends Ba
 	}
 	
 	@Override
-	public ArrayList<TEntity> getAll() throws HibernateException
+	public List<TEntity> getAll() throws HibernateException
 	{
-		List<TEntity> castedList = CastUtils.castList(currentClazz, getCriteria(currentClazz).list());
-		return new ArrayList<TEntity>(castedList);		
+		return CastUtils.castList(currentClazz, getCriteria(currentClazz).list());		
 	}
 }

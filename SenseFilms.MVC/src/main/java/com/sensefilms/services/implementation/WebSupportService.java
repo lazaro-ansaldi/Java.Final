@@ -1,6 +1,5 @@
 package com.sensefilms.services.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,7 @@ public final class WebSupportService extends BaseService implements IWebSupportS
 
 	private IWebSupportRepository webSupportRepository;
 	private IUserRepository userRepository;
-	private static ArrayList<WebMenuItem> menuItems;
+	private static List<WebMenuItem> menuItems;
 	
 	@Autowired
 	public WebSupportService(IWebSupportRepository webSupportRepository, IUserRepository userRepository) 

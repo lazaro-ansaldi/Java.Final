@@ -1,8 +1,7 @@
 package com.sensefilms.web.support;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 
 public class PaginationSupport<T extends Object>
 {
@@ -16,7 +15,7 @@ public class PaginationSupport<T extends Object>
 	
 	private String controllerUrl;
 	
-	public PaginationSupport(ArrayList<T> data, int pageSize, int currentPage, String controllerUrl) 
+	public PaginationSupport(List<T> data, int pageSize, int currentPage, String controllerUrl) 
 	{
 		this.paginationUtils = new DataPaginationUtils<T>(data);
 		this.pageSize = pageSize;

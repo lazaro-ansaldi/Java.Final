@@ -1,6 +1,6 @@
 package com.sensefilms.web.support;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,7 +39,7 @@ public class JsonSerializer
 	 * @param o objects to serialize.
 	 * @return serialized Json content.
 	 */
-	public static String serializeAsJson(ArrayList<Object> o)
+	public static String serializeAsJson(List<Object> o)
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);

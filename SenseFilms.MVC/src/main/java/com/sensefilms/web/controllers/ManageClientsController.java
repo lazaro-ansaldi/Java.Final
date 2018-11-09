@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sensefilms.core.dtos.ClientDto;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.core.utilities.IAuthenticationContext;
-import com.sensefilms.repositories.entities.Client;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.PaginationSupport;
@@ -47,11 +47,11 @@ public class ManageClientsController extends BaseAjaxController
 	}
 	
 	@RequestMapping(value = "/ManageClientsController/createClient", method = RequestMethod.POST)	
-	public ModelAndView createNewClient(@ModelAttribute  Client newClient, Model model) 
+	public ModelAndView createNewClient(@ModelAttribute ClientDto newClientDto, Model model) 
 	{
 		try 
 		{
-			clientService.addNewClient(newClient);
+			clientService.addNewClient(newClientDto);
 			return new ModelAndView(ViewsResources.CLIENT_LIST_VIEW);
 		}
 		catch(UiException chEx) 
@@ -81,7 +81,7 @@ public class ManageClientsController extends BaseAjaxController
 	{
 		try 
 		{
-			PaginationSupport<Client> paginationSupport = new PaginationSupport<Client>(this.clientService.getAllClients(), pageSize, currentPage, "/ManageClientsController/pagedClients");
+			PaginationSupport<ClientDto> paginationSupport = new PaginationSupport<ClientDto>(this.clientService.getAllClients(), pageSize, currentPage, "/ManageClientsController/pagedClients");
 			return statusOk(paginationSupport);
 		}
 		catch(UiException chEx) 

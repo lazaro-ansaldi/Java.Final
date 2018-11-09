@@ -1,6 +1,6 @@
 package com.sensefilms.web.controllers.base;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public abstract class BaseAjaxController extends BaseController
 		return JsonSerializer.serializeAsJson(data);
 	}
 	
-	protected String jsonResult(ArrayList<Object> data) 
+	protected String jsonResult(List<Object> data) 
 	{
 		return JsonSerializer.serializeAsJson(data);
 	}

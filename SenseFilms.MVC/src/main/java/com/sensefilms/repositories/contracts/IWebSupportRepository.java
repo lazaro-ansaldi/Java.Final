@@ -1,10 +1,10 @@
 package com.sensefilms.repositories.contracts;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.sensefilms.repositories.entities.WebMenuItem;
 
 public interface IWebSupportRepository 
 {
-	ArrayList<WebMenuItem> getAllWebMenuItems();
+	List<WebMenuItem> getAllWebMenuItems();
 }

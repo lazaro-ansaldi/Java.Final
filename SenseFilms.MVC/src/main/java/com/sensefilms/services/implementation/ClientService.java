@@ -1,11 +1,12 @@
 package com.sensefilms.services.implementation;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sensefilms.core.dtos.ClientDto;
 import com.sensefilms.core.exceptions.ErrorMessages;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.repositories.contracts.IClientRepository;
@@ -26,12 +27,13 @@ public final class ClientService extends BaseService implements IClientService
 	}
 	
 	@Override
-	public void addNewClient(Client client) throws UiException
+	public void addNewClient(ClientDto clientDto) throws UiException
 	{
 		try 
 		{
-			this.clientRepository.insert(client);
-			getLogger().debug(String.format("Client %s has been created.", client.getCompleteName()));
+			Client clientEntity = getTransformUtility().transform(clientDto, Client.class);
+			this.clientRepository.insert(clientEntity);
+			getLogger().debug(String.format("Client %s has been created.", clientEntity.getCompleteName()));
 		}
 		catch(HibernateException hex)
 		{
@@ -44,11 +46,12 @@ public final class ClientService extends BaseService implements IClientService
 	}
 
 	@Override
-	public ArrayList<Client> getAllClients() throws UiException
+	public List<ClientDto> getAllClients() throws UiException
 	{
 		try 
 		{
-			return this.clientRepository.getAll();
+			this.clientRepository.getAll();
+			return getTransformUtility().transform(this.clientRepository.getAll(), ClientDto.class);
 		}
 		catch(HibernateException hex)
 		{

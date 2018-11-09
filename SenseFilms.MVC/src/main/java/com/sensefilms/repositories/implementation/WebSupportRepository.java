@@ -1,6 +1,5 @@
 package com.sensefilms.repositories.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -17,10 +16,9 @@ public class WebSupportRepository extends BaseRepository implements IWebSupportR
 {
 
 	@Override
-	public ArrayList<WebMenuItem> getAllWebMenuItems()
+	public List<WebMenuItem> getAllWebMenuItems()
 	{
-		List<WebMenuItem> castedList = CastUtils.castList(WebMenuItem.class, getCriteria(WebMenuItem.class).list());
-		return new ArrayList<WebMenuItem>(castedList);	
+		return CastUtils.castList(WebMenuItem.class, getCriteria(WebMenuItem.class).list());
 	}
 
 }

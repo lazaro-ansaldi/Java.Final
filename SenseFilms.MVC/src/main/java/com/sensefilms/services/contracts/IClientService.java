@@ -1,15 +1,15 @@
 package com.sensefilms.services.contracts;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import com.sensefilms.core.dtos.ClientDto;
 import com.sensefilms.core.exceptions.UiException;
-import com.sensefilms.repositories.entities.Client;
 
 public interface IClientService
 {
-	void addNewClient(Client client) throws UiException;
+	void addNewClient(ClientDto clientDto) throws UiException;
 	
-	ArrayList<Client> getAllClients() throws UiException;
+	List<ClientDto> getAllClients() throws UiException;
 	
 	void deleteClients(int[] idsToDelete) throws UiException;
 }

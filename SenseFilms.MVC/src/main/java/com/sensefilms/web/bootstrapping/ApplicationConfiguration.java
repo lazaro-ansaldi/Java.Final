@@ -1,5 +1,6 @@
 package com.sensefilms.web.bootstrapping;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,11 +13,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.sensefilms.core.utilities.ITransformUtility;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.sensefilms")
 public class ApplicationConfiguration extends WebMvcConfigurerAdapter
 {
+	@Autowired
+	private ITransformUtility mapperUtility;
+	
 	@Bean
 	public ViewResolver viewResolver() 
 	{
@@ -37,10 +43,16 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter
 		return messageSource;
 	}
 	
+	@Bean
+	public void registerMappings() 
+	{
+		mapperUtility.registerDefinedMappings();
+	}
+	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) 
     {
-        // Static ressources from WEB-INF
+        // Static resources from WEB-INF
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }

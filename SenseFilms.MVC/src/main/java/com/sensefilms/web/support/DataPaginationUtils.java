@@ -1,6 +1,5 @@
 package com.sensefilms.web.support;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.support.PagedListHolder;
@@ -11,7 +10,7 @@ public class DataPaginationUtils<T extends Object>
 	
 	private int totalPages;
 	
-	public DataPaginationUtils(ArrayList<T> data) 
+	public DataPaginationUtils(List<T> data) 
 	{
 		this.pagedListHolder = new PagedListHolder<T>(data);
 	}

@@ -1,6 +1,6 @@
 package com.sensefilms.repositories.base;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 
@@ -16,5 +16,5 @@ public interface IBaseCRUDRepository<TEntity extends IBaseEntity>
 	
 	public void deleteOneById(int id) throws HibernateException;
 	
-	public ArrayList<TEntity> getAll() throws HibernateException;
+	public List<TEntity> getAll() throws HibernateException;
 }
