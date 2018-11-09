@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.common.handlers.IAuthenticationContext;
+import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.core.utilities.IAuthenticationContext;
 import com.sensefilms.web.support.ViewsResources;
 import com.sensefilms.web.support.WebModelConstants;
 

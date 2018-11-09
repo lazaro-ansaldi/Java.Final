@@ -1,4 +1,4 @@
-package com.sensefilms.common.exceptions;
+package com.sensefilms.core.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

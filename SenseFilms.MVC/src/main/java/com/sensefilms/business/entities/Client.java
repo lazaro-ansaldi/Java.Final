@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import com.sensefilms.business.entities.base.BasePersonData;
-import com.sensefilms.business.enums.ClientType;
+import com.sensefilms.core.enums.ClientType;
 
 @Entity
 @Table(name = "client")

@@ -1,4 +1,4 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
 
 @Component
 public class AuthenticationContext implements IAuthenticationContext

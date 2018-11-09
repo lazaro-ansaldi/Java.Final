@@ -1,4 +1,4 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.core.extensions;
 
 import java.util.ArrayList;
 import java.util.Collection;

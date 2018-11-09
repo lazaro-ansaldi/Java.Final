@@ -1,6 +1,6 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
-public interface IAuditHandler 
+public interface IAuditUtility 
 {
 	void handleNewAuditEvent(String event, String description, String comments);
 }

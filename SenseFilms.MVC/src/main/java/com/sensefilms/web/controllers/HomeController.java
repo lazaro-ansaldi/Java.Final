@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.common.handlers.IAuthenticationContext;
+import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.core.utilities.IAuthenticationContext;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.ViewsResources;

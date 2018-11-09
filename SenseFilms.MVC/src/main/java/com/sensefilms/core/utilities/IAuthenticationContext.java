@@ -1,7 +1,7 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
 
 public interface IAuthenticationContext
 {

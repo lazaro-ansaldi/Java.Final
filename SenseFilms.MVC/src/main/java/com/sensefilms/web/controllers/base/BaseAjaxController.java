@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.sensefilms.common.handlers.IAuthenticationContext;
-import com.sensefilms.common.utils.JsonSerializer;
-import com.sensefilms.common.utils.StringUtils;
+import com.sensefilms.core.extensions.StringExtensions;
+import com.sensefilms.core.utilities.IAuthenticationContext;
+import com.sensefilms.web.support.JsonSerializer;
 
 public abstract class BaseAjaxController extends BaseController
 {
@@ -33,7 +33,7 @@ public abstract class BaseAjaxController extends BaseController
 	
 	protected ResponseEntity<Object> statusOk()
 	{
-		return statusOk(StringUtils.EMPTY);
+		return statusOk(StringExtensions.EMPTY);
 	}
 	
 	protected String jsonResult(Object data) 

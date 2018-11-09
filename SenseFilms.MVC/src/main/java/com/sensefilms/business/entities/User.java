@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import com.sensefilms.business.entities.base.BasePersonData;
-import com.sensefilms.business.enums.UserRoles;
+import com.sensefilms.core.enums.UserRoles;
 
 @Entity
 @Table(name = "user")

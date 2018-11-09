@@ -1,10 +1,12 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.web.support;
 
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import com.sensefilms.core.extensions.StringExtensions;
 
 @Component
 public class WebUrisUtils 
@@ -26,9 +28,9 @@ public class WebUrisUtils
 	 */
 	public static String getUrlWithParams(String baseUrl, String param, String value) throws IllegalArgumentException
 	{
-		if(StringUtils.isNullOrEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
+		if(StringExtensions.isNullOrEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
 		
-		if(StringUtils.isNullOrEmpty(param)) throw new IllegalArgumentException("The param name is null or empty.");
+		if(StringExtensions.isNullOrEmpty(param)) throw new IllegalArgumentException("The param name is null or empty.");
 			
 		return domainName + baseUrl + "?" + param + "=" + value;		
 	}
@@ -42,7 +44,7 @@ public class WebUrisUtils
 	 */
 	public static String getUrlWithParams(String baseUrl, HashMap<String, String> params) throws IllegalArgumentException
 	{
-		if(StringUtils.isNullOrEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
+		if(StringExtensions.isNullOrEmpty(baseUrl)) throw new IllegalArgumentException("Base url is null or empty.");
 		
 		if(params == null || params.isEmpty()) throw new IllegalArgumentException("The params map is null or empty.");
 		

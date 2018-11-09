@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.base.IBaseEntity;
-import com.sensefilms.common.utils.CastUtils;
+import com.sensefilms.core.extensions.CastUtils;
 
 @Repository
 @Transactional

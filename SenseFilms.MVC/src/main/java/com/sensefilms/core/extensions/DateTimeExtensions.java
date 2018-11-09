@@ -1,8 +1,8 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.core.extensions;
 
 import java.text.SimpleDateFormat;
 
-public class DateTimeUtils 
+public class DateTimeExtensions 
 {
 	public static boolean tryParseToSqlDate(java.util.Date date, java.sql.Date sqlDate)
 	{

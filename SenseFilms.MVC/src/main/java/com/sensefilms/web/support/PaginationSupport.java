@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.sensefilms.common.utils.DataPaginationUtils;
-import com.sensefilms.common.utils.WebUrisUtils;
-
 public class PaginationSupport<T extends Object>
 {
 	private final int MAX_PAGES_SHOW = 3;

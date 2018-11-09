@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
-import com.sensefilms.common.handlers.IAuthenticationContext;
-import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.common.utils.StringUtils;
+import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.core.extensions.StringExtensions;
+import com.sensefilms.core.utilities.IAuthenticationContext;
 import com.sensefilms.services.contracts.IUserAuthenticationService;
 import com.sensefilms.services.contracts.IWebSupportService;
 import com.sensefilms.web.controllers.base.BaseController;
@@ -48,7 +48,7 @@ public class AccountController extends BaseController
 	{
 		try 
 		{
-			accountService.updateNewPassord(username, StringUtils.EMPTY);
+			accountService.updateNewPassord(username, StringExtensions.EMPTY);
 			return new ModelAndView(ViewsResources.HOME_VIEW);
 		}
 		catch(UiNotAuthenticatedException cbEx) 

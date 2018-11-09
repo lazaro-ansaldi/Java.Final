@@ -5,7 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
-import com.sensefilms.business.enums.UserRoles;
+import com.sensefilms.core.enums.UserRoles;
 
 @MappedSuperclass
 public abstract class BaseWebItem extends BaseEntity 

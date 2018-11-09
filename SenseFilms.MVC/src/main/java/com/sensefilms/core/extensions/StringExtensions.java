@@ -1,8 +1,8 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.core.extensions;
 
 import java.util.UUID;
 
-public class StringUtils 
+public class StringExtensions 
 {
 	/**
 	 * Check if a string is null or empty.

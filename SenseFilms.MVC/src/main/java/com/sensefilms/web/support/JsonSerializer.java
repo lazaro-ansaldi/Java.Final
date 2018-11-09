@@ -1,10 +1,11 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.web.support;
 
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.sensefilms.core.extensions.StringExtensions;
 
 
 public class JsonSerializer 
@@ -19,7 +20,7 @@ public class JsonSerializer
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-		String result = StringUtils.EMPTY;
+		String result = StringExtensions.EMPTY;
 		try 
 		{
 			result = objectMapper.writeValueAsString(o);
@@ -42,7 +43,7 @@ public class JsonSerializer
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-		String result = StringUtils.EMPTY;
+		String result = StringExtensions.EMPTY;
 		try 
 		{
 			result = objectMapper.writeValueAsString(o);

@@ -1,4 +1,4 @@
-package com.sensefilms.common.exceptions;
+package com.sensefilms.core.exceptions;
 
 public class UiNotAuthenticatedException extends UiException
 {

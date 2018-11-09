@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
 import com.sensefilms.business.entities.WebMenuItem;
-import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.common.utils.CommonConstants;
+import com.sensefilms.core.exceptions.ErrorMessages;
+import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
 import com.sensefilms.services.base.BaseService;
@@ -51,11 +51,11 @@ public final class WebSupportService extends BaseService implements IWebSupportS
 		}
 		catch(HibernateException hex)
 		{
-			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(ErrorMessages.HIBERNATE_ERROR_MESSAGE, hex);
 		}
 		catch(Exception ex)
 		{
-			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(ErrorMessages.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 

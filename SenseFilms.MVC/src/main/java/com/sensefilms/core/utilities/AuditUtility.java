@@ -1,4 +1,4 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,13 +7,13 @@ import com.sensefilms.business.entities.AuditEvent;
 import com.sensefilms.repositories.contracts.IAuditorRepository;
 
 @Component
-public class AuditHandler implements IAuditHandler
+public class AuditUtility implements IAuditUtility
 {
 
 	IAuditorRepository _repository;
 	
 	@Autowired
-	public AuditHandler(IAuditorRepository repository)
+	public AuditUtility(IAuditorRepository repository)
 	{
 		this._repository = repository;
 	}

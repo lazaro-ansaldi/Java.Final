@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.utils.CastUtils;
+import com.sensefilms.core.extensions.CastUtils;
 import com.sensefilms.repositories.base.BaseCRUDRepository;
 import com.sensefilms.repositories.contracts.IUserRepository;
 

@@ -1,6 +1,6 @@
-package com.sensefilms.common.utils;
+package com.sensefilms.core.exceptions;
 
-public class CommonConstants
+public class ErrorMessages
 {
 	public static final String HIBERNATE_ERROR_MESSAGE = "An error ocurred when try to access the database.";
 	

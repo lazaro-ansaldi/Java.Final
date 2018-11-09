@@ -3,7 +3,7 @@ package com.sensefilms.services.contracts;
 import java.util.ArrayList;
 
 import com.sensefilms.business.entities.Client;
-import com.sensefilms.common.exceptions.UiException;
+import com.sensefilms.core.exceptions.UiException;
 
 public interface IClientService
 {

@@ -1,8 +1,8 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
 import javax.mail.MessagingException;
 
-public interface IMailHandler 
+public interface IMailUtility 
 {
 	void sendMailMessage(String to, String subject, String body) throws MessagingException;
 }

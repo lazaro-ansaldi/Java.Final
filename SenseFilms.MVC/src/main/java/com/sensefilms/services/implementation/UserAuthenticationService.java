@@ -12,13 +12,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sensefilms.business.entities.User;
-import com.sensefilms.common.exceptions.UiNotAuthenticatedException;
-import com.sensefilms.common.exceptions.UiException;
-import com.sensefilms.common.handlers.IAuditHandler;
-import com.sensefilms.common.handlers.IAuthenticationContext;
-import com.sensefilms.common.handlers.IMailHandler;
-import com.sensefilms.common.utils.CommonConstants;
-import com.sensefilms.common.utils.StringUtils;
+import com.sensefilms.core.exceptions.ErrorMessages;
+import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.core.extensions.StringExtensions;
+import com.sensefilms.core.utilities.IAuditUtility;
+import com.sensefilms.core.utilities.IAuthenticationContext;
+import com.sensefilms.core.utilities.IMailUtility;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IUserAuthenticationService;
@@ -27,11 +27,11 @@ import com.sensefilms.services.contracts.IUserAuthenticationService;
 public final class UserAuthenticationService extends BaseService implements IUserAuthenticationService, UserDetailsService
 {
 	private IAuthenticationContext _authenticationContext;
-	private IMailHandler _mailHandler;
-	private IAuditHandler _auditHandler;
+	private IMailUtility _mailHandler;
+	private IAuditUtility _auditHandler;
 
 	@Autowired
-	public UserAuthenticationService(IUserRepository userRepository, IMailHandler mailHandler, IAuditHandler auditHandler, IAuthenticationContext authenticationContext)
+	public UserAuthenticationService(IUserRepository userRepository, IMailUtility mailHandler, IAuditUtility auditHandler, IAuthenticationContext authenticationContext)
 	{
 		super(UserAuthenticationService.class);
 		this._userRepository = userRepository;
@@ -46,7 +46,7 @@ public final class UserAuthenticationService extends BaseService implements IUse
 	public void updateNewPassord(String username, String newPassword) throws UiNotAuthenticatedException, UiException
 	{
 		User currentUser = null;
-		boolean isRecoveryProcess = StringUtils.isNullOrEmpty(newPassword);
+		boolean isRecoveryProcess = StringExtensions.isNullOrEmpty(newPassword);
 
 		try
 		{
@@ -56,7 +56,7 @@ public final class UserAuthenticationService extends BaseService implements IUse
 				throw new UiNotAuthenticatedException("The username doesn't exists.");
 
 			if (isRecoveryProcess)
-				newPassword = StringUtils.getRandomStringBasedOnGuid(10);
+				newPassword = StringExtensions.getRandomStringBasedOnGuid(10);
 
 			currentUser.setPassword(newPassword);
 			currentUser.setNewPassword(isRecoveryProcess);
@@ -75,7 +75,7 @@ public final class UserAuthenticationService extends BaseService implements IUse
 		} 
 		catch (HibernateException hex)
 		{
-			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(ErrorMessages.HIBERNATE_ERROR_MESSAGE, hex);
 		} 
 		catch (MessagingException msgEx)
 		{
@@ -83,7 +83,7 @@ public final class UserAuthenticationService extends BaseService implements IUse
 		} 
 		catch (Exception ex)
 		{
-			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(ErrorMessages.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
@@ -96,11 +96,11 @@ public final class UserAuthenticationService extends BaseService implements IUse
 		} 
 		catch (HibernateException hex)
 		{
-			throw new UiException(CommonConstants.HIBERNATE_ERROR_MESSAGE, hex);
+			throw new UiException(ErrorMessages.HIBERNATE_ERROR_MESSAGE, hex);
 		} 
 		catch (Exception ex)
 		{
-			throw new UiException(CommonConstants.GENERIC_ERROR_MESSAGE, ex);
+			throw new UiException(ErrorMessages.GENERIC_ERROR_MESSAGE, ex);
 		}
 	}
 
@@ -109,7 +109,7 @@ public final class UserAuthenticationService extends BaseService implements IUse
 		String eventDescription = isRecoveryProcess ? String.format("Random password generated for user %s", username)
 					: String.format("Password updated for user %s", username);
 
-		this._auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringUtils.EMPTY);
+		this._auditHandler.handleNewAuditEvent("[Update-Password]", eventDescription, StringExtensions.EMPTY);
 	}
 
 	private void sendEmailWithNewPassword(String randomPassword, String email) throws MessagingException

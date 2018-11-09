@@ -3,7 +3,7 @@ package com.sensefilms.services.contracts;
 import java.util.List;
 
 import com.sensefilms.business.entities.WebMenuItem;
-import com.sensefilms.common.exceptions.UiException;
+import com.sensefilms.core.exceptions.UiException;
 
 public interface IWebSupportService 
 {

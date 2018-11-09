@@ -1,4 +1,4 @@
-package com.sensefilms.common.handlers;
+package com.sensefilms.core.utilities;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -9,12 +9,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailHandler implements IMailHandler
+public class EmailUtility implements IMailUtility
 {
 	private JavaMailSenderImpl javaMailSender;	
 	
 	@Autowired
-	public EmailHandler(JavaMailSenderImpl javaMailSender)
+	public EmailUtility(JavaMailSenderImpl javaMailSender)
 	{
 		this.javaMailSender = javaMailSender;
 	}
