@@ -1,8 +1,8 @@
 package com.sensefilms.services.contracts;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.repositories.entities.User;
 
 public interface IUserAuthenticationService
 {	

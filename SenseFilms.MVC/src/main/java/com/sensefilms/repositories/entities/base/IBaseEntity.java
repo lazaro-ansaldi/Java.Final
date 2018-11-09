@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities.base;
+package com.sensefilms.repositories.entities.base;
 
 public interface IBaseEntity
 {

@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.repositories.entities;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sensefilms.business.entities.base.BaseWebItem;
+import com.sensefilms.repositories.entities.base.BaseWebItem;
 
 @Entity
 @Table(name = "web_menu_item")

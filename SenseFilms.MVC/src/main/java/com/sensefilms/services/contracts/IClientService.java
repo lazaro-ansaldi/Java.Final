@@ -2,8 +2,8 @@ package com.sensefilms.services.contracts;
 
 import java.util.ArrayList;
 
-import com.sensefilms.business.entities.Client;
 import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.repositories.entities.Client;
 
 public interface IClientService
 {

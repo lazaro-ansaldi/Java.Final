@@ -1,6 +1,6 @@
 package com.sensefilms.repositories.contracts;
 
-import com.sensefilms.business.entities.AuditEvent;
+import com.sensefilms.repositories.entities.AuditEvent;
 
 public interface IAuditorRepository 
 {

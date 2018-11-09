@@ -2,7 +2,7 @@ package com.sensefilms.repositories.contracts;
 
 import java.util.ArrayList;
 
-import com.sensefilms.business.entities.WebMenuItem;
+import com.sensefilms.repositories.entities.WebMenuItem;
 
 public interface IWebSupportRepository 
 {

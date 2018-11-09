@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.core.exceptions.ErrorMessages;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
@@ -20,6 +19,7 @@ import com.sensefilms.core.utilities.IAuditUtility;
 import com.sensefilms.core.utilities.IAuthenticationContext;
 import com.sensefilms.core.utilities.IMailUtility;
 import com.sensefilms.repositories.contracts.IUserRepository;
+import com.sensefilms.repositories.entities.User;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IUserAuthenticationService;
 

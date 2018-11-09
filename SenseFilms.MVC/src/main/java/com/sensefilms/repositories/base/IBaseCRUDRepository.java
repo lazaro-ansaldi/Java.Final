@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
 
-import com.sensefilms.business.entities.base.IBaseEntity;
+import com.sensefilms.repositories.entities.base.IBaseEntity;
 
 public interface IBaseCRUDRepository<TEntity extends IBaseEntity> 
 {

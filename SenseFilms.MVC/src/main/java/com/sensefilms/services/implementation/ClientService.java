@@ -6,10 +6,10 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sensefilms.business.entities.Client;
 import com.sensefilms.core.exceptions.ErrorMessages;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.repositories.contracts.IClientRepository;
+import com.sensefilms.repositories.entities.Client;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IClientService;
 

@@ -7,8 +7,8 @@ import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.business.entities.base.IBaseEntity;
 import com.sensefilms.core.extensions.CastUtils;
+import com.sensefilms.repositories.entities.base.IBaseEntity;
 
 @Repository
 @Transactional

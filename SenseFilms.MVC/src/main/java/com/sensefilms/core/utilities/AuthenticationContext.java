@@ -34,7 +34,7 @@ public class AuthenticationContext implements IAuthenticationContext
 	}
 
 	@Override
-	public User mapToSpringUser(com.sensefilms.business.entities.User user)
+	public User mapToSpringUser(com.sensefilms.repositories.entities.User user)
 	{
 		if(user == null) 
 		{

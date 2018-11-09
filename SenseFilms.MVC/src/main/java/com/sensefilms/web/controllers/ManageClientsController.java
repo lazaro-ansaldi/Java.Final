@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sensefilms.business.entities.Client;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.core.utilities.IAuthenticationContext;
+import com.sensefilms.repositories.entities.Client;
 import com.sensefilms.services.contracts.IClientService;
 import com.sensefilms.web.controllers.base.BaseAjaxController;
 import com.sensefilms.web.support.PaginationSupport;

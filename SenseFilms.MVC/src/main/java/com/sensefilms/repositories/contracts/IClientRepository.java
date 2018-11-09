@@ -1,7 +1,7 @@
 package com.sensefilms.repositories.contracts;
 
-import com.sensefilms.business.entities.Client;
 import com.sensefilms.repositories.base.IBaseCRUDRepository;
+import com.sensefilms.repositories.entities.Client;
 
 public interface IClientRepository extends IBaseCRUDRepository<Client>
 {

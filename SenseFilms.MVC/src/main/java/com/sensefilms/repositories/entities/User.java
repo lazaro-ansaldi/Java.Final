@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.repositories.entities;
 
 import java.util.Date;
 
@@ -8,8 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import com.sensefilms.business.entities.base.BasePersonData;
 import com.sensefilms.core.enums.UserRoles;
+import com.sensefilms.repositories.entities.base.BasePersonData;
 
 @Entity
 @Table(name = "user")

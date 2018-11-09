@@ -2,8 +2,8 @@ package com.sensefilms.services.contracts;
 
 import java.util.List;
 
-import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.core.exceptions.UiException;
+import com.sensefilms.repositories.entities.WebMenuItem;
 
 public interface IWebSupportService 
 {

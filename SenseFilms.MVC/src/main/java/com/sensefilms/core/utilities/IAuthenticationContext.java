@@ -1,7 +1,7 @@
 package com.sensefilms.core.utilities;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.core.exceptions.UiNotAuthenticatedException;
+import com.sensefilms.repositories.entities.User;
 
 public interface IAuthenticationContext
 {

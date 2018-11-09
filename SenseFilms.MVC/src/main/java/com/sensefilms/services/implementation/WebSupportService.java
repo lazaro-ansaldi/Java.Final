@@ -8,12 +8,12 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sensefilms.business.entities.User;
-import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.core.exceptions.ErrorMessages;
 import com.sensefilms.core.exceptions.UiException;
 import com.sensefilms.repositories.contracts.IUserRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
+import com.sensefilms.repositories.entities.User;
+import com.sensefilms.repositories.entities.WebMenuItem;
 import com.sensefilms.services.base.BaseService;
 import com.sensefilms.services.contracts.IWebSupportService;
 

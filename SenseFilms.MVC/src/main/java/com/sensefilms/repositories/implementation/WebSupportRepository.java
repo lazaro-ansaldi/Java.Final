@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.business.entities.WebMenuItem;
 import com.sensefilms.core.extensions.CastUtils;
 import com.sensefilms.repositories.base.BaseRepository;
 import com.sensefilms.repositories.contracts.IWebSupportRepository;
+import com.sensefilms.repositories.entities.WebMenuItem;
 
 @Repository
 @Transactional

@@ -3,8 +3,8 @@ package com.sensefilms.core.utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sensefilms.business.entities.AuditEvent;
 import com.sensefilms.repositories.contracts.IAuditorRepository;
+import com.sensefilms.repositories.entities.AuditEvent;
 
 @Component
 public class AuditUtility implements IAuditUtility

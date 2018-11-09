@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.repositories.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import com.sensefilms.business.entities.base.BasePersonData;
 import com.sensefilms.core.enums.ClientType;
+import com.sensefilms.repositories.entities.base.BasePersonData;
 
 @Entity
 @Table(name = "client")

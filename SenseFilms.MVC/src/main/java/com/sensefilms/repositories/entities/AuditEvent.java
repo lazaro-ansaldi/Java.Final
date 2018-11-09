@@ -1,4 +1,4 @@
-package com.sensefilms.business.entities;
+package com.sensefilms.repositories.entities;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.sensefilms.business.entities.base.BaseEntity;
+import com.sensefilms.repositories.entities.base.BaseEntity;
 
 @Entity
 @Table(name = "audit_event")

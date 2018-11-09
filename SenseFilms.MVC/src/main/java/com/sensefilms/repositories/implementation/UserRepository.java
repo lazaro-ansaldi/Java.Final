@@ -6,10 +6,10 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sensefilms.business.entities.User;
 import com.sensefilms.core.extensions.CastUtils;
 import com.sensefilms.repositories.base.BaseCRUDRepository;
 import com.sensefilms.repositories.contracts.IUserRepository;
+import com.sensefilms.repositories.entities.User;
 
 @Repository
 @Transactional
