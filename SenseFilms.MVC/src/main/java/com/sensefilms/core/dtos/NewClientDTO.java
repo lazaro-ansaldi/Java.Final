@@ -1,6 +1,6 @@
 package com.sensefilms.core.dtos;
 
-public class LoginDTO 
+public class NewClientDTO 
 {
 
 }
